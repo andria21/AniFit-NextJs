@@ -1,0 +1,165 @@
+.container {
+  display: flex;
+  gap: 100px;
+  width: 100%;
+  max-width: 106.25em;
+  margin: 0 auto;
+  padding-top: 100px;
+}
+
+.posts {
+  flex: 1;
+}
+
+.post {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 100px 0px;
+  padding-bottom: 80px;
+}
+
+.imgContainer {
+  width: 200px;
+  height: 100px;
+  position: Ū;
+}
+
+.img {
+  object-fit: cover;
+}
+
+.delete {
+  cursor: pointer;
+  color: red;
+}
+
+.new {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 55px;
+}
+
+.input,
+.textArea {
+  padding: 10px;
+  background-color: transparent;
+  border: 2px solid #bbb;
+  border-radius: 3px;
+  color: #bbb;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.button {
+  padding: 20px;
+  cursor: pointer;
+  background-color: lime;
+  border: none;
+  border-radius: 20px 2px 2px 2px;
+  color: #eee;
+  font-weight: bold;
+}
+
+.mainDiv {
+  display: flex;
+  gap: 100px;
+  width: 100%;
+  max-width: 106.25em;
+  margin: 0 auto;
+  padding-top: 100px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+.card {
+  width: 500px; /* Adjust the width as per your design */
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5em;
+  background: linear-gradient(45deg, #ffffff, #f7f7f7);
+}
+
+.videoWrapper {
+  position: relative;
+  border-bottom: 1px solid #ddd;
+}
+
+.video {
+  border-radius: 10px 10px 0 0;
+  padding: 10px;
+}
+
+.cardContent {
+  padding: 16px;
+}
+
+.videoTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: black;
+}
+
+.videoDescription {
+  font-size: 14px;
+  color: black;
+  margin-bottom: 8px;
+}
+
+.videoContent {
+  font-size: 14px;
+  color: black;
+}
+
+
+
+.cartIconWrapper {
+  position: relative;
+}
+
+.cartButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.svg {
+  filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+}
+
+.svgg {
+  filter: invert(56%) sepia(64%) saturate(3945%) hue-rotate(77deg) brightness(124%) contrast(107%);
+}
+
+.popAnimation {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  animation: popAnimation 0.5s ease;
+}
+
+@keyframes popAnimation {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.ex {
+  filter: invert(20%) sepia(93%) saturate(5892%) hue-rotate(356deg) brightness(106%) contrast(120%);
+}
