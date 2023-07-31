@@ -19,7 +19,6 @@ export default function Dashboard() {
   const session = useSession();
   const router = useRouter();
   const adminEmail = process.env.ADMIN_EMAIL;
-  const API_URL = process.env.API_URL;
 
   const { array, isArrayLoading, setIsArrayLoading } = useContext(ExerciseContext);
 
@@ -42,7 +41,7 @@ export default function Dashboard() {
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
   const dataUserName = session?.data?.user.name;
-  const { data, mutate, error, isLoading } = useSWR(`${API_URL}/api/exercises`, fetcher);
+  const { data, mutate, error, isLoading } = useSWR(`/api/exercises`, fetcher);
 
   if (session.status === "loading") {
     return <p>Loading...</p>;
@@ -58,7 +57,7 @@ export default function Dashboard() {
     const username = e.target[0].value;
 
     try {
-      await fetch(`${API_URL}/api/exercises`, {
+      await fetch("/api/exercises", {
         method: "POST",
         body: JSON.stringify({
           username,
@@ -74,7 +73,7 @@ export default function Dashboard() {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`${API_URL}/api/exercises/${id}`, {
+      await fetch(`/api/exercises/${id}`, {
         method: "DELETE",
       });
       mutate();
