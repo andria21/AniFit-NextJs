@@ -17,6 +17,8 @@ const Dashboard = () => {
 
   const router = useRouter();
 
+  const API_URL = process.env.API_URL;
+
   const adminEmail = process.env.ADMIN_EMAIL;
 
   const { array, isArrayLoading, setIsArrayLoading } =
@@ -26,7 +28,7 @@ const Dashboard = () => {
 
   const dataUserName = session?.data?.user.name;
   const { data, mutate, error, isLoading } = useSWR(
-    `/api/posts?username=${dataUserName}`,
+    `${API_URL}/api/posts?username=${dataUserName}`,
     fetcher
   );
 
@@ -46,7 +48,7 @@ const Dashboard = () => {
     const content = e.target[3].value;
 
     try {
-      await fetch("/api/posts", {
+      await fetch(`${API_URL}/api/posts`, {
         method: "POST",
         body: JSON.stringify({
           title,
@@ -65,7 +67,7 @@ const Dashboard = () => {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`/api/posts/${id}`, {
+      await fetch(`${API_URL}/api/posts/${id}`, {
         method: "DELETE",
       });
       mutate();
