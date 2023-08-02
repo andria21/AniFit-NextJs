@@ -13,7 +13,7 @@ const Navbar = () => {
     setNavbarVisibility(!isNavbarVisible);
   };
   const session = useSession();
-  const adminEmail = session.data?.user.email;
+  const adminEmail = process.env.ADMIN_EMAIL;
 
   return (
     <div className={styles.container}>
@@ -37,7 +37,7 @@ const Navbar = () => {
           </Link>
 
           {session.status === "authenticated" &&
-            session.data?.user.email === adminEmail && (
+            session.data.user.email === adminEmail && (
               <Link href={"/dashboard"} className={styles.link}>
                 Dashboard
               </Link>
