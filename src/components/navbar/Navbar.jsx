@@ -35,22 +35,12 @@ const Navbar = () => {
           <Link href={"/"} className={styles.link}>
             Home
           </Link>
-          {session.status === "authenticated" ? (
-              <Link href={"/"} className={styles.link}>
-                AUTHENTICATED
-              </Link>
-            ): (
-              <Link href={"/"} className={styles.link}>
-                UNAUNTHENTICATED
-              </Link>
-            )}
 
-          {session.status === "authenticated" &&
-            session.data.user.email === adminEmail && (
-              <Link href={"/dashboard"} className={styles.link}>
-                Dashboard
-              </Link>
-            )}
+          {session.data?.user.email === adminEmail && (
+            <Link href={"/dashboard"} className={styles.link}>
+              Dashboard
+            </Link>
+          )}
 
           <Link href={"/exercises"} className={styles.link}>
             Exercises
