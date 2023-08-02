@@ -8,12 +8,14 @@ import { signIn, useSession } from "next-auth/react";
 export default function Login() {
   const session = useSession();
   const router = useRouter();
+  const adminEmail = process.env.ADMIN_EMAIL;
 
   if (session.status === "loading") {
     return <p>Loading...</p>;
   }
 
   if (session.status === "authenticated") {
+    console.log(session.status + router);
     router?.push("/dashboard");
   }
 
