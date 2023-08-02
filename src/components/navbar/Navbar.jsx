@@ -35,6 +35,15 @@ const Navbar = () => {
           <Link href={"/"} className={styles.link}>
             Home
           </Link>
+          {session.status === "authenticated" ? (
+              <Link href={"/"} className={styles.link}>
+                AUTHENTICATED
+              </Link>
+            ): (
+              <Link href={"/"} className={styles.link}>
+                UNAUNTHENTICATED
+              </Link>
+            )}
 
           {session.status === "authenticated" &&
             session.data.user.email === adminEmail && (
