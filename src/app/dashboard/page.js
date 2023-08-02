@@ -109,13 +109,25 @@ const Dashboard = () => {
                     className={styles.delete}
                     onClick={() => handleDelete(post._id)}
                   >
-                  <Image className={styles.ex} src={X} width={20} height={20} alt="plus" />
+                    <Image
+                      className={styles.ex}
+                      src={X}
+                      width={20}
+                      height={20}
+                      alt="plus"
+                    />
                   </span>
                   <span
                     className={styles.delete}
                     onClick={() => handleAdd(post)}
                   >
-                    <Image className={styles.plus} src={PlusSvg} width={20} height={20} alt="plus" />
+                    <Image
+                      className={styles.plus}
+                      src={PlusSvg}
+                      width={20}
+                      height={20}
+                      alt="plus"
+                    />
                   </span>
                 </div>
               ))}
@@ -137,26 +149,6 @@ const Dashboard = () => {
           ></textarea>
           <button className={styles.button}>SEND</button>
         </form>
-      </div>
-    );
-  } else if (
-    session.status === "authenticated" &&
-    session.data.user.email !== adminEmail
-  ) {
-    return (
-      <div className={styles.container}>
-        <div className={styles.posts}>
-          {isLoading
-            ? "loading"
-            : data?.map((post) => (
-                <div className={styles.post} key={post._id}>
-                  <div className={styles.imgContainer}>
-                    <Image src={post.img} alt="" width={300} height={200} />
-                  </div>
-                  <h2 className={styles.postTitle}>{post.title}</h2>
-                </div>
-              ))}
-        </div>
       </div>
     );
   }
