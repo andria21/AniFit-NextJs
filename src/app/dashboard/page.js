@@ -11,6 +11,7 @@ import { ExerciseContext } from "@/context/ExerciseContext";
 
 import PlusSvg from "../../../public/plus.svg";
 import X from "../../../public/x.svg";
+import Footer from "@/components/footer/Footer";
 
 const Dashboard = () => {
   const session = useSession();
@@ -88,67 +89,70 @@ const Dashboard = () => {
     session.data.user.email === adminEmail
   ) {
     return (
-      <div className={styles.container}>
-        <div className={styles.posts}>
-          {isLoading
-            ? "loading"
-            : data?.map((post) => (
-                <div className={styles.post} key={post._id}>
-                  <div className={styles.imgContainer}>
-                    <iframe
-                      allowfullscreen
-                      frameborder="0"
-                      width="300"
-                      height="300"
-                      type="text/html"
-                      src={`https://www.youtube.com/embed/${post.img}?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com`}
-                    ></iframe>
+      <div>
+        <div className={styles.container}>
+          <div className={styles.posts}>
+            {isLoading
+              ? "loading"
+              : data?.map((post) => (
+                  <div className={styles.post} key={post._id}>
+                    <div className={styles.imgContainer}>
+                      <iframe
+                        allowfullscreen
+                        frameborder="0"
+                        width="300"
+                        height="300"
+                        type="text/html"
+                        src={`https://www.youtube.com/embed/${post.img}?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com`}
+                      ></iframe>
+                    </div>
+                    <h2 className={styles.postTitle}>{post.title}</h2>
+                    <span
+                      className={styles.delete}
+                      onClick={() => handleDelete(post._id)}
+                    >
+                      <Image
+                        className={styles.ex}
+                        src={X}
+                        width={20}
+                        height={20}
+                        alt="plus"
+                      />
+                    </span>
+                    <span
+                      className={styles.delete}
+                      onClick={() => handleAdd(post)}
+                    >
+                      <Image
+                        className={styles.plus}
+                        src={PlusSvg}
+                        width={20}
+                        height={20}
+                        alt="plus"
+                      />
+                    </span>
                   </div>
-                  <h2 className={styles.postTitle}>{post.title}</h2>
-                  <span
-                    className={styles.delete}
-                    onClick={() => handleDelete(post._id)}
-                  >
-                    <Image
-                      className={styles.ex}
-                      src={X}
-                      width={20}
-                      height={20}
-                      alt="plus"
-                    />
-                  </span>
-                  <span
-                    className={styles.delete}
-                    onClick={() => handleAdd(post)}
-                  >
-                    <Image
-                      className={styles.plus}
-                      src={PlusSvg}
-                      width={20}
-                      height={20}
-                      alt="plus"
-                    />
-                  </span>
-                </div>
-              ))}
+                ))}
+          </div>
+          <form className={styles.new} onSubmit={handleSubmit}>
+            <h1>Add New Post</h1>
+            <input type="text" placeholder="Title" className={styles.input} />
+            <input type="text" placeholder="Desc" className={styles.input} />
+            <input
+              type="text"
+              placeholder="Youtube URL"
+              className={styles.input}
+            />
+            <textarea
+              placeholder="Content"
+              className={styles.textArea}
+              cols="30"
+              rows="10"
+            ></textarea>
+            <button className={styles.button}>SEND</button>
+          </form>
         </div>
-        <form className={styles.new} onSubmit={handleSubmit}>
-          <h1>Add New Post</h1>
-          <input type="text" placeholder="Title" className={styles.input} />
-          <input type="text" placeholder="Desc" className={styles.input} />
-          <input
-            type="text"
-            placeholder="Youtube URL"
-            className={styles.input}
-          />
-          <textarea
-            placeholder="Content"
-            className={styles.textArea}
-            cols="30"
-            rows="10"
-          ></textarea>
-          <button className={styles.button}>SEND</button>
-        </form>
+        <Footer />
       </div>
     );
   }

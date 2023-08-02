@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import styles from "./page.module.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Footer from "@/components/footer/Footer";
 
 export default function Register() {
   const [err, setErr] = useState(false);
@@ -38,7 +39,8 @@ export default function Register() {
         }),
       });
 
-      res.status === 201 && router.push("/dashboard/login?success=Account has been created");
+      res.status === 201 &&
+        router.push("/dashboard/login?success=Account has been created");
     } catch (error) {
       setErr(true);
     }
@@ -47,7 +49,7 @@ export default function Register() {
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit} className={styles.form}>
-      <h2 className={styles.title}>Register</h2>
+        <h2 className={styles.title}>Register</h2>
         <div className={styles.formGroup}>
           <label className={styles.label}>Name:</label>
           <input

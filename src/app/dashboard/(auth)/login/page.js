@@ -5,6 +5,9 @@ import styles from "./page.module.css";
 
 import { signIn, useSession } from "next-auth/react";
 
+import Footer from "@/components/footer/Footer";
+import Image from "next/image";
+
 export default function Login() {
   const session = useSession();
   const router = useRouter();
@@ -14,8 +17,16 @@ export default function Login() {
     return <p>Loading...</p>;
   }
 
-  if (session.status === "authenticated") {
+  if (
+    session.status === "authenticated" &&
+    adminEmail === session.data?.user.email
+  ) {
     router?.push("/dashboard");
+  } else if (
+    session.status === "authenticated" &&
+    adminEmail !== session.data?.user.email
+  ) {
+    router?.push("/exercises");
   }
 
   const handleLogin = (e) => {
@@ -60,9 +71,18 @@ export default function Login() {
           Login
         </button>
         <div className={styles.newDiv}>
-          <button type="text" onClick={() => router?.push("/dashboard/register")} className={styles.newAccButton}>- Create a new account -</button>
+          <button
+            type="text"
+            onClick={() => router?.push("/dashboard/register")}
+            className={styles.newAccButton}
+          >
+            - Create a new account -
+          </button>
         </div>
-      </form>  
+      </form>
+      <div className={styles.footerContainer}>
+        <Footer />
+      </div>
     </div>
   );
 }

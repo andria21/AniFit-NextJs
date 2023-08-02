@@ -15,6 +15,8 @@ import { ExerciseContext } from "@/context/ExerciseContext";
 import CartImage from "../../../public/cart.svg";
 import X from "../../../public/x.svg";
 
+import Footer from "@/components/footer/Footer";
+
 export default function Dashboard() {
   const session = useSession();
   const router = useRouter();
@@ -130,6 +132,7 @@ export default function Dashboard() {
                   </span>
                 </div>
               ))}
+              
         </div>
         <form className={styles.new} onSubmit={handleSubmit}>
           <h1>Add workout program for a user</h1>
@@ -173,6 +176,7 @@ export default function Dashboard() {
             })
           );
         })}
+        <Footer />
       </div>
     );
   }

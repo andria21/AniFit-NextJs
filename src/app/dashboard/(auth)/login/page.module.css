@@ -1,9 +1,10 @@
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   height: 100vh;
   background: linear-gradient(135deg, grey, black, grey);
+  flex-direction: column;
 }
 
 .loginForm {
@@ -16,6 +17,7 @@
   background: linear-gradient(45deg, white, black, grey);
   border-radius: 8px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  margin-top: 265px;
 }
 
 
@@ -104,4 +106,8 @@
   50% {
     opacity: 0.5;
   }
+}
+
+.footerContainer {
+  width: 100%;
 }

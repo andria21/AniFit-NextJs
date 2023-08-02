@@ -3,6 +3,10 @@
   height: 928px;
 }
 
+/* .mainDiva {
+  position: relative;
+} */
+
 .imgCont .container {
   display: flex;
   align-items: center;

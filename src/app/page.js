@@ -6,6 +6,8 @@ import GymGirl from "../../public/gym-girl.jpg";
 import User from "@/models/User";
 import Link from "next/link";
 
+import Footer from "@/components/footer/Footer";
+
 export default function Home() {
   return (
     <div>
@@ -45,6 +47,7 @@ export default function Home() {
           </p>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
