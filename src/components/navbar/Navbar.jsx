@@ -6,24 +6,6 @@ import styles from "./navbar.module.css";
 import Button from "../button/Button";
 import { signOut, useSession } from "next-auth/react";
 
-const links = [
-  {
-    id: 1,
-    title: "Home",
-    url: "/",
-  },
-  {
-    id: 2,
-    title: "Dashboard",
-    url: "/dashboard",
-  },
-  {
-    id: 3,
-    title: "Exercises",
-    url: "/exercises",
-  },
-];
-
 const Navbar = () => {
   const [isNavbarVisible, setNavbarVisibility] = useState(false);
 

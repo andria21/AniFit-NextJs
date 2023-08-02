@@ -15,7 +15,6 @@ export default function Login() {
   }
 
   if (session.status === "authenticated") {
-    console.log(session.status + router);
     router?.push("/dashboard");
   }
 
