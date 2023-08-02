@@ -15,6 +15,9 @@ const Navbar = () => {
   const session = useSession();
   const adminEmail = process.env.ADMIN_EMAIL;
 
+  console.log(adminEmail);
+  console.log(session.data?.user.email);
+
   return (
     <div className={styles.container}>
       <div className={styles.hamburger} onClick={toggleNavbar}>
