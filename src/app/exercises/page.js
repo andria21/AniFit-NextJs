@@ -96,7 +96,7 @@ export default function Dashboard() {
       <div className={styles.container}>
         <div className={styles.posts}>
           {isArrayLoading
-            ? "loading"
+            ? <p>Loading... <br /> Please get some exercises from the dashboard before you send theme to users!</p>
             : array?.map((post) => (
                 <div className={styles.post} key={post._id}>
                   <div className={styles.imgContainer}>

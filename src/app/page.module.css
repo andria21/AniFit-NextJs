@@ -76,7 +76,7 @@
 .secondContainer {
   background-color: black;
   width: 100%;
-  height: 700px;
+  height: 300px;
   overflow: hidden;
 }
 
@@ -114,14 +114,52 @@
   background: linear-gradient(to right, #000, transparent);
 }
 
-/* ---------- MEDIA QUERIES ---------- */
-/* ---------- MEDIA QUERIES ---------- */
-/* ---------- MEDIA QUERIES ---------- */
+.thirdContainer {
+  width: 100%;
+  height: 700px;
+}
 
+.thirdContainerTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.thirdContainerTitle {
+  font-size: 38px;
+  padding-bottom: 50px;
+}
+
+.aboutMeImageContainer {
+  width: 100%;
+  max-width: 1700px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+.bigImage {
+  grid-column: 1 / 1;
+  grid-row: 1 / 3;
+  object-fit: cover;
+}
+
+.smallImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.aboutImage {
+  object-fit: cover;
+}
+/* ---------- MEDIA QUERIES ---------- */
+/* ---------- MEDIA QUERIES ---------- */
+/* ---------- MEDIA QUERIES ---------- */
 
 /* For screens between 768px and 991px */
-
 
 @media (min-width: 768px) and (max-width: 1750px) {
   /* CSS rules for medium-sized screens */
