@@ -42,6 +42,12 @@ const Navbar = () => {
             </Link>
           )}
 
+          {session.data?.user.email === adminEmail && (
+            <Link href={"/users"} className={styles.link}>
+              Users
+            </Link>
+          )}
+
           <Link href={"/exercises"} className={styles.link}>
             Exercises
           </Link>

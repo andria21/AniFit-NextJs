@@ -17,12 +17,15 @@ import X from "../../../public/x.svg";
 
 import Footer from "@/components/footer/Footer";
 
+import ExerciseCard from "@/components/ExerciseCard/ExerciseCard";
+
 export default function Dashboard() {
   const session = useSession();
   const router = useRouter();
   const adminEmail = process.env.ADMIN_EMAIL;
 
-  const { array, isArrayLoading, setIsArrayLoading } = useContext(ExerciseContext);
+  const { array, isArrayLoading, setIsArrayLoading } =
+    useContext(ExerciseContext);
 
   const [isAnimating, setIsAnimating] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -63,7 +66,13 @@ export default function Dashboard() {
         method: "POST",
         body: JSON.stringify({
           username,
-          objects: array,
+          dayOne: array,
+          dayTwo: array,
+          dayThree: array,
+          dayFour: array,
+          dayFive: array,
+          daySix: array,
+          daySeven: array,
         }),
       });
       mutate();
@@ -95,50 +104,57 @@ export default function Dashboard() {
     return (
       <div className={styles.container}>
         <div className={styles.posts}>
-          {isArrayLoading
-            ? <p>Loading... <br /> Please get some exercises from the dashboard before you send theme to users!</p>
-            : array?.map((post) => (
-                <div className={styles.post} key={post._id}>
-                  <div className={styles.imgContainer}>
-                    <iframe
-                      allowfullscreen
-                      frameborder="0"
-                      marginheight="0"
-                      marginwidth="0"
-                      width="300"
-                      height="300"
-                      type="text/html"
-                      src={`https://www.youtube.com/embed/${post.img}?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com`}
-                    ></iframe>
+          {isLoading ? (
+            <p>
+              Loading... <br /> Please get some exercises from the dashboard
+              before you send theme to users!
+            </p>
+          ) : (
+            data.map((item) => (
+              <div key={item.id}>
+                <h1>{item.username}</h1>
+                {item.exercises?.map((workout) => (
+                  <div className={styles.post} key={workout._id}>
+                    <div className={styles.imgContainer}>
+                      <iframe
+                        allowfullscreen
+                        frameborder="0"
+                        marginheight="0"
+                        marginwidth="0"
+                        width="300"
+                        height="300"
+                        type="text/html"
+                        src={`https://www.youtube.com/embed/${workout.img}?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com`}
+                      ></iframe>
+                    </div>
+                    <h2 className={styles.postTitle}>{workout.title}</h2>
+                    <span
+                      className={styles.delete}
+                      onClick={() => {
+                        array.splice(
+                          array.findIndex((a) => a._id === post._id),
+                          1
+                        );
+                        setIsArrayLoading(true);
+                        setTimeout(() => {
+                          setIsArrayLoading(false);
+                        }, 100);
+                      }}
+                    >
+                      <Image
+                        className={styles.ex}
+                        src={X}
+                        width={20}
+                        height={20}
+                        alt="plus"
+                      />
+                    </span>
                   </div>
-                  <h2 className={styles.postTitle}>{post.title}</h2>
-                  <h2 onClick={handleAddToCart} className={styles.postTitle}>
-                    {post.username}
-                  </h2>
-                  <span
-                    className={styles.delete}
-                    onClick={() => {
-                      array.splice(
-                        array.findIndex((a) => a._id === post._id),
-                        1
-                      );
-                      setIsArrayLoading(true);
-                      setTimeout(() => {
-                        setIsArrayLoading(false);
-                      }, 100)
-                    }}
-                  >
-                  <Image className={styles.ex} src={X} width={20} height={20} alt="plus" />
-                  </span>
-                </div>
-              ))}
-              
+                ))}
+              </div>
+            ))
+          )}
         </div>
-        <form className={styles.new} onSubmit={handleSubmit}>
-          <h1>Add workout program for a user</h1>
-          <input type="text" placeholder="Username" className={styles.input} />
-          <button className={styles.button}>SEND</button>
-        </form>
       </div>
     );
   } else if (
@@ -148,36 +164,50 @@ export default function Dashboard() {
     return (
       <div className={styles.mainDiv}>
         {data?.map((post) => {
-          return (
-            session.data.user.name === post.username &&
-            post?.objects.map((pp) => {
-              return (
-                <div key={pp._id}>
-                  <div class={styles.card}>
-                    <div class={styles.videoWrapper}>
-                      <iframe
-                        className={styles.video}
-                        allowfullscreen
-                        frameborder="0"
-                        width="500"
-                        height="400"
-                        type="text/html"
-                        src={`https://www.youtube.com/embed/${pp.img}?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com`}
-                      ></iframe>
-                    </div>
-                    <div class={styles.cardContent}>
-                      <h2 class={styles.videoTitle}>{pp.title}</h2>
-                      <p class={styles.videoDescription}>{pp.desc}</p>
-                      <p class={styles.videoContent}>{pp.content}</p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })
-          );
+          if (session.data.user.name === post.username) {
+            // Filter and sort exercises based on day
+            const sortedExercises = post.exercises
+              .filter((pp) => pp.day)
+              .sort((a, b) => a.day - b.day);
+              const filteredItems = sortedExercises.filter(item => item.day === 1);
+              const filteredItems2 = sortedExercises.filter(item => item.day === 2);
+              const filteredItems3 = sortedExercises.filter(item => item.day === 3);
+              const filteredItems4 = sortedExercises.filter(item => item.day === 4);
+              const filteredItems5 = sortedExercises.filter(item => item.day === 5);
+              const filteredItems6 = sortedExercises.filter(item => item.day === 6);
+              const filteredItems7 = sortedExercises.filter(item => item.day === 7);
+
+            return (
+              <>
+                {filteredItems?.map((workout) => (
+                  <ExerciseCard key={workout._id} videoUrl={workout.img} videoTitle={workout.title} videoDesc={workout.desc} videoContent={workout.content} videoDay={workout.day} />
+                ))}
+                {filteredItems2?.map((workout) => (
+                  <ExerciseCard key={workout._id} videoUrl={workout.img} videoTitle={workout.title} videoDesc={workout.desc} videoContent={workout.content} videoDay={workout.day} />
+                ))}
+                {filteredItems3?.map((workout) => (
+                  <ExerciseCard key={workout._id} videoUrl={workout.img} videoTitle={workout.title} videoDesc={workout.desc} videoContent={workout.content} videoDay={workout.day} />
+                ))}
+                {filteredItems4?.map((workout) => (
+                  <ExerciseCard key={workout._id} videoUrl={workout.img} videoTitle={workout.title} videoDesc={workout.desc} videoContent={workout.content} videoDay={workout.day} />
+                ))}
+                {filteredItems5?.map((workout) => (
+                  <ExerciseCard key={workout._id} videoUrl={workout.img} videoTitle={workout.title} videoDesc={workout.desc} videoContent={workout.content} videoDay={workout.day} />
+                ))}
+                {filteredItems6?.map((workout) => (
+                  <ExerciseCard key={workout._id} videoUrl={workout.img} videoTitle={workout.title} videoDesc={workout.desc} videoContent={workout.content} videoDay={workout.day} />
+                ))}
+                {filteredItems7?.map((workout) => (
+                  <ExerciseCard key={workout._id} videoUrl={workout.img} videoTitle={workout.title} videoDesc={workout.desc} videoContent={workout.content} videoDay={workout.day} />
+                ))}
+              </>
+            );
+          }
         })}
         <Footer />
       </div>
     );
   }
 }
+
+// onClicks gavaketeb h1 ze magalidat day1 onclick da gadava am day one'is exercisebze da im pageze anaxebs !

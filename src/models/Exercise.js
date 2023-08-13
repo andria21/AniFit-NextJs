@@ -23,6 +23,10 @@ const postSchema = new Schema({
     type: String,
     required: true,
   },
+  day: {
+    type: Number,
+    required: true,
+  },
   username: {
     type: String,
     required: true,
@@ -38,8 +42,13 @@ const arrayOfPostsSchema = Schema({
     type: String,
     required: true,
   },
-  objects: [postSchema],
-})
+  day: {
+    type: Number,
+    required: true,
+  },
+  exercises: [postSchema],
+
+});
 
 export default mongoose.models.Exercise ||
   mongoose.model("Exercise", arrayOfPostsSchema);

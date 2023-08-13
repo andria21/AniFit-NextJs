@@ -23,6 +23,8 @@ export const POST = async (request) => {
 
   const newPost = new Post(body);
 
+  console.log(body);
+
   try {
     await connect();
 
