@@ -223,10 +223,10 @@
 }
 
 
-.button {
+.buttona {
   padding: 20px;
   cursor: pointer;
-  background-color: #53c28b;
+  background-color: #7e53c2;
   border: none;
   border-radius: 20px 0 0 0;
   color: #eee;
@@ -302,6 +302,15 @@
 
   .input {
     border-radius: 7px;
+    width: 340px;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+  .textArea {
+    border-radius: 7px;
+    width: 340px;
+    max-width: 350px;
+    margin: 0 auto;
   }
 
   .videoCardContainer {

@@ -215,7 +215,7 @@ const Dashboard = () => {
                 className={styles.input}
                 onChange={handleDay}
               />
-              <button className={styles.button}>SEND</button>
+              <button className={styles.buttona}>SEND</button>
             </form>
             <div className={styles.uploadExercisesForm}>
               <Image
