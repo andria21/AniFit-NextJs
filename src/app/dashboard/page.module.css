@@ -272,3 +272,53 @@
   filter: invert(20%) sepia(93%) saturate(5892%) hue-rotate(356deg)
     brightness(106%) contrast(120%);
 }
+
+.exitModal {
+  margin: 0 auto;
+  cursor: pointer;
+  color: red;
+  font-weight: 800;
+}
+
+/* ---------------------- MEDIA MEDIA MEDIA QUERIES -----------------------------------------------*/
+
+
+
+@media (min-width: 300px) and (max-width: 500px) {
+  .mainDiv {
+    flex-direction: column-reverse;
+  }
+
+  .formContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 350px;
+    padding-top: 200px;
+  }
+
+  .input {
+    border-radius: 7px;
+  }
+
+  .videoCardContainer {
+    display: flex;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    padding-top: 120px;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .workoutsHeading {
+    padding-top: 60px;
+  }
+  .exitModal {
+    font-size: 20px;
+  }
+}

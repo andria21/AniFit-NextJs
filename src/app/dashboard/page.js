@@ -231,7 +231,7 @@ const Dashboard = () => {
                     onClick={(e) => e.stopPropagation()}
                   >
                     <h1 className={styles.workoutsHeading}>
-                      Add workout program for a user
+                      Add workout program for the user
                     </h1>
                     <div className={styles.exerciseFormContainer}>
                       <form
@@ -244,6 +244,14 @@ const Dashboard = () => {
                           className={styles.workoutInput}
                         />
                         <button className={styles.buttonn}>SEND</button>
+                        <span
+                          className={styles.exitModal}
+                          onClick={closeModal}
+                        >
+       
+                          CLOSE
+                          
+                        </span>
                       </form>
                     </div>
                     <div className={styles.workoutsContainer}>
