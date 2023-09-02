@@ -91,3 +91,18 @@
     opacity: 1;
   }
 }
+
+.footerContainer {
+  width: 100%;
+}
+
+@media (min-width: 300px) and (max-width: 500px) {
+  .container{
+    height: 100%;
+  }
+  .form {
+    width: 350px;
+    margin-bottom: 50px;
+    margin-top: 200px;
+  }
+}

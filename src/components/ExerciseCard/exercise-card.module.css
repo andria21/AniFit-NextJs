@@ -45,3 +45,14 @@
   font-size: 17px;
   color: #FF2E63;
 }
+
+@media (min-width: 300px) and (max-width: 500px) {
+  .card {
+    width: 350px;
+    margin-bottom: 1em;
+  }
+
+  .video {
+    padding-right: 163px;
+  }
+}
