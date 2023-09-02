@@ -152,6 +152,7 @@ const Dashboard = () => {
                         height="250"
                         type="text/html"
                         className={styles.video}
+                        sandbox
                         src={`https://www.youtube.com/embed/${post.img}?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com`}
                       ></iframe>
                       <div className={styles.icons}>

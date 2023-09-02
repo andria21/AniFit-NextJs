@@ -27,7 +27,7 @@ export default function Home() {
         <div className={styles.container}>
           <div className={styles.item}>
             <h1 className={styles.title}>
-              Unleash Your <br></br> Inner Athlete
+              Unleash Your <br className="bbr"></br> Inner Athlete
             </h1>
             <p className={styles.desc}>
               I am dedicated to helping you transform your <br />

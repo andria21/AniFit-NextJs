@@ -7,31 +7,17 @@ import Button from "../button/Button";
 import { signOut, useSession } from "next-auth/react";
 
 const Navbar = () => {
-  const [isNavbarVisible, setNavbarVisibility] = useState(false);
-
-  const toggleNavbar = () => {
-    setNavbarVisibility(!isNavbarVisible);
-  };
   const session = useSession();
   const adminEmail = process.env.ADMIN_EMAIL;
 
   return (
     <div className={styles.container}>
-      <div className={styles.hamburger} onClick={toggleNavbar}>
-        <div className={styles.bar}></div>
-        <div className={styles.bar}></div>
-        <div className={styles.bar}></div>
-      </div>
       <div className={styles.flexContainer}>
         <Link href="/" className={styles.logo}>
           AniFit
         </Link>
 
-        <div
-          className={
-            styles.links + (isNavbarVisible ? ` ${styles.showNav}` : "")
-          }
-        >
+        <div className={styles.links}>
           <Link href={"/"} className={styles.link}>
             Home
           </Link>
@@ -55,7 +41,7 @@ const Navbar = () => {
             Login
           </Link>
           {session.status === "authenticated" && (
-            <button onClick={signOut} className={styles.btn}>
+            <button onClick={signOut} className={styles.signOutBtn}>
               SIGN OUT
             </button>
           )}

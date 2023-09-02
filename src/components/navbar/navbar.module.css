@@ -50,6 +50,18 @@
   cursor: pointer;
 }
 
+.signOutBtn {
+  background-color: lime;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px 0 0 0;
+  width: 110px;
+  height: 40px;
+  color: black;
+  cursor: pointer;
+}
+
 .btn:hover {
   background-color: #08301c;
 }
@@ -73,9 +85,10 @@
   margin: 5px 0;
 }
 
+
 /*  -------------------------- mediaaaaa queriesssssss ------------------------- */
 
-@media (min-width: 300px) and (max-width: 400px) {
+@media (min-width: 300px) and (max-width: 500px) {
   /* CSS rules for smaller screens */
   .container {
     position: absolute;
@@ -92,20 +105,12 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
   }
 
   .logo {
     font-weight: bold;
-    font-size: 40px;
-  }
-
-  .links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 22px;
-    font-size: 17px;
-    flex-basis: calc(50% - 10px);
+    font-size: 50px;
   }
 
   .logout {
@@ -116,49 +121,14 @@
     cursor: pointer;
     border-radius: 3px;
   }
-  .hamburger {
-    display: block;
-  }
 
-  .navbar {
-    display: flex;
-    /* Additional styles for the navbar on smaller screens */
+  .links {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
-
-  .navbar.showNav {
-    display: flex;
-    flex-direction: column;
-    /* Additional styles for the visible navbar on smaller screens */
-  }
-  .flexContainer .links.showNav {
-    display: flex;
-    flex-direction: column;
-    /* Additional styles for the visible navbar on smaller screens */
-  }
-
 }
 
-@media (min-width: 500px) and (max-width: 767px) {
-  /* CSS rules for smaller screens */
-  .container {
-    position: absolute;
-    padding-top: 30px;
-    max-width: 600px;
-    margin: 0 auto;
-    left: 50%;
-    transform: translate(-50%);
-    z-index: 1;
-    width: 100%;
-  }
-  .hamburger {
-    display: none;
-  }
 
-  .navbar {
-    display: flex;
-    /* Additional styles for the navbar on larger screens */
-  }
-}
 
 /* For screens between 768px and 991px */
 @media (min-width: 768px) and (max-width: 1850px) {
@@ -171,9 +141,6 @@
     display: none;
   }
 
-  .navbar {
-    display: flex;
-    /* Additional styles for the navbar on larger screens */
-  }
+
 
 }
