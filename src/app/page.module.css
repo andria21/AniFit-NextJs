@@ -321,3 +321,83 @@
     background: linear-gradient(to right, #000, transparent);
   }
 }
+
+@media (min-width: 300px) and (max-height: 700px) {
+  .filter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 164%;
+    background: linear-gradient(to right, #000, transparent);
+  }
+
+  .filter1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 164%;
+    background: linear-gradient(to right, #000, transparent);
+  }
+}
+
+@media (min-width: 375px) and (max-height: 700px) {
+  .filter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 140%;
+    background: linear-gradient(to right, #000, transparent);
+  }
+
+  .filter1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 140%;
+    background: linear-gradient(to right, #000, transparent);
+  }
+}
+
+@media (min-width: 390px) and (max-height: 900px) {
+  .filter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 110%;
+    background: linear-gradient(to right, #000, transparent);
+  }
+
+  .filter1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 110%;
+    background: linear-gradient(to right, #000, transparent);
+  }
+}
+
+@media (min-width: 400px) and (max-height: 750px) {
+  .filter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 127%;
+    background: linear-gradient(to right, #000, transparent);
+  }
+
+  .filter1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 127%;
+    background: linear-gradient(to right, #000, transparent);
+  }
+}
