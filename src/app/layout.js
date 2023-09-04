@@ -1,6 +1,6 @@
 import Navbar from "@/components/navbar/Navbar";
 import "./globals.css";
-import { Inter, Montserrat, Poppins, Roboto } from "next/font/google";
+import { Inter, Montserrat, Poppins, Roboto, Metrophobic, Cinzel } from "next/font/google";
 import Footer from "@/components/footer/Footer";
 import Image from "next/image";
 import GymGirl from "../../public/gym-girl.jpg";
@@ -13,6 +13,8 @@ const inter = Inter({ subsets: ["latin"] });
 const montserrat = Montserrat({ subsets: ["latin"] });
 const poppins = Poppins({ subsets: ["latin"], weight: "200" });
 const roboto = Roboto({ subsets: ["latin"], weight: "100" });
+const metrophobic = Metrophobic({ subsets: ["latin"], weight: "400" });
+const cinzel = Cinzel({ subsets: ["latin"], weight: "400" });
 
 export const metadata = {
   title: "AniFit",

@@ -34,9 +34,12 @@ const Navbar = () => {
             </Link>
           )}
 
+          {session.data?.user.email === adminEmail ? null : (
           <Link href={"/exercises"} className={styles.link}>
             Exercises
           </Link>
+          )}
+          
           <Link href={"/dashboard/login"} className={styles.link}>
             Login
           </Link>

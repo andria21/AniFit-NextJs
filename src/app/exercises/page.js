@@ -105,14 +105,11 @@ export default function Dashboard() {
       <div className={styles.container}>
         <div className={styles.posts}>
           {isLoading ? (
-            <p>
-              Loading... <br /> Please get some exercises from the dashboard
-              before you send theme to users!
-            </p>
+            <p>Loading...</p>
           ) : (
             data.map((item) => (
-              <div key={item.id}>
-                <h1>{item.username}</h1>
+              <div className={styles.mainContainer} key={item.id}>
+                <h1 className={styles.userName}>{item.username}</h1>
                 {item.exercises?.map((workout) => (
                   <div className={styles.post} key={workout._id}>
                     <div className={styles.imgContainer}>
@@ -127,28 +124,21 @@ export default function Dashboard() {
                         src={`https://www.youtube.com/embed/${workout.img}?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com`}
                       ></iframe>
                     </div>
-                    <h2 className={styles.postTitle}>{workout.title}</h2>
-                    <span
-                      className={styles.delete}
-                      onClick={() => {
-                        array.splice(
-                          array.findIndex((a) => a._id === post._id),
-                          1
-                        );
-                        setIsArrayLoading(true);
-                        setTimeout(() => {
-                          setIsArrayLoading(false);
-                        }, 100);
-                      }}
-                    >
-                      <Image
-                        className={styles.ex}
-                        src={X}
-                        width={20}
-                        height={20}
-                        alt="plus"
-                      />
-                    </span>
+                    <div className={styles.info}>
+                      <h2 className={styles.postTitle}>{workout.title}</h2>
+                      <span
+                        className={styles.delete}
+                        onClick={() => handleDelete(workout._id)}
+                      >
+                        <Image
+                          className={styles.ex}
+                          src={X}
+                          width={20}
+                          height={20}
+                          alt="plus"
+                        />
+                      </span>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -169,36 +159,92 @@ export default function Dashboard() {
             const sortedExercises = post.exercises
               .filter((pp) => pp.day)
               .sort((a, b) => a.day - b.day);
-              const filteredItems = sortedExercises.filter(item => item.day === 1);
-              const filteredItems2 = sortedExercises.filter(item => item.day === 2);
-              const filteredItems3 = sortedExercises.filter(item => item.day === 3);
-              const filteredItems4 = sortedExercises.filter(item => item.day === 4);
-              const filteredItems5 = sortedExercises.filter(item => item.day === 5);
-              const filteredItems6 = sortedExercises.filter(item => item.day === 6);
-              const filteredItems7 = sortedExercises.filter(item => item.day === 7);
+            const filteredItems = sortedExercises.filter(
+              (item) => item.day === 1
+            );
+            const filteredItems2 = sortedExercises.filter(
+              (item) => item.day === 2
+            );
+            const filteredItems3 = sortedExercises.filter(
+              (item) => item.day === 3
+            );
+            const filteredItems4 = sortedExercises.filter(
+              (item) => item.day === 4
+            );
+            const filteredItems5 = sortedExercises.filter(
+              (item) => item.day === 5
+            );
+            const filteredItems6 = sortedExercises.filter(
+              (item) => item.day === 6
+            );
+            const filteredItems7 = sortedExercises.filter(
+              (item) => item.day === 7
+            );
 
             return (
               <>
                 {filteredItems?.map((workout) => (
-                  <ExerciseCard key={workout._id} videoUrl={workout.img} videoTitle={workout.title} videoDesc={workout.desc} videoContent={workout.content} videoDay={workout.day} />
+                  <ExerciseCard
+                    key={workout._id}
+                    videoUrl={workout.img}
+                    videoTitle={workout.title}
+                    videoDesc={workout.desc}
+                    videoContent={workout.content}
+                  />
                 ))}
                 {filteredItems2?.map((workout) => (
-                  <ExerciseCard key={workout._id} videoUrl={workout.img} videoTitle={workout.title} videoDesc={workout.desc} videoContent={workout.content} videoDay={workout.day} />
+                  <ExerciseCard
+                    key={workout._id}
+                    videoUrl={workout.img}
+                    videoTitle={workout.title}
+                    videoDesc={workout.desc}
+                    videoContent={workout.content}
+                  />
                 ))}
                 {filteredItems3?.map((workout) => (
-                  <ExerciseCard key={workout._id} videoUrl={workout.img} videoTitle={workout.title} videoDesc={workout.desc} videoContent={workout.content} videoDay={workout.day} />
+                  <ExerciseCard
+                    key={workout._id}
+                    videoUrl={workout.img}
+                    videoTitle={workout.title}
+                    videoDesc={workout.desc}
+                    videoContent={workout.content}
+                  />
                 ))}
                 {filteredItems4?.map((workout) => (
-                  <ExerciseCard key={workout._id} videoUrl={workout.img} videoTitle={workout.title} videoDesc={workout.desc} videoContent={workout.content} videoDay={workout.day} />
+                  <ExerciseCard
+                    key={workout._id}
+                    videoUrl={workout.img}
+                    videoTitle={workout.title}
+                    videoDesc={workout.desc}
+                    videoContent={workout.content}
+                  />
                 ))}
                 {filteredItems5?.map((workout) => (
-                  <ExerciseCard key={workout._id} videoUrl={workout.img} videoTitle={workout.title} videoDesc={workout.desc} videoContent={workout.content} videoDay={workout.day} />
+                  <ExerciseCard
+                    key={workout._id}
+                    videoUrl={workout.img}
+                    videoTitle={workout.title}
+                    videoDesc={workout.desc}
+                    videoContent={workout.content}
+                  />
                 ))}
                 {filteredItems6?.map((workout) => (
-                  <ExerciseCard key={workout._id} videoUrl={workout.img} videoTitle={workout.title} videoDesc={workout.desc} videoContent={workout.content} videoDay={workout.day} />
+                  <ExerciseCard
+                    key={workout._id}
+                    videoUrl={workout.img}
+                    videoTitle={workout.title}
+                    videoDesc={workout.desc}
+                    videoContent={workout.content}
+                  />
                 ))}
                 {filteredItems7?.map((workout) => (
-                  <ExerciseCard key={workout._id} videoUrl={workout.img} videoTitle={workout.title} videoDesc={workout.desc} videoContent={workout.content} videoDay={workout.day} />
+                  <ExerciseCard
+                    key={workout._id}
+                    videoUrl={workout.img}
+                    videoTitle={workout.title}
+                    videoDesc={workout.desc}
+                    videoContent={workout.content}
+                  />
                 ))}
               </>
             );
@@ -209,5 +255,3 @@ export default function Dashboard() {
     );
   }
 }
-
-// onClicks gavaketeb h1 ze magalidat day1 onclick da gadava am day one'is exercisebze da im pageze anaxebs !

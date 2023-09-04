@@ -6,17 +6,44 @@
   margin: 0 auto;
   padding-top: 100px;
   flex-direction: column;
+  padding-bottom: 100px;
+  font-family: 'Libre Caslon Display', serif;
+  letter-spacing: 1px;
 }
 
 .usersContainer {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .userContainer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
 
+.username {
+  font-size: 29px;
+  font-weight: bold;
+  color: #FF0000
+}
+.email {
+  font-size: 29px;
+  font-weight: bold;
+  color: #FF0000
+}
 
+@media (min-width: 300px) and (max-width: 500px) {
+  .container {
+    padding-top: 300px;
+    padding-bottom: 60px;
+    max-width: 350px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .userContainer {
+    display: flex;
+  }
 }
