@@ -264,6 +264,17 @@ const Dashboard = () => {
                               key={vid._id}
                               className={styles.videoContainer}
                             >
+                              
+                              <h1>{vid.title}</h1>
+                              <iframe
+                                allowfullscreen
+                                frameborder="0"
+                                width="160"
+                                height="130"
+                                type="text/html"
+                                className={styles.video}
+                                src={`https://www.youtube.com/embed/${vid.img}?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com`}
+                              ></iframe>
                               <span
                                 className={styles.delete}
                                 onClick={() => {
@@ -285,15 +296,6 @@ const Dashboard = () => {
                                   alt="plus"
                                 />
                               </span>
-                              <iframe
-                                allowfullscreen
-                                frameborder="0"
-                                width="160"
-                                height="130"
-                                type="text/html"
-                                className={styles.video}
-                                src={`https://www.youtube.com/embed/${vid.img}?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com`}
-                              ></iframe>
                             </div>
                           );
                         })

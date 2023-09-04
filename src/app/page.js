@@ -57,7 +57,7 @@ export default function Home() {
         <div className={styles.aboutMeImageContainer}>
           <div>
             <Image
-              src={AniFitBasicPhoto4}
+              src={AniFitBasicPhoto1}
               width={600}
               height={400}
               alt="image"
@@ -67,7 +67,7 @@ export default function Home() {
             <p>Beauty does not require sacrifice, but regular training.</p>
           </div>
           <Image
-            src={AniFitBasicPhoto1}
+            src={AniFitBasicPhoto4}
             width={200}
             height={400}
             alt="image"

@@ -45,6 +45,12 @@
   background: linear-gradient(45deg, #ffffff, #f7f7f7);
 }
 
+.videoContainer {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
 .videoContent {
   padding: 16px;
   color: white;
