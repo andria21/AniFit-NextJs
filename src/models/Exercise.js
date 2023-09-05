@@ -23,10 +23,6 @@ const postSchema = new Schema({
     type: String,
     required: true,
   },
-  day: {
-    type: Number,
-    required: true,
-  },
   username: {
     type: String,
     required: true,
@@ -46,8 +42,11 @@ const arrayOfPostsSchema = Schema({
     type: Number,
     required: true,
   },
+  week: {
+    type: Number,
+    required: true,
+  },
   exercises: [postSchema],
-
 });
 
 export default mongoose.models.Exercise ||

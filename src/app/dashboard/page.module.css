@@ -20,6 +20,7 @@
   margin: 0 auto;
   width: 100%;
   max-width: 106.25em;
+  font-family: 'Lobster', cursive;
 }
 
 .formContainer {
@@ -194,6 +195,7 @@
   left: 0;
   width: 100%;
   height: 100%;
+  overflow-y: auto;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
@@ -211,7 +213,10 @@
   border-radius: 8px;
   max-width: 1500px;
   height: 800px;
+  max-height: calc(100vh - 210px);
+    overflow-y: auto;
   width: 100%;
+  font-family: 'Lobster', cursive;
 
 }
 
@@ -237,6 +242,7 @@
   border-radius: 20px 0 0 0;
   color: #eee;
   font-weight: bold;
+  font-family: 'Lobster', cursive;
 }
 
 .buttonn {
@@ -247,6 +253,7 @@
   border-radius: 20px 0 0 0;
   color: #eee;
   font-weight: bold;
+  font-family: 'Lobster', cursive;
 }
 
 

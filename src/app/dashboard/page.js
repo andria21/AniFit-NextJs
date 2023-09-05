@@ -68,7 +68,6 @@ const Dashboard = () => {
     const desc = e.target[1].value;
     const img = e.target[2].value;
     const content = e.target[3].value;
-    const day = e.target[4].value;
 
     try {
       await fetch("/api/posts", {
@@ -78,7 +77,6 @@ const Dashboard = () => {
           desc,
           img,
           content,
-          day,
           username: session.data.user.name,
         }),
       });
@@ -111,26 +109,29 @@ const Dashboard = () => {
     e.preventDefault();
 
     const username = e.target[0].value;
+    const day = e.target[1].value;
+    const week = e.target[2].value
 
     try {
       await fetch("/api/exercises", {
         method: "POST",
         body: JSON.stringify({
           username,
-          day: workoutDay,
+          day,
+          week,
           exercises: array,
         }),
       });
       mutate();
       e.target.reset();
+      while(array.length > 0) {
+        array.pop();
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleDay = (e) => {
-    setWorkoutDay(e.target.value);
-  };
   //<Image src={post.img} alt="" width={300} height={200} />
   if (
     session.status === "authenticated" &&
@@ -187,7 +188,6 @@ const Dashboard = () => {
                       <h2 className={styles.postTitle}>{post.title}</h2>
                       <h2 className={styles.postDescription}>{post.desc}</h2>
                       <h2 className={styles.postContent}>{post.content}</h2>
-                      <h2 className={styles.postDay}>Day: {post.day}</h2>
                     </div>
                   </div>
                 ))}
@@ -208,13 +208,6 @@ const Dashboard = () => {
                 cols="30"
                 rows="10"
               ></textarea>
-              <input
-                type="number"
-                placeholder="Day"
-                required
-                className={styles.input}
-                onChange={handleDay}
-              />
               <button className={styles.buttona}>SEND</button>
             </form>
             <div className={styles.uploadExercisesForm}>
@@ -231,7 +224,7 @@ const Dashboard = () => {
                     onClick={(e) => e.stopPropagation()}
                   >
                     <h1 className={styles.workoutsHeading}>
-                      Add workout program for the user
+                      Send workout program to user
                     </h1>
                     <div className={styles.exerciseFormContainer}>
                       <form
@@ -241,16 +234,25 @@ const Dashboard = () => {
                         <input
                           type="text"
                           placeholder="Username"
+                          required
                           className={styles.workoutInput}
                         />
-                        <button className={styles.buttonn}>SEND</button>
-                        <span
-                          className={styles.exitModal}
-                          onClick={closeModal}
-                        >
-       
-                          CLOSE
+                        <input
+                          type="number"
+                          placeholder="Day"
+                          required
+                          className={styles.workoutInput}
+                        />
+                        <input
+                          type="number"
+                          placeholder="Week"
+                          required
+                          className={styles.workoutInput}
                           
+                        />
+                        <button className={styles.buttonn}>SEND</button>
+                        <span className={styles.exitModal} onClick={closeModal}>
+                          CLOSE
                         </span>
                       </form>
                     </div>
@@ -264,7 +266,6 @@ const Dashboard = () => {
                               key={vid._id}
                               className={styles.videoContainer}
                             >
-                              
                               <h1>{vid.title}</h1>
                               <iframe
                                 allowfullscreen

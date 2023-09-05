@@ -155,89 +155,13 @@ export default function Dashboard() {
       <div className={styles.mainDiv}>
         {data?.map((post) => {
           if (session.data.user.name === post.username) {
-            // Filter and sort exercises based on day
-            const sortedExercises = post.exercises
-              .filter((pp) => pp.day)
-              .sort((a, b) => a.day - b.day);
-            const filteredItems = sortedExercises.filter(
-              (item) => item.day === 1
-            );
-            const filteredItems2 = sortedExercises.filter(
-              (item) => item.day === 2
-            );
-            const filteredItems3 = sortedExercises.filter(
-              (item) => item.day === 3
-            );
-            const filteredItems4 = sortedExercises.filter(
-              (item) => item.day === 4
-            );
-            const filteredItems5 = sortedExercises.filter(
-              (item) => item.day === 5
-            );
-            const filteredItems6 = sortedExercises.filter(
-              (item) => item.day === 6
-            );
-            const filteredItems7 = sortedExercises.filter(
-              (item) => item.day === 7
-            );
-
+            const sortedExercises = post.exercises.flat()
+            .sort((a, b) => a.week - b.week)
+              .sort((a, b) => a.day - b.day)
+            
             return (
               <>
-                {filteredItems?.map((workout) => (
-                  <ExerciseCard
-                    key={workout._id}
-                    videoUrl={workout.img}
-                    videoTitle={workout.title}
-                    videoDesc={workout.desc}
-                    videoContent={workout.content}
-                  />
-                ))}
-                {filteredItems2?.map((workout) => (
-                  <ExerciseCard
-                    key={workout._id}
-                    videoUrl={workout.img}
-                    videoTitle={workout.title}
-                    videoDesc={workout.desc}
-                    videoContent={workout.content}
-                  />
-                ))}
-                {filteredItems3?.map((workout) => (
-                  <ExerciseCard
-                    key={workout._id}
-                    videoUrl={workout.img}
-                    videoTitle={workout.title}
-                    videoDesc={workout.desc}
-                    videoContent={workout.content}
-                  />
-                ))}
-                {filteredItems4?.map((workout) => (
-                  <ExerciseCard
-                    key={workout._id}
-                    videoUrl={workout.img}
-                    videoTitle={workout.title}
-                    videoDesc={workout.desc}
-                    videoContent={workout.content}
-                  />
-                ))}
-                {filteredItems5?.map((workout) => (
-                  <ExerciseCard
-                    key={workout._id}
-                    videoUrl={workout.img}
-                    videoTitle={workout.title}
-                    videoDesc={workout.desc}
-                    videoContent={workout.content}
-                  />
-                ))}
-                {filteredItems6?.map((workout) => (
-                  <ExerciseCard
-                    key={workout._id}
-                    videoUrl={workout.img}
-                    videoTitle={workout.title}
-                    videoDesc={workout.desc}
-                    videoContent={workout.content}
-                  />
-                ))}
-                {filteredItems7?.map((workout) => (
+                {sortedExercises?.map((workout) => (
                   <ExerciseCard
                     key={workout._id}
                     videoUrl={workout.img}

@@ -20,10 +20,6 @@ const postSchema = new Schema(
       type: String,
       required: true,
     },
-    day: {
-      type: Number,
-      required: true,
-    },
     username: {
       type: String,
       required: true,
