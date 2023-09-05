@@ -99,6 +99,7 @@
     transform: translate(-50%);
     z-index: 1;
     width: 100%;
+    font-family: 'Cinzel', serif;
   }
   .flexContainer {
     display: flex;
@@ -111,6 +112,7 @@
   .logo {
     font-weight: bold;
     font-size: 50px;
+    font-family: 'Pacifico', cursive;
   }
 
   .logout {
