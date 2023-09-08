@@ -1,15 +1,15 @@
 .card {
   width: 500px; /* Adjust the width as per your design */
-  border: 1px solid #FF2E63;
+  border: 1px solid #5C8374;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 0px 16px #FF2E63;
+  box-shadow: 0 0px 16px #5C8374;
   margin-bottom: 1.5em;
   background: linear-gradient(45deg, #FCE9F1, #FCE9F1);
 }
 
 .card:hover {
-  box-shadow: 0 0px 26px 0 #FF2E63;
+  box-shadow: 0 0px 26px 0 #93B1A6;
 }
 
 .videoWrapper {
@@ -32,27 +32,27 @@
   font-size: 28px;
   font-weight: bold;
   margin-bottom: 8px;
-  color: #FF2E63;
+  color: #CEDEBD;
 }
 
 .videoDescription {
   font-size: 19px;
-  color: #FF2E63;
+  color: #CEDEBD;
   margin-bottom: 8px;
 }
 
 .videoContent {
   font-size: 17px;
-  color: #FF2E63;
+  color: #CEDEBD;
 }
 
 @media (min-width: 300px) and (max-width: 500px) {
   .card {
-    width: 350px;
+    width: 300px;
     margin-bottom: 1em;
   }
 
   .video {
-    padding-right: 163px;
+    padding-right: 212px;
   }
 }

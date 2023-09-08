@@ -42,6 +42,15 @@ export default function Dashboard() {
     setIsModalOpen(false);
   };
 
+  const daysLoop = (name, value) => {
+    for (let i = 0; i <= 7; i++) {
+      return (
+        <h1>
+          {name}: {value}
+        </h1>
+      );
+    }
+  };
   const arr = [];
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -155,21 +164,29 @@ export default function Dashboard() {
       <div className={styles.mainDiv}>
         {data?.map((post) => {
           if (session.data.user.name === post.username) {
-            const sortedExercises = post.exercises.flat()
-            .sort((a, b) => a.week - b.week)
-              .sort((a, b) => a.day - b.day)
-            
+            const sortedExercises = post.exercises
+              .flat()
+              .sort((a, b) => a.week - b.week)
+              .sort((a, b) => a.day - b.day);
+
             return (
               <>
-                {sortedExercises?.map((workout) => (
-                  <ExerciseCard
-                    key={workout._id}
-                    videoUrl={workout.img}
-                    videoTitle={workout.title}
-                    videoDesc={workout.desc}
-                    videoContent={workout.content}
-                  />
-                ))}
+                <div className={styles.secondMainDiv}>
+                  <div className={styles.weekTitle}>
+                    {daysLoop("Week", post.week)}
+                    {daysLoop("Day", post.day)}
+                  </div>
+
+                  {sortedExercises?.map((workout) => (
+                    <ExerciseCard
+                      key={workout._id}
+                      videoUrl={workout.img}
+                      videoTitle={workout.title}
+                      videoDesc={workout.desc}
+                      videoContent={workout.content}
+                    />
+                  ))}
+                </div>
               </>
             );
           }
