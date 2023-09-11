@@ -20,7 +20,7 @@
   margin: 0 auto;
   width: 100%;
   max-width: 106.25em;
-  font-family: 'Lobster', cursive;
+  font-family: "Lobster", cursive;
 }
 
 .formContainer {
@@ -44,6 +44,47 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 1.5em;
   background: linear-gradient(45deg, #ffffff, #f7f7f7);
+}
+
+.playlistContainer {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0px;
+  flex-direction: column;
+  width: 350px;
+  border: 4px solid #27005d;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5em;
+}
+
+.playlistTitle {
+  width: 100%;
+  color: #aed2ff;
+  margin: 0 auto;
+}
+
+.playlistTitleContaner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  background-color: #27005d;
+  border: none;
+}
+
+.playlistDelete {
+  cursor: pointer;
+  color: red;
+  height: 100%;
+  border: none;
+}
+
+.exx {
+  filter: invert(20%) sepia(93%) saturate(5892%) hue-rotate(356deg)
+    brightness(106%) contrast(120%);
+  width: 40px;
+  height: 40px;
 }
 
 .videoContainer {
@@ -101,6 +142,7 @@
 .delete {
   cursor: pointer;
   color: red;
+  transition: transform 0.2s ease-in-out;
 }
 
 .new {
@@ -115,7 +157,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  
+
   width: 400px;
 }
 
@@ -141,13 +183,13 @@
   background-color: transparent;
   border: 2px solid #ffffff;
   border-radius: 3px;
-  color: #61677A;
+  color: #61677a;
   font-size: 20px;
   font-weight: bold;
 }
 
 .workoutInput::placeholder {
-  color: #61677A;
+  color: #61677a;
 }
 
 .button {
@@ -170,6 +212,22 @@
     brightness(106%) contrast(120%);
 }
 
+.plusButton {
+  animation: pulsate 1.5s infinite; /* Apply the pulsate animation */
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(1); /* Start with normal size */
+  }
+  50% {
+    transform: scale(1.1); /* Scale up halfway through */
+  }
+  100% {
+    transform: scale(1); /* Return to normal size */
+  }
+}
+
 .icons {
   display: flex;
   justify-content: space-between;
@@ -185,8 +243,6 @@
     brightness(106%) contrast(120%);
   cursor: pointer;
 }
-
-
 
 /*  MODAAAAAAAAAAAAAAAAAAAAAALLLLLLLLLLLLLLLLLLLLLLLLLLLLL ---------------------------------------------------------*/
 .modalOverlay {
@@ -207,17 +263,50 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  background-color: #252B48;
+  background-color: #252b48;
   color: black;
   padding: 20px;
   border-radius: 8px;
   max-width: 1500px;
   height: 800px;
   max-height: calc(100vh - 210px);
-    overflow-y: auto;
+  overflow-y: auto;
   width: 100%;
-  font-family: 'Lobster', cursive;
+  font-family: "Lobster", cursive;
+}
 
+.postModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+.postModalContent {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #252b48;
+  color: black;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  height: 800px;
+  max-height: calc(100vh - 210px);
+  overflow-y: auto;
+  width: 100%;
+  font-family: "Lobster", cursive;
+}
+
+.modalTitle {
+  color: #f2bed1;
+  letter-spacing: 6px;
 }
 
 .btn {
@@ -233,29 +322,27 @@
   font-weight: bold;
 }
 
-
 .buttona {
   padding: 20px;
   cursor: pointer;
-  background-color: #7e53c2;
+  background-color: #27005d;
   border: none;
   border-radius: 20px 0 0 0;
   color: #eee;
   font-weight: bold;
-  font-family: 'Lobster', cursive;
+  font-family: "Lobster", cursive;
 }
 
 .buttonn {
   padding: 20px;
   cursor: pointer;
-  background-color: #61677A;
+  background-color: #61677a;
   border: none;
   border-radius: 20px 0 0 0;
   color: #eee;
   font-weight: bold;
-  font-family: 'Lobster', cursive;
+  font-family: "Lobster", cursive;
 }
-
 
 .workoutsContainer {
   display: flex;
@@ -278,7 +365,7 @@
 
 .workoutsHeading {
   margin: 0 auto;
-  color: #D8D9DA;
+  color: #d8d9da;
 }
 
 .removeExercise {
@@ -294,8 +381,6 @@
 }
 
 /* ---------------------- MEDIA MEDIA MEDIA QUERIES -----------------------------------------------*/
-
-
 
 @media (min-width: 300px) and (max-width: 500px) {
   .mainDiv {

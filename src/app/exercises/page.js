@@ -91,9 +91,9 @@ export default function Dashboard() {
     }
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id, objId) => {
     try {
-      await fetch(`/api/exercises/${id}`, {
+      await fetch(`/api/exercises/${id}/exercises/${objId}`, {
         method: "DELETE",
       });
       mutate();
@@ -106,6 +106,20 @@ export default function Dashboard() {
     setIsAnimating(true);
   };
 
+  const organizedData = data?.reduce((acc, exercise) => {
+    const username = exercise.username;
+
+    // Check if there's already a group for this username
+    if (!acc[username]) {
+      acc[username] = [];
+    }
+
+    // Add the exercise to the group for this username
+    acc[username].push(exercise);
+
+    return acc;
+  }, {});
+
   if (
     session.status === "authenticated" &&
     session.data.user.email === adminEmail
@@ -116,40 +130,57 @@ export default function Dashboard() {
           {isLoading ? (
             <p>Loading...</p>
           ) : (
-            data.map((item) => (
-              <div className={styles.mainContainer} key={item.id}>
-                <h1 className={styles.userName}>{item.username}</h1>
-                {item.exercises?.map((workout) => (
-                  <div className={styles.post} key={workout._id}>
-                    <div className={styles.imgContainer}>
-                      <iframe
-                        allowfullscreen
-                        frameborder="0"
-                        marginheight="0"
-                        marginwidth="0"
-                        width="300"
-                        height="300"
-                        type="text/html"
-                        src={`https://www.youtube.com/embed/${workout.img}?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com`}
-                      ></iframe>
-                    </div>
-                    <div className={styles.info}>
-                      <h2 className={styles.postTitle}>{workout.title}</h2>
-                      <span
-                        className={styles.delete}
-                        onClick={() => handleDelete(workout._id)}
-                      >
-                        <Image
-                          className={styles.ex}
-                          src={X}
-                          width={20}
-                          height={20}
-                          alt="plus"
-                        />
-                      </span>
-                    </div>
-                  </div>
-                ))}
+            Object.keys(organizedData)?.map((username) => (
+              <div className={styles.mainContainer} key={username}>
+                <h1 className={styles.userName}>{username}</h1>
+                {organizedData[username].map((exercise) => {
+                  return exercise.exercises.map((item) => {
+                    return (
+                      <div className={styles.post} key={item._id}>
+                        <div className={styles.videoWrapper}>
+                          <iframe
+                            allowFullscreen
+                            frameborder="0"
+                            width="350"
+                            height="250"
+                            className={styles.video}
+                            type="text/html"
+                            src={`https://www.youtube.com/embed/${item.img}?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com`}
+                          ></iframe>
+                        </div>
+                        <div className={styles.info}>
+                          <h2 className={styles.postTitle}>
+                            Week: {exercise.week}
+                          </h2>
+                          <h2 className={styles.postTitle}>
+                            Day: {exercise.day}
+                          </h2>
+                          <h2 className={styles.postTitle}>
+                            Title: {item.title}
+                          </h2>
+                          <h2 className={styles.postTitle}>
+                            Description: {item.desc}
+                          </h2>
+                          <h2 className={styles.postTitle}>
+                            Content: {item.content}
+                          </h2>
+                          <span
+                            className={styles.delete}
+                            onClick={() => handleDelete(exercise._id, item._id)}
+                          >
+                            <Image
+                              className={styles.ex}
+                              src={X}
+                              width={35}
+                              height={35}
+                              alt="plus"
+                            />
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  });
+                })}
               </div>
             ))
           )}

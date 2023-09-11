@@ -27,10 +27,6 @@ const postSchema = new Schema({
     type: String,
     required: true,
   },
-  __v: {
-    type: Number,
-    required: true,
-  },
 });
 
 const arrayOfPostsSchema = Schema({

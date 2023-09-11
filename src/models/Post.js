@@ -27,4 +27,12 @@ const postSchema = new Schema(
   }
 );
 
-export default mongoose.models.Post || mongoose.model("Post", postSchema);
+const postArray = new Schema({
+  playlist: {
+    type: String,
+    required: true,
+  },
+  posts: [postSchema],
+})
+
+export default mongoose.models.Post || mongoose.model("Post", postArray);

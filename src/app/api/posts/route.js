@@ -22,13 +22,25 @@ export const POST = async (request) => {
   const body = await request.json();
 
   const newPost = new Post(body);
-
-  console.log(body);
+  const playlistName = body.playlist;
 
   try {
     await connect();
 
-    await newPost.save();
+    Post.findOneAndUpdate(
+      { playlist: playlistName },
+      { $push: { posts: newPost.posts } },
+      { upsert: true, new: true },
+      (err, result) => {
+        if (err) {
+          console.error('Error:', err);
+          return;
+        }
+    
+        // console.log('Document updated successfully:', result);
+      }
+    );
+    // await newPost.save();
 
     return new NextResponse("Post has been created", { status: 201 });
   } catch (err) {

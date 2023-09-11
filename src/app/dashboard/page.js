@@ -32,13 +32,21 @@ const Dashboard = () => {
   };
   // const API_URL = process.env.API_URL;
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPostModalOpen, setIsPostModalOpen] = useState(null);
 
+  // cart modal
   const handleCartIconClick = () => {
     setIsModalOpen(true);
   };
-
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+  //post modal
+  const handlePostModalclick = (id) => {
+    setIsPostModalOpen(id);
+  };
+  const closePostModal = () => {
+    setIsPostModalOpen(null);
   };
 
   const adminEmail = process.env.ADMIN_EMAIL;
@@ -68,16 +76,20 @@ const Dashboard = () => {
     const desc = e.target[1].value;
     const img = e.target[2].value;
     const content = e.target[3].value;
+    const playlist = e.target[4].value;
 
     try {
       await fetch("/api/posts", {
         method: "POST",
         body: JSON.stringify({
-          title,
-          desc,
-          img,
-          content,
-          username: session.data.user.name,
+          playlist,
+          posts: {
+            title,
+            desc,
+            img,
+            content,
+            username: session.data.user.name,
+          },
         }),
       });
       mutate();
@@ -87,7 +99,18 @@ const Dashboard = () => {
     }
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id, objId) => {
+    try {
+      await fetch(`/api/posts/${id}/posts/${objId}`, {
+        method: "DELETE",
+      });
+      mutate();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handlePlaylistDelete = async (id) => {
     try {
       await fetch(`/api/posts/${id}`, {
         method: "DELETE",
@@ -110,7 +133,7 @@ const Dashboard = () => {
 
     const username = e.target[0].value;
     const day = e.target[1].value;
-    const week = e.target[2].value
+    const week = e.target[2].value;
 
     try {
       await fetch("/api/exercises", {
@@ -124,7 +147,7 @@ const Dashboard = () => {
       });
       mutate();
       e.target.reset();
-      while(array.length > 0) {
+      while (array.length > 0) {
         array.pop();
       }
     } catch (error) {
@@ -143,52 +166,109 @@ const Dashboard = () => {
           <div className={styles.videoCardContainer}>
             {isLoading
               ? "loading"
-              : data?.map((post) => (
-                  <div className={styles.post} key={post._id}>
-                    <div className={styles.videoWrapper}>
-                      <iframe
-                        allowfullscreen
-                        frameborder="0"
-                        width="350"
-                        height="250"
-                        type="text/html"
-                        className={styles.video}
-                        sandbox
-                        src={`https://www.youtube.com/embed/${post.img}?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com`}
-                      ></iframe>
-                      <div className={styles.icons}>
-                        <span
-                          className={styles.delete}
-                          onClick={() => handleDelete(post._id)}
-                        >
-                          <Image
-                            className={styles.ex}
-                            src={X}
-                            width={25}
-                            height={25}
-                            alt="plus"
-                          />
-                        </span>
-                        <span
-                          className={styles.delete}
-                          onClick={() => handleAdd(post)}
-                        >
-                          <Image
-                            className={styles.plus}
-                            src={PlusSvg}
-                            width={25}
-                            height={25}
-                            alt="plus"
-                          />
-                        </span>
-                      </div>
+              : data?.map((post, index) => (
+                  <div className={styles.playlistContainer} key={post._id}>
+                    <div className={styles.playlistTitleContaner}>
+                      <h1
+                        className={styles.playlistTitle}
+                        onClick={() => handlePostModalclick(index)}
+                      >
+                        {post.playlist}
+                      </h1>
+                      <span
+                        className={styles.playlistDelete}
+                        onClick={() => handlePlaylistDelete(post._id)}
+                      >
+                        <Image className={styles.exx} src={X} alt="plus" />
+                      </span>
                     </div>
 
-                    <div className={styles.videoContent}>
-                      <h2 className={styles.postTitle}>{post.title}</h2>
-                      <h2 className={styles.postDescription}>{post.desc}</h2>
-                      <h2 className={styles.postContent}>{post.content}</h2>
-                    </div>
+                    {isPostModalOpen === index && (
+                      <div
+                        className={styles.postModalOverlay}
+                        onClick={closePostModal}
+                      >
+                        <div
+                          className={styles.postModalContent}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <h1 className={styles.modalTitle}>
+                            {" "}
+                            -{post.playlist}-{" "}
+                          </h1>
+                          <span
+                            className={styles.exitModal}
+                            onClick={closePostModal}
+                          >
+                            CLOSE
+                          </span>
+                          {post.posts.map((exe) => (
+                            <div className={styles.post} key={exe._id}>
+                              <div className={styles.videoWrapper}>
+                                <iframe
+                                  allowFullscreen
+                                  frameborder="0"
+                                  width="350"
+                                  height="250"
+                                  type="text/html"
+                                  className={styles.video}
+                                  sandbox
+                                  src={`https://www.youtube.com/embed/${exe.img}?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com`}
+                                ></iframe>
+                                <div className={styles.icons}>
+                                  <span
+                                    className={`${styles.delete} ${styles.plusButton}`}
+                                    onClick={() =>
+                                      handleDelete(post._id, exe._id)
+                                    }
+                                  >
+                                    <Image
+                                      className={styles.ex}
+                                      src={X}
+                                      width={25}
+                                      height={25}
+                                      alt="plus"
+                                    />
+                                  </span>
+                                  <span
+                                    className={`${styles.delete} ${styles.plusButton}`}
+                                    onClick={() => handleAdd(exe)}
+                                  >
+                                    <Image
+                                      className={styles.plus}
+                                      src={PlusSvg}
+                                      width={25}
+                                      height={25}
+                                      alt="plus"
+                                    />
+                                  </span>
+                                </div>
+                              </div>
+                              <div
+                                className={styles.videoContent}
+                                key={exe._id}
+                              >
+                                <h2 className={styles.postTitle}>
+                                  {exe.title}
+                                </h2>
+                                <h2 className={styles.postDescription}>
+                                  {exe.desc}
+                                </h2>
+                                <h2 className={styles.postContent}>
+                                  {exe.content}
+                                </h2>
+                              </div>
+                            </div>
+                          ))}
+                          <span
+                            className={styles.exitModal}
+                            onClick={closePostModal}
+                          >
+                            CLOSE
+                          </span>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 ))}
           </div>
@@ -196,7 +276,11 @@ const Dashboard = () => {
             <form className={styles.new} onSubmit={handleSubmit}>
               <h1>Add New Post</h1>
               <input type="text" placeholder="Title" className={styles.input} />
-              <input type="text" placeholder="Desc" className={styles.input} />
+              <input
+                type="text"
+                placeholder="Description"
+                className={styles.input}
+              />
               <input
                 type="text"
                 placeholder="Youtube URL"
@@ -208,6 +292,11 @@ const Dashboard = () => {
                 cols="30"
                 rows="10"
               ></textarea>
+              <input
+                type="text"
+                placeholder="Playlist Name"
+                className={styles.input}
+              />
               <button className={styles.buttona}>SEND</button>
             </form>
             <div className={styles.uploadExercisesForm}>
@@ -248,7 +337,6 @@ const Dashboard = () => {
                           placeholder="Week"
                           required
                           className={styles.workoutInput}
-                          
                         />
                         <button className={styles.buttonn}>SEND</button>
                         <span className={styles.exitModal} onClick={closeModal}>
@@ -268,7 +356,7 @@ const Dashboard = () => {
                             >
                               <h1>{vid.title}</h1>
                               <iframe
-                                allowfullscreen
+                                allowFullscreen
                                 frameborder="0"
                                 width="160"
                                 height="130"

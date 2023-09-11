@@ -26,7 +26,7 @@ export const POST = async (request) => {
   const username = url.searchParams.get("username");
 
   const newExercise = new Exercise(body);
-  console.log(body);
+  // console.log(body);
 
   try {
     await connect();
