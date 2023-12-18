@@ -15,7 +15,9 @@ export default function Users() {
 
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-  const { data, mutate, error, isLoading } = useSWR(`/api/users`, fetcher);
+  const { data, mutate, error, isLoading } = useSWR(`/api/users`, fetcher, {
+    refreshInterval: 1000,
+  });
 
   // if (session.status === "authenticated") {
   //   mutate()
