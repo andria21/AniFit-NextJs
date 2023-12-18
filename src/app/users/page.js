@@ -17,9 +17,11 @@ export default function Users() {
 
   const { data, mutate, error, isLoading } = useSWR(`/api/users`, fetcher);
 
-  if (session.status === "authenticated") {
-    mutate()
-  }
+  // if (session.status === "authenticated") {
+  //   mutate()
+  // }
+  
+  !isLoading && console.log(data);
 
   return (
     <div className={styles.container}>
