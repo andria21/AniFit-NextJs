@@ -2,7 +2,7 @@
 
 import styles from "./page.module.css";
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
@@ -16,6 +16,10 @@ export default function Users() {
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
   const { data, mutate, error, isLoading } = useSWR(`/api/users`, fetcher);
+
+  useEffect(() => {
+    mutate();
+  }, [mutate])
 
   return (
     <div className={styles.container}>
