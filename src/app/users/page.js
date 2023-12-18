@@ -51,5 +51,3 @@ export default function Users() {
 }
 
 // export default dynamic(() => Promise.resolve(Users), { ssr: false });
-
-export const dynamic = 'force-dynamic'

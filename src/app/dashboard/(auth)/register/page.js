@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Footer from "@/components/footer/Footer";
+import { mutate } from "swr";
 
 export default function Register() {
   const [err, setErr] = useState(false);
@@ -41,6 +42,7 @@ export default function Register() {
 
       res.status === 201 &&
         router.push("/dashboard/login?success=Account has been created");
+        mutate('/api/users');
     } catch (error) {
       setErr(true);
     }
