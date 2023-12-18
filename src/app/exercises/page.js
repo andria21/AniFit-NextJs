@@ -102,6 +102,17 @@ export default function Dashboard() {
     }
   };
 
+  const handleDeleteExerciseUser = async (id) => {
+    try {
+      await fetch(`/api/exercises/${id}`, {
+        method: "DELETE",
+      });
+      mutate();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const handleAddToCart = () => {
     setIsAnimating(true);
   };
@@ -137,6 +148,7 @@ export default function Dashboard() {
                   return exercise.exercises.map((item) => {
                     return (
                       <div className={styles.post} key={item._id}>
+                      <span onClick={() => handleDeleteExerciseUser(exercise._id)} style={{color:"red", marginLeft: "16px", fontSize: "16px", cursor: "pointer"}}>Delete All</span>
                         <div className={styles.videoWrapper}>
                           <iframe
                             allowFullscreen

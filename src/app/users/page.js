@@ -11,7 +11,7 @@ export default function Users() {
 
   const { data, mutate, error, isLoading } = useSWR(`/api/users`, fetcher);
 
-  !isLoading && console.log(data, error);
+  // !isLoading && console.log(data, error);
 
   return (
     <div className={styles.container}>
