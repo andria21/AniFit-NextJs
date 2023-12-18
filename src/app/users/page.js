@@ -16,14 +16,15 @@ export default function Users() {
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
   const { data, mutate, error, isLoading } = useSWR(`/api/users`, fetcher, {
-    refreshInterval: 1000,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false
   });
 
   // if (session.status === "authenticated") {
   //   mutate()
   // }
   
-  !isLoading && console.log(data);
+  !isLoading && console.log(data, mutate(), error);
 
   return (
     <div className={styles.container}>
