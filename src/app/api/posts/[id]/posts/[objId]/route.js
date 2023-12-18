@@ -14,10 +14,7 @@ export const DELETE = async (request, { params }) => {
       { $pull: { posts: { _id: objId } } }
     );
     if (result.modifiedCount === 0) {
-      // No matching document or no object was deleted
       console.log("Object not found or not deleted.");
-    } else {
-      // Object was deleted successfully
       console.log("Object deleted successfully.");
     }
 
