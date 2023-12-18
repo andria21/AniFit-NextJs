@@ -1,30 +1,17 @@
-"use client";
-
+"use client"
 import styles from "./page.module.css";
 
-import { useContext, useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-
 import useSWR from "swr";
+// import dynamic from "next/dynamic";
 
 export default function Users() {
-  const session = useSession();
-  const router = useRouter();
   const adminEmail = process.env.ADMIN_EMAIL;
 
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-  const { data, mutate, error, isLoading } = useSWR(`/api/users`, fetcher, {
-    revalidateOnFocus: false,
-    revalidateOnReconnect: false
-  });
+  const { data, mutate, error, isLoading } = useSWR(`/api/users`, fetcher);
 
-  // if (session.status === "authenticated") {
-  //   mutate()
-  // }
-  
-  !isLoading && console.log(data, mutate(), error);
+  !isLoading && console.log(data, error);
 
   return (
     <div className={styles.container}>
@@ -62,3 +49,7 @@ export default function Users() {
     </div>
   );
 }
+
+// export default dynamic(() => Promise.resolve(Users), { ssr: false });
+
+export const dynamic = 'force-dynamic'
