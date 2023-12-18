@@ -17,9 +17,9 @@ export default function Users() {
 
   const { data, mutate, error, isLoading } = useSWR(`/api/users`, fetcher);
 
-  useEffect(() => {
-    mutate();
-  }, [mutate])
+  if (session.status === "authenticated") {
+    mutate()
+  }
 
   return (
     <div className={styles.container}>
@@ -53,9 +53,7 @@ export default function Users() {
               </div>
             ))}
       </div>
-      <div>
-        
-      </div>
+
     </div>
   );
 }
