@@ -383,7 +383,7 @@
 
 /* ---------------------- MEDIA MEDIA MEDIA QUERIES -----------------------------------------------*/
 
-@media (min-width: 300px) and (max-width: 500px) {
+@media (min-width: 200px) and (max-width: 850px) {
   .mainDiv {
     flex-direction: column-reverse;
   }
@@ -397,17 +397,19 @@
     width: 100%;
     max-width: 350px;
     padding-top: 200px;
+    margin-top: 20px;
+    text-align: center;
   }
 
   .input {
     border-radius: 7px;
     width: 340px;
-    max-width: 350px;
+    max-width: 280px;
     margin: 0 auto;
   }
   .textArea {
     border-radius: 7px;
-    width: 340px;
+    width: 280px;
     max-width: 350px;
     margin: 0 auto;
   }
@@ -415,12 +417,16 @@
   .videoCardContainer {
     display: flex;
     width: 100%;
-    max-width: 350px;
+    max-width: 280px;
     margin: 0 auto;
     padding-top: 120px;
     flex-wrap: wrap;
     justify-content: center;
     flex-direction: column;
+  }
+  .playlistContainer {
+    max-width: 280px;
+    width: 100%;
   }
 
   .workoutsHeading {

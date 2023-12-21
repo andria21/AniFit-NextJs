@@ -2,24 +2,32 @@
   display: flex;
   gap: 10px;
   width: 100%;
-  max-width: 106.25em;
-  margin: 0 auto;
+  /* max-width: 106.25em; */
+  justify-content: center;
+  align-items: center;
   padding-top: 100px;
   flex-direction: column;
   padding-bottom: 100px;
   font-family: 'Libre Caslon Display', serif;
   letter-spacing: 1px;
+  margin-top: 40px;
 }
 
 .usersContainer {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.userUsername {
+  background-color: rgb(41, 41, 41);
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .userContainer {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+
 }
 
 .username {
@@ -33,17 +41,13 @@
   color: #FF0000
 }
 
-@media (min-width: 300px) and (max-width: 500px) {
+@media (min-width: 300px) and (max-width: 681px) {
   .container {
     padding-top: 300px;
     padding-bottom: 60px;
-    max-width: 350px;
     width: 100%;
     align-items: center;
     justify-content: center;
-  }
-
-  .userContainer {
-    display: flex;
+    margin-top: 0px;
   }
 }

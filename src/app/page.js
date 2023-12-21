@@ -1,14 +1,10 @@
 import Image from "next/image";
 import styles from "./page.module.css";
-import Lofi from "public/lofi.jpg";
-import Button from "@/components/button/Button";
-import GymGirl from "../../public/gym-girl.jpg";
 import AnifitMainPhoto from "../../public/main-photo.jpg";
 import AniFitBasicPhoto1 from "../../public/anifit1.JPG";
 import AniFitBasicPhoto2 from "../../public/anifit1-3.JPG";
 import AniFitBasicPhoto3 from "../../public/anifit1-4.JPG";
 import AniFitBasicPhoto4 from "../../public/anifit1-5.JPG";
-import User from "@/models/User";
 import Link from "next/link";
 
 import Footer from "@/components/footer/Footer";

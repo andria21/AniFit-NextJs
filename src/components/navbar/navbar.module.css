@@ -1,8 +1,8 @@
 .container {
   position: absolute;
-  padding-top: 1.875em;
-  max-width: 106.25em;
-  margin: 0 auto;
+  margin-top: 1.875em;
+  padding: 0 70px 0 70px;
+  max-width: 100%;
   left: 50%;
   transform: translate(-50%);
   z-index: 1;
@@ -88,23 +88,15 @@
 
 /*  -------------------------- mediaaaaa queriesssssss ------------------------- */
 
-@media (min-width: 300px) and (max-width: 500px) {
+@media (max-width: 681px) {
   /* CSS rules for smaller screens */
   .container {
-    position: absolute;
-    padding-top: 30px;
-    max-width: 300px;
-    margin: 0 auto;
-    left: 50%;
-    transform: translate(-50%);
-    z-index: 1;
-    width: 100%;
     font-family: 'Cinzel', serif;
   }
   .flexContainer {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     gap: 10px;
   }
@@ -125,8 +117,11 @@
   }
 
   .links {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr; */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
   }
 }
 

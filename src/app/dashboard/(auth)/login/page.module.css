@@ -1,23 +1,22 @@
 .container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  height: 100vh;
   background: linear-gradient(135deg, grey, black, grey);
   flex-direction: column;
+  height: 100svh;
+}
+
+.mainContainer {
+  padding-top: 120px;
 }
 
 .loginForm {
-  background-color: #000000;
   padding: 30px;
   width: 500px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-
   background: linear-gradient(45deg, white, black, grey);
-  border-radius: 8px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  margin-top: 265px;
 }
 
 
@@ -110,17 +109,21 @@
 
 .footerContainer {
   width: 100%;
+  position: absolute;
+  bottom: 0;
 }
 
 
-@media (min-width: 300px) and (max-width: 500px) {
+@media (min-width: 200px) and (max-width: 681px) {
   .loginForm {
     width: 350px;
     margin-bottom: 50px;
-    margin-top: 200px;
+    margin-top: 50px;
   }
-  .container {
-    height: 100%;
-  }
+}
 
+@media (max-width: 300px) {
+  .loginForm {
+    width: 280px;
+  }
 }

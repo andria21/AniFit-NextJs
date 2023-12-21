@@ -2,9 +2,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   background: linear-gradient(45deg, grey, black, grey);
   flex-direction: column;
+}
+
+.mainContainer {
+  padding-top: 120px;
 }
 
 .title {
@@ -84,7 +87,8 @@
 }
 
 @keyframes lightning {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0;
   }
   50% {
@@ -96,13 +100,19 @@
   width: 100%;
 }
 
-@media (min-width: 300px) and (max-width: 500px) {
-  .container{
+@media (min-width: 200px) and (max-width: 681px) {
+  .container {
     height: 100%;
   }
   .form {
     width: 350px;
     margin-bottom: 50px;
     margin-top: 200px;
+  }
+}
+
+@media (max-width: 300px) {
+  .form {
+    width: 280px;
   }
 }

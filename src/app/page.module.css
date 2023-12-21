@@ -166,7 +166,7 @@
   .imgCont .container {
     display: flex;
     align-items: center;
-    position: relative; /* Use relative positioning */
+    position: relative;
     bottom: 50%;
     left: 55.1%;
     transform: translate(-50%, -70%);
@@ -184,11 +184,10 @@
   }
 }
 
-@media (min-width: 300px) and (max-width: 500px) {
+@media (max-width: 681px) {
   .title {
     font-size: 45px;
     font-weight: bold;
-
   }
   .imgCont .container {
     display: flex;

@@ -46,7 +46,7 @@
   color: #CEDEBD;
 }
 
-@media (min-width: 300px) and (max-width: 500px) {
+@media (min-width: 200px) and (max-width: 681px) {
   .card {
     width: 300px;
     margin-bottom: 1em;
@@ -54,5 +54,12 @@
 
   .video {
     padding-right: 212px;
+  }
+}
+
+@media (max-width: 310px) {
+  .card {
+    width: 280px;
+    margin-bottom: 1em;
   }
 }
