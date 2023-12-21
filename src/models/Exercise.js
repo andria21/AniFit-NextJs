@@ -42,6 +42,9 @@ const arrayOfPostsSchema = Schema({
     type: Number,
     required: true,
   },
+  description: {
+    type: String,
+  },
   exercises: [postSchema],
 });
 

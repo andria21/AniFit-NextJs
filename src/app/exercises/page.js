@@ -111,7 +111,7 @@ export default function Dashboard() {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   const handleAddToCart = () => {
     setIsAnimating(true);
@@ -119,13 +119,9 @@ export default function Dashboard() {
 
   const organizedData = data?.reduce((acc, exercise) => {
     const username = exercise.username;
-
-    // Check if there's already a group for this username
     if (!acc[username]) {
       acc[username] = [];
     }
-
-    // Add the exercise to the group for this username
     acc[username].push(exercise);
 
     return acc;
@@ -148,7 +144,17 @@ export default function Dashboard() {
                   return exercise.exercises.map((item) => {
                     return (
                       <div className={styles.post} key={item._id}>
-                      <span onClick={() => handleDeleteExerciseUser(exercise._id)} style={{color:"red", marginLeft: "16px", fontSize: "16px", cursor: "pointer"}}>Delete All</span>
+                        <span
+                          onClick={() => handleDeleteExerciseUser(exercise._id)}
+                          style={{
+                            color: "red",
+                            marginLeft: "16px",
+                            fontSize: "16px",
+                            cursor: "pointer",
+                          }}
+                        >
+                          Delete All
+                        </span>
                         <div className={styles.videoWrapper}>
                           <iframe
                             allowFullscreen
@@ -167,6 +173,9 @@ export default function Dashboard() {
                           <h2 className={styles.postTitle}>
                             Day: {exercise.day}
                           </h2>
+                          <p className={styles.postTitle}>
+                            Description: {exercise.description}
+                          </p>
                           <h2 className={styles.postTitle}>
                             Title: {item.title}
                           </h2>
@@ -218,6 +227,8 @@ export default function Dashboard() {
                   <div className={styles.weekTitle}>
                     {daysLoop("Week", post.week)}
                     {daysLoop("Day", post.day)}
+                    <h4>Description:</h4>
+                    <p className={styles.postDescription}>{post.description}</p>
                   </div>
 
                   {sortedExercises?.map((workout) => (

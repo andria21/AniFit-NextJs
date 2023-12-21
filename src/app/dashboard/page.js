@@ -134,6 +134,7 @@ const Dashboard = () => {
     const username = e.target[0].value;
     const day = e.target[1].value;
     const week = e.target[2].value;
+    const description = e.target[3].value;
 
     try {
       await fetch("/api/exercises", {
@@ -142,6 +143,7 @@ const Dashboard = () => {
           username,
           day,
           week,
+          description,
           exercises: array,
         }),
       });
@@ -336,6 +338,11 @@ const Dashboard = () => {
                           type="number"
                           placeholder="Week"
                           required
+                          className={styles.workoutInput}
+                        />
+                        <input
+                          type="text"
+                          placeholder="Description"
                           className={styles.workoutInput}
                         />
                         <button className={styles.buttonn}>SEND</button>

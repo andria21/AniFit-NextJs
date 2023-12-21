@@ -9,6 +9,12 @@
   font-family: 'Cinzel', serif;
 }
 
+.postDescription {
+  text-align: center;
+  max-width: 300px;
+
+}
+
 
 
 .mainContainer {
