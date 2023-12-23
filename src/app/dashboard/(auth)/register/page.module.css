@@ -111,7 +111,7 @@
   }
 }
 
-@media (max-width: 300px) {
+@media (max-width: 375px) {
   .form {
     width: 280px;
   }
