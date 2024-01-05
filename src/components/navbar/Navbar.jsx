@@ -5,6 +5,8 @@ import React, { useState } from "react";
 import styles from "./navbar.module.css";
 import Button from "../button/Button";
 import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
+import Logo from "../../../public/anifit-logo-no-background.png";
 
 const Navbar = () => {
   const session = useSession();
@@ -13,8 +15,8 @@ const Navbar = () => {
   return (
     <div className={styles.container}>
       <div className={styles.flexContainer}>
-        <Link href="/" className={styles.logo}>
-          AniFit
+        <Link href="/">
+          <Image className={styles.logo} src={Logo} width={850} height={90} alt="Logo" />
         </Link>
 
         <div className={styles.links}>
@@ -34,12 +36,10 @@ const Navbar = () => {
             </Link>
           )}
 
-          
           <Link href={"/exercises"} className={styles.link}>
             Exercises
           </Link>
 
-          
           {session.status === "unauthenticated" && (
             <Link href={"/dashboard/login"} className={styles.link}>
               Login

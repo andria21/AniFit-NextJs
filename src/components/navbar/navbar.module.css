@@ -1,6 +1,6 @@
 .container {
   position: absolute;
-  margin-top: 1.875em;
+  margin-top: 1.675em;
   padding: 0 70px 0 70px;
   max-width: 100%;
   left: 50%;
@@ -16,17 +16,22 @@
   align-items: center;
 }
 
+
 .logo {
-  font-weight: bold;
+  /* font-weight: bold;
   font-size: 1.8125em;
-  border-bottom: 2px solid lime;
+  border-bottom: 2px solid lime; */
+  width: 100%;
+  /* aspect-ratio: 3/2; */
+  object-fit: cover;
+  /* mix-blend-mode: color-burn; */
 }
 
 .links {
   display: flex;
   align-items: center;
   gap: 1.375em;
-  font-size: 1.0625em;
+  font-size: 1.1825em;
 }
 
 .logout {
@@ -88,7 +93,7 @@
 
 /*  -------------------------- mediaaaaa queriesssssss ------------------------- */
 
-@media (max-width: 681px) {
+@media (max-width: 718px) {
   /* CSS rules for smaller screens */
   .container {
     font-family: 'Cinzel', serif;
@@ -102,9 +107,13 @@
   }
 
   .logo {
-    font-weight: bold;
+    /* font-weight: bold;
     font-size: 50px;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Pacifico', cursive; */
+    width: 100%;
+    aspect-ratio: 3/2;
+    object-fit: cover;
+    mix-blend-mode: color-burn;
   }
 
   .logout {

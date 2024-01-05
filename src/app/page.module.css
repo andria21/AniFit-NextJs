@@ -12,8 +12,9 @@
   align-items: center;
   position: relative; /* Use relative positioning */
   bottom: 50%;
-  left: 55.1%;
+  left: 50.3%;
   transform: translate(-50%, -70%);
+  padding: 0 70px 0 70px;
 }
 
 .item {
@@ -74,21 +75,29 @@
 }
 
 .secondContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: black;
   width: 100%;
   height: 300px;
   overflow: hidden;
+  padding: 0px 70px 0px 70px;
 }
 
 .textContainer {
-  max-width: 106.25em; /* Set your desired max-width */
-  margin: 0 auto; /* Center the container horizontally */
   display: flex;
+  max-width: 1700px;
   justify-content: space-between;
   align-items: center;
-  gap: 400px;
-  padding-top: 5em;
+
+  /* gap: 500px; */
 }
+
+.textContainer p {
+  text-align: center;
+}
+
 
 .textContainer h1 {
   width: 100%;
@@ -101,7 +110,7 @@
   top: 0;
   left: 0;
   width: 90%;
-  height: 102%;
+  height: 115%;
   background: linear-gradient(to right, #000, transparent);
 }
 
@@ -110,7 +119,7 @@
   top: 0;
   left: 0;
   width: 60%;
-  height: 102%;
+  height: 108.8%;
   background: linear-gradient(to right, #000, transparent);
 }
 
@@ -159,32 +168,8 @@
 /* ---------- MEDIA QUERIES ---------- */
 /* ---------- MEDIA QUERIES ---------- */
 
-/* For screens between 768px and 991px */
 
-@media (min-width: 768px) and (max-width: 1750px) {
-  /* CSS rules for medium-sized screens */
-  .imgCont .container {
-    display: flex;
-    align-items: center;
-    position: relative;
-    bottom: 50%;
-    left: 55.1%;
-    transform: translate(-50%, -70%);
-  }
-  .textContainer {
-    max-width: 106.25em; /* Set your desired max-width */
-    margin: 0 auto; /* Center the container horizontally */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 400px;
-    padding-top: 5em;
-    padding-left: 70px;
-    padding-right: 70px;
-  }
-}
-
-@media (max-width: 681px) {
+@media (max-width: 718px) {
   .title {
     font-size: 45px;
     font-weight: bold;
@@ -193,8 +178,16 @@
     display: flex;
     align-items: center;
     position: relative;
-    transform: translate(-45%, -50%);
+    transform: translate(-50%, -50%);
     height: 100%;
+    padding: 0px;
+  }
+
+  .item {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 70px;
   }
 
   .desc {
@@ -217,6 +210,9 @@
     justify-content: center;
     align-items: center;
     gap: 50px;
+  }
+  .textContainer p {
+    text-align: left;
   }
 
   .thirdContainer {
@@ -259,144 +255,3 @@
   }
 }
 
-@media (min-width: 320px) and (max-width: 390px) {
-  .filter {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 90%;
-    height: 140%;
-    background: linear-gradient(to right, #000, transparent);
-  }
-
-  .filter1 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 60%;
-    height: 131%;
-    background: linear-gradient(to right, #000, transparent);
-  }
-
-}
-
-@media (min-width: 390px) and (max-width: 400px) {
-  .filter {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 90%;
-    height: 110%;
-    background: linear-gradient(to right, #000, transparent);
-  }
-
-  .filter1 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 60%;
-    height: 110%;
-    background: linear-gradient(to right, #000, transparent);
-  }
-}
-
-
-@media (min-height: 300px) and (max-height: 900px) {
-  .filter {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 90%;
-    height: 130%;
-    background: linear-gradient(to right, #000, transparent);
-  }
-
-  .filter1 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 60%;
-    height: 130%;
-    background: linear-gradient(to right, #000, transparent);
-  }
-}
-
-@media (min-width: 300px) and (max-height: 700px) {
-  .filter {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 90%;
-    height: 164%;
-    background: linear-gradient(to right, #000, transparent);
-  }
-
-  .filter1 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 60%;
-    height: 164%;
-    background: linear-gradient(to right, #000, transparent);
-  }
-}
-
-@media (min-width: 375px) and (max-height: 700px) {
-  .filter {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 90%;
-    height: 140%;
-    background: linear-gradient(to right, #000, transparent);
-  }
-
-  .filter1 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 60%;
-    height: 140%;
-    background: linear-gradient(to right, #000, transparent);
-  }
-}
-
-@media (min-width: 390px) and (max-height: 900px) {
-  .filter {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 90%;
-    height: 110%;
-    background: linear-gradient(to right, #000, transparent);
-  }
-
-  .filter1 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 60%;
-    height: 110%;
-    background: linear-gradient(to right, #000, transparent);
-  }
-}
-
-@media (min-width: 400px) and (max-height: 750px) {
-  .filter {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 90%;
-    height: 127%;
-    background: linear-gradient(to right, #000, transparent);
-  }
-
-  .filter1 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 60%;
-    height: 127%;
-    background: linear-gradient(to right, #000, transparent);
-  }
-}
