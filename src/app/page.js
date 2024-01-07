@@ -12,6 +12,7 @@ import Footer from "@/components/footer/Footer";
 export default function Home() {
   return (
     <div>
+
       <div className={styles.imgCont}>
         <Image src={AnifitMainPhoto} alt="aee" className={styles.gymImage} />
         <div className={styles.filter}></div>

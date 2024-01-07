@@ -1,19 +1,11 @@
 "use client";
 
-import { useContext, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import useSWR from "swr";
 
 import styles from "./page.module.css";
-import Image from "next/image";
-import { NextResponse } from "next/server";
-
-import { ExerciseContext } from "@/context/ExerciseContext";
-
-import CartImage from "../../../public/cart.svg";
-import X from "../../../public/x.svg";
 
 import Footer from "@/components/footer/Footer";
 
@@ -24,24 +16,6 @@ export default function Dashboard() {
   const router = useRouter();
   const adminEmail = process.env.ADMIN_EMAIL;
 
-  const { array, isArrayLoading, setIsArrayLoading } =
-    useContext(ExerciseContext);
-
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleAnimationEnd = () => {
-    setIsAnimating(false);
-  };
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   const daysLoop = (name, value) => {
     for (let i = 0; i <= 7; i++) {
       return (
@@ -51,7 +25,7 @@ export default function Dashboard() {
       );
     }
   };
-  const arr = [];
+
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
   const dataUserName = session?.data?.user.name;
@@ -133,16 +107,23 @@ export default function Dashboard() {
   ) {
     return (
       <div className={styles.container}>
-      {!isLoading &&
-        data
-          .filter((user, index, array) => array.findIndex(u => u.username === user.username) === index)
-          .map(user => (
-            <div key={user._id}>
-              <h1 className={styles.userHeader} onClick={() => router.push(`/exercises/${user.username}`)}>{user.username}</h1>
-            </div>
-          ))}
-    </div>
-    
+        {!isLoading &&
+          data
+            .filter(
+              (user, index, array) =>
+                array.findIndex((u) => u.username === user.username) === index
+            )
+            .map((user) => (
+              <div key={user._id}>
+                <h1
+                  className={styles.userHeader}
+                  onClick={() => router.push(`/exercises/${user.username}`)}
+                >
+                  {user.username}
+                </h1>
+              </div>
+            ))}
+      </div>
     );
   } else if (
     session.status === "authenticated" &&
@@ -174,8 +155,10 @@ export default function Dashboard() {
                       videoTitle={workout.title}
                       videoDesc={workout.desc}
                       videoContent={workout.content}
-                      isAdmin={session.status === "authenticated" &&
-                      session.data.user.email === adminEmail}
+                      isAdmin={
+                        session.status === "authenticated" &&
+                        session.data.user.email === adminEmail
+                      }
                     />
                   ))}
                 </div>
