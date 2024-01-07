@@ -4,10 +4,14 @@ import useSWR from "swr";
 
 import styles from "./page.module.css";
 import ExerciseCard from "@/components/ExerciseCard/ExerciseCard";
+import { useSession } from "next-auth/react";
 
 export default function UserExercises({ params }) {
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
   const { data, mutate, error, isLoading } = useSWR(`/api/exercises`, fetcher);
+
+  const session = useSession();
+  const adminEmail = process.env.ADMIN_EMAIL;
 
   const daysLoop = (name, value) => {
     for (let i = 0; i <= 7; i++) {
@@ -78,6 +82,8 @@ export default function UserExercises({ params }) {
                     deleteFunc={handleDeleteSingleExercise}
                     deleteId={post._id}
                     objectId={workout._id}
+                    isAdmin={session.status === "authenticated" &&
+                      session.data.user.email === adminEmail}
                   />
                 ))}
               </div>

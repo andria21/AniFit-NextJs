@@ -174,6 +174,8 @@ export default function Dashboard() {
                       videoTitle={workout.title}
                       videoDesc={workout.desc}
                       videoContent={workout.content}
+                      isAdmin={session.status === "authenticated" &&
+                      session.data.user.email === adminEmail}
                     />
                   ))}
                 </div>
