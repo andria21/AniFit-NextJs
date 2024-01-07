@@ -340,7 +340,7 @@ const Dashboard = () => {
                           required
                           className={styles.workoutInput}
                         />
-                        <input
+                        <textarea
                           type="text"
                           placeholder="Description"
                           className={styles.workoutInput}

@@ -65,67 +65,67 @@ export default function Dashboard() {
     router?.push("/dashboard/login");
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
 
-    const username = e.target[0].value;
+  //   const username = e.target[0].value;
 
-    try {
-      await fetch("/api/exercises", {
-        method: "POST",
-        body: JSON.stringify({
-          username,
-          dayOne: array,
-          dayTwo: array,
-          dayThree: array,
-          dayFour: array,
-          dayFive: array,
-          daySix: array,
-          daySeven: array,
-        }),
-      });
-      mutate();
-      e.target.reset();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //   try {
+  //     await fetch("/api/exercises", {
+  //       method: "POST",
+  //       body: JSON.stringify({
+  //         username,
+  //         dayOne: array,
+  //         dayTwo: array,
+  //         dayThree: array,
+  //         dayFour: array,
+  //         dayFive: array,
+  //         daySix: array,
+  //         daySeven: array,
+  //       }),
+  //     });
+  //     mutate();
+  //     e.target.reset();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const handleDelete = async (id, objId) => {
-    try {
-      await fetch(`/api/exercises/${id}/exercises/${objId}`, {
-        method: "DELETE",
-      });
-      mutate();
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const handleDelete = async (id, objId) => {
+  //   try {
+  //     await fetch(`/api/exercises/${id}/exercises/${objId}`, {
+  //       method: "DELETE",
+  //     });
+  //     mutate();
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
-  const handleDeleteExerciseUser = async (id) => {
-    try {
-      await fetch(`/api/exercises/${id}`, {
-        method: "DELETE",
-      });
-      mutate();
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const handleDeleteExerciseUser = async (name) => {
+  //   try {
+  //     await fetch(`/api/exercises/${name}`, {
+  //       method: "DELETE",
+  //     });
+  //     mutate();
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
-  const handleAddToCart = () => {
-    setIsAnimating(true);
-  };
+  // const handleAddToCart = () => {
+  //   setIsAnimating(true);
+  // };
 
-  const organizedData = data?.reduce((acc, exercise) => {
-    const username = exercise.username;
-    if (!acc[username]) {
-      acc[username] = [];
-    }
-    acc[username].push(exercise);
+  // const organizedData = data?.reduce((acc, exercise) => {
+  //   const username = exercise.username;
+  //   if (!acc[username]) {
+  //     acc[username] = [];
+  //   }
+  //   acc[username].push(exercise);
 
-    return acc;
-  }, {});
+  //   return acc;
+  // }, {});
 
   if (
     session.status === "authenticated" &&
@@ -133,80 +133,16 @@ export default function Dashboard() {
   ) {
     return (
       <div className={styles.container}>
-        <div>
-          {isLoading ? (
-            <p>Loading...</p>
-          ) : (
-            Object.keys(organizedData)?.map((username) => (
-              <div className={styles.mainContainer} key={username}>
-                <h1 className={styles.userName}>{username}</h1>
-                {organizedData[username].map((exercise) => {
-                  return exercise.exercises.map((item) => {
-                    return (
-                      <div className={styles.post} key={item._id}>
-                        <span
-                          onClick={() => handleDeleteExerciseUser(exercise._id)}
-                          style={{
-                            color: "red",
-                            marginLeft: "16px",
-                            fontSize: "16px",
-                            cursor: "pointer",
-                          }}
-                        >
-                          Delete All
-                        </span>
-                        <div className={styles.videoWrapper}>
-                          <iframe
-                            allowFullscreen
-                            frameborder="0"
-                            width="350"
-                            height="250"
-                            className={styles.video}
-                            type="text/html"
-                            src={`https://www.youtube.com/embed/${item.img}?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com`}
-                          ></iframe>
-                        </div>
-                        <div className={styles.info}>
-                          <h2 className={styles.postTitle}>
-                            Week: {exercise.week}
-                          </h2>
-                          <h2 className={styles.postTitle}>
-                            Day: {exercise.day}
-                          </h2>
-                          <p className={styles.postTitle}>
-                            Description: {exercise.description}
-                          </p>
-                          <h2 className={styles.postTitle}>
-                            Title: {item.title}
-                          </h2>
-                          <h2 className={styles.postTitle}>
-                            Description: {item.desc}
-                          </h2>
-                          <h2 className={styles.postTitle}>
-                            Content: {item.content}
-                          </h2>
-                          <span
-                            className={styles.delete}
-                            onClick={() => handleDelete(exercise._id, item._id)}
-                          >
-                            <Image
-                              className={styles.ex}
-                              src={X}
-                              width={35}
-                              height={35}
-                              alt="plus"
-                            />
-                          </span>
-                        </div>
-                      </div>
-                    );
-                  });
-                })}
-              </div>
-            ))
-          )}
-        </div>
-      </div>
+      {!isLoading &&
+        data
+          .filter((user, index, array) => array.findIndex(u => u.username === user.username) === index)
+          .map(user => (
+            <div key={user._id}>
+              <h1 className={styles.userHeader} onClick={() => router.push(`/exercises/${user.username}`)}>{user.username}</h1>
+            </div>
+          ))}
+    </div>
+    
     );
   } else if (
     session.status === "authenticated" &&
