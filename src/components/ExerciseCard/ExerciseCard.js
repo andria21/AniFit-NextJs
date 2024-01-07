@@ -7,8 +7,12 @@ export default function ExerciseCard({
   videoTitle,
   videoDesc,
   videoContent,
-  videoDay
+  videoDay,
+  deleteFunc,
+  deleteId,
+  objectId,
 }) {
+
   return (
     <div class={styles.card}>
       <div class={styles.videoWrapper}>
@@ -27,6 +31,7 @@ export default function ExerciseCard({
         <h2 class={styles.videoDescription}>{videoDesc}</h2>
         <h2 class={styles.videoContent}>{videoContent}</h2>
         <h2 class={styles.videoContent}>{videoDay}</h2>
+        <span className={styles.delete} onClick={() => deleteFunc(deleteId, objectId)}>Delete</span>
       </div>
     </div>
   );

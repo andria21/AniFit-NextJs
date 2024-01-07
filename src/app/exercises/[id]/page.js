@@ -19,6 +19,17 @@ export default function UserExercises({ params }) {
     }
   };
 
+  const handleDeleteSingleExercise = async (id, objId) => {
+    try {
+      await fetch(`/api/exercises/${id}/exercises/${objId}`, {
+        method: "DELETE",
+      });
+      mutate();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const handleDeleteExerciseUser = async (userId) => {
     try {
       await fetch(`/api/exercises/${userId}`, {
@@ -31,21 +42,26 @@ export default function UserExercises({ params }) {
   };
 
   const filteredData =
-  !isLoading && data.filter((user) => user.username === params.id);
+    !isLoading && data.filter((user) => user.username === params.id);
 
   return (
     <div className={styles.mainDiv}>
-      {!isLoading && filteredData?.map((post) => {
+      {!isLoading &&
+        filteredData?.map((post) => {
           const sortedExercises = post.exercises
             .flat()
             .sort((a, b) => a.week - b.week)
             .sort((a, b) => a.day - b.day);
-
           return (
             <>
               <div className={styles.secondMainDiv}>
                 <div className={styles.weekTitle}>
-                  <span className={styles.delete} onClick={()=> handleDeleteExerciseUser(post._id)}>Delete All</span>
+                  <span
+                    className={styles.delete}
+                    onClick={() => handleDeleteExerciseUser(post._id)}
+                  >
+                    Delete All
+                  </span>
                   {daysLoop("Week", post.week)}
                   {daysLoop("Day", post.day)}
                   <h4>Description:</h4>
@@ -59,12 +75,15 @@ export default function UserExercises({ params }) {
                     videoTitle={workout.title}
                     videoDesc={workout.desc}
                     videoContent={workout.content}
+                    deleteFunc={handleDeleteSingleExercise}
+                    deleteId={post._id}
+                    objectId={workout._id}
                   />
                 ))}
               </div>
             </>
-          ); 
-      })}
+          );
+        })}
     </div>
   );
 }

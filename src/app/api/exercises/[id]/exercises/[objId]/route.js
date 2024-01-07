@@ -6,6 +6,8 @@ import Exercise from "@/models/Exercise";
 export const DELETE = async (request, { params }) => {
   const { id, objId } = params;
 
+  console.log(id, objId);
+
   try {
     await connect();
 
