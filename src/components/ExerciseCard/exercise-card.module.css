@@ -55,7 +55,7 @@
   cursor: pointer;
 }
 
-@media (min-width: 200px) and (max-width: 681px) {
+@media (min-width: 200px) and (max-width: 717px) {
   .card {
     width: 300px;
     margin-bottom: 1em;

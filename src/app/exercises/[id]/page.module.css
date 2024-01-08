@@ -1,9 +1,9 @@
 .mainDiv {
   display: flex;
-  gap: 100px;
+  gap: 20px;
   width: 100%;
   /* max-width: 106.25em; */
-  padding: 200px 70px 0 70px;
+  padding: 120px 70px 0 70px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -19,19 +19,18 @@
   border-radius: 20px;
   padding: 26px;
   width: 100%;
-  max-width: 1000px;
-  background-color: #183D3D;
+  max-width: 500px;
 }
 
 .weekTitle {
-  margin-bottom: 25px;
   border: 5px solid;
   border-radius: 15px;
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   padding: 16px 60px 16px 60px;
+  cursor: pointer;
 }
 
 .postDescription {
@@ -47,12 +46,71 @@
   cursor: pointer;
 }
 
+.arrowSvg {
+  /* filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%); */
+  filter: invert(48%) sepia(93%) saturate(7489%) hue-rotate(356deg) brightness(89%) contrast(136%);
+}
 
-@media (min-width: 200px) and (max-width: 681px) {
+/* ADMIN CSS ------------------*/
+
+.adminContainer {
+  display: flex;
+  gap: 100px;
+  width: 100%;
+  /* max-width: 106.25em; */
+  padding: 200px 70px 0 70px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: 'Lobster', cursive;
+}
+
+.adminSecondContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid;
+  border-radius: 20px;
+  padding: 26px;
+  width: 100%;
+  max-width: 1000px;
+  background-color: #183D3D;
+}
+
+.adminWeekTitle {
+  margin-bottom: 25px;
+  border: 5px solid;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 60px 16px 60px;
+}
+
+
+@media (min-width: 200px) and (max-width: 717px) {
   .mainDiv {
     margin-top: 110px;
   }
   .secondMainDiv {
+    width: 320px;
+    padding-bottom: 40px;
+    border: none;
+    padding: 10px;
+  }
+  .weekTitle {
+    flex-direction: column;
+  }
+  .mainDiv {
+    gap: 0;
+  }
+
+  .adminContainer {
+    margin-top: 110px;
+  }
+  .adminSecondContainer {
     width: 320px;
     padding-bottom: 40px;
   }
@@ -60,6 +118,10 @@
 
 @media (max-width: 310px) {
   .secondMainDiv {
+    width: 290px;
+    padding-bottom: 40px;
+  }
+  .adminSecondContainer {
     width: 290px;
     padding-bottom: 40px;
   }
