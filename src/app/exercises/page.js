@@ -11,15 +11,18 @@ import Footer from "@/components/footer/Footer";
 
 import ExerciseCard from "@/components/ExerciseCard/ExerciseCard";
 
+import ArrowSvg from "../../../public/arrow.svg";
+import Image from "next/image";
+
 export default function Dashboard() {
   const session = useSession();
   const router = useRouter();
   const adminEmail = process.env.ADMIN_EMAIL;
 
-  const daysLoop = (name, value) => {
+  const daysLoop = (name, value, destination) => {
     for (let i = 0; i <= 7; i++) {
       return (
-        <h1>
+        <h1 onClick={() => router.push(`/exercises/${destination}`)}>
           {name}: {value}
         </h1>
       );
@@ -39,43 +42,6 @@ export default function Dashboard() {
     router?.push("/dashboard/login");
   }
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   const username = e.target[0].value;
-
-  //   try {
-  //     await fetch("/api/exercises", {
-  //       method: "POST",
-  //       body: JSON.stringify({
-  //         username,
-  //         dayOne: array,
-  //         dayTwo: array,
-  //         dayThree: array,
-  //         dayFour: array,
-  //         dayFive: array,
-  //         daySix: array,
-  //         daySeven: array,
-  //       }),
-  //     });
-  //     mutate();
-  //     e.target.reset();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // const handleDelete = async (id, objId) => {
-  //   try {
-  //     await fetch(`/api/exercises/${id}/exercises/${objId}`, {
-  //       method: "DELETE",
-  //     });
-  //     mutate();
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
   // const handleDeleteExerciseUser = async (name) => {
   //   try {
   //     await fetch(`/api/exercises/${name}`, {
@@ -85,10 +51,6 @@ export default function Dashboard() {
   //   } catch (err) {
   //     console.log(err);
   //   }
-  // };
-
-  // const handleAddToCart = () => {
-  //   setIsAnimating(true);
   // };
 
   // const organizedData = data?.reduce((acc, exercise) => {
@@ -131,43 +93,52 @@ export default function Dashboard() {
   ) {
     return (
       <div className={styles.mainDiv}>
-        {data?.map((post) => {
-          if (session.data.user.name === post.username) {
-            const sortedExercises = post.exercises
-              .flat()
-              .sort((a, b) => a.week - b.week)
-              .sort((a, b) => a.day - b.day);
-
-            return (
-              <>
-                <div className={styles.secondMainDiv}>
-                  <div className={styles.weekTitle}>
-                    {daysLoop("Week", post.week)}
-                    {daysLoop("Day", post.day)}
-                    <h4>Description:</h4>
-                    <p className={styles.postDescription}>{post.description}</p>
-                  </div>
-
-                  {sortedExercises?.map((workout) => (
-                    <ExerciseCard
-                      key={workout._id}
-                      videoUrl={workout.img}
-                      videoTitle={workout.title}
-                      videoDesc={workout.desc}
-                      videoContent={workout.content}
-                      isAdmin={
-                        session.status === "authenticated" &&
-                        session.data.user.email === adminEmail
-                      }
-                    />
-                  ))}
+        {!isLoading &&
+          data
+            .filter(
+              (post) =>
+                session.data.user.name === post.username &&
+                post.hasOwnProperty("week")
+            )
+            .map((post) => post.week)
+            .filter((value, index, self) => self.indexOf(value) === index)
+            .sort((a, b) => a - b)
+            .map((week) => (
+              <div key={week} className={styles.secondMainDiv}>
+                <div className={styles.weekTitle}>
+                  {daysLoop("Week", week, week)}
+                  <Image
+                    src={ArrowSvg}
+                    width={60}
+                    height={40}
+                    alt="arrow svg"
+                    className={styles.arrowSvg}
+                  />
                 </div>
-              </>
-            );
-          }
-        })}
-        <Footer />
+              </div>
+            ))}
+        <div className={styles.footerDiv}>
+          <Footer />
+        </div>
       </div>
     );
   }
 }
+
+// {daysLoop("Day", post.day)}
+// <h4>Description:</h4>
+// <p className={styles.postDescription}>{post.description}</p>
+
+// {sortedExercises?.map((workout) => (
+//   <ExerciseCard
+//     key={workout._id}
+//     videoUrl={workout.img}
+//     videoTitle={workout.title}
+//     videoDesc={workout.desc}
+//     videoContent={workout.content}
+//     isAdmin={
+//       session.status === "authenticated" &&
+//       session.data.user.email === adminEmail
+//     }
+//   />
+// ))}

@@ -20,7 +20,6 @@
   cursor: pointer;
 }
 
-
 @media (min-width: 300px) and (max-width: 400px) {
   /* CSS rules for smaller screens */
   .container {

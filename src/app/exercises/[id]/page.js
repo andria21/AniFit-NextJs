@@ -5,6 +5,7 @@ import useSWR from "swr";
 import styles from "./page.module.css";
 import ExerciseCard from "@/components/ExerciseCard/ExerciseCard";
 import { useSession } from "next-auth/react";
+import Footer from "@/components/footer/Footer";
 
 export default function UserExercises({ params }) {
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -48,48 +49,103 @@ export default function UserExercises({ params }) {
   const filteredData =
     !isLoading && data.filter((user) => user.username === params.id);
 
-  return (
-    <div className={styles.mainDiv}>
-      {!isLoading &&
-        filteredData?.map((post) => {
-          const sortedExercises = post.exercises
-            .flat()
-            .sort((a, b) => a.week - b.week)
-            .sort((a, b) => a.day - b.day);
-          return (
-            <>
-              <div className={styles.secondMainDiv}>
-                <div className={styles.weekTitle}>
-                  <span
-                    className={styles.delete}
-                    onClick={() => handleDeleteExerciseUser(post._id)}
-                  >
-                    Delete All
-                  </span>
-                  {daysLoop("Week", post.week)}
-                  {daysLoop("Day", post.day)}
-                  <h4>Description:</h4>
-                  <p className={styles.postDescription}>{post.description}</p>
-                </div>
+  if (
+    session.status === "authenticated" &&
+    session.data.user.email === adminEmail
+  ) {
+    return (
+      <div className={styles.mainDiv}>
+        {!isLoading &&
+          filteredData?.map((post) => {
+            const sortedExercises = post.exercises
+              .flat()
+              .sort((a, b) => a.week - b.week)
+              .sort((a, b) => a.day - b.day);
+            return (
+              <>
+                <div className={styles.secondMainDiv}>
+                  <div className={styles.weekTitle}>
+                    <span
+                      className={styles.delete}
+                      onClick={() => handleDeleteExerciseUser(post._id)}
+                    >
+                      Delete All
+                    </span>
+                    {daysLoop("Week", post.week)}
+                    {daysLoop("Day", post.day)}
+                    <h4>Description:</h4>
+                    <p className={styles.postDescription}>{post.description}</p>
+                  </div>
 
-                {sortedExercises?.map((workout) => (
-                  <ExerciseCard
-                    key={workout._id}
-                    videoUrl={workout.img}
-                    videoTitle={workout.title}
-                    videoDesc={workout.desc}
-                    videoContent={workout.content}
-                    deleteFunc={handleDeleteSingleExercise}
-                    deleteId={post._id}
-                    objectId={workout._id}
-                    isAdmin={session.status === "authenticated" &&
-                      session.data.user.email === adminEmail}
-                  />
-                ))}
-              </div>
-            </>
-          );
+                  {sortedExercises.map((workout) => (
+                    <ExerciseCard
+                      key={workout._id}
+                      videoUrl={workout.img}
+                      videoTitle={workout.title}
+                      videoDesc={workout.desc}
+                      videoContent={workout.content}
+                      deleteFunc={handleDeleteSingleExercise}
+                      deleteId={post._id}
+                      objectId={workout._id}
+                      isAdmin={
+                        session.status === "authenticated" &&
+                        session.data.user.email === adminEmail
+                      }
+                    />
+                  ))}
+                </div>
+              </>
+            );
+          })}
+      </div>
+    );
+  } else if (
+    session.status === "authenticated" &&
+    session.data.user.email !== adminEmail
+  ) {
+    const filteredByWeek = !isLoading
+      ? data.filter(
+          (item) =>
+            item.week == params.id && session.data.user.name === item.username
+        )
+      : [];
+    console.log(filteredByWeek);
+    return (
+      <div className={styles.mainDiv}>
+        {!isLoading && filteredByWeek.map((post) => {
+          if (session.data.user.name === post.username) {
+            return (
+              <>
+                <div className={styles.secondMainDiv}>
+                  <div className={styles.weekTitle}>
+                    
+                    {daysLoop("Day", post.day)}
+                    <h4>Description:</h4>
+                    <p className={styles.postDescription}>{post.description}</p>
+                  </div>
+
+                  {filteredByWeek?.map((exe) =>
+                    exe.exercises.map((workout) => (
+                      <ExerciseCard
+                        key={workout._id}
+                        videoUrl={workout.img}
+                        videoTitle={workout.title}
+                        videoDesc={workout.desc}
+                        videoContent={workout.content}
+                        isAdmin={
+                          session.status === "authenticated" &&
+                          session.data.user.email === adminEmail
+                        }
+                      />
+                    ))
+                  )}
+                </div>
+              </>
+            );
+          }
         })}
-    </div>
-  );
+        <Footer />
+      </div>
+    );
+  }
 }

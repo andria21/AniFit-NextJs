@@ -1,6 +1,7 @@
 .imgCont {
   width: 100%;
   height: 928px;
+  position: relative;
 }
 
 /* .mainDiva {
@@ -51,7 +52,7 @@
   /* -webkit-transform: scaleX(-1);
   transform: scaleX(-1); */
   /* object-position: 0 -800px; finally i can move the image */
-  /* filter: drop-shadow(16px 16px 90px black); */
+
 }
 
 .customButton {
@@ -110,7 +111,7 @@
   top: 0;
   left: 0;
   width: 90%;
-  height: 115%;
+  height: 105%;
   background: linear-gradient(to right, #000, transparent);
 }
 
@@ -119,7 +120,7 @@
   top: 0;
   left: 0;
   width: 60%;
-  height: 108.8%;
+  height: 100.8%;
   background: linear-gradient(to right, #000, transparent);
 }
 

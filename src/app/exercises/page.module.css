@@ -3,9 +3,7 @@
   flex-direction: column;
   gap: 20px;
   width: 100%;
-  max-width: 106.25em;
-  margin: 0 auto;
-  padding-top: 200px;
+  padding: 200px 70px 0 70px;
   align-items: center;
   justify-content: center;
   font-family: 'Cinzel', serif;
@@ -168,7 +166,7 @@
 
 .mainDiv {
   display: flex;
-  gap: 100px;
+  gap: 20px;
   width: 100%;
   /* max-width: 106.25em; */
   padding: 120px 70px 0 70px;
@@ -256,14 +254,23 @@
 }
 
 .weekTitle {
-  margin-bottom: 25px;
   border: 5px solid;
   border-radius: 15px;
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   padding: 16px 60px 16px 60px;
+  cursor: pointer;
+}
+
+.weekTitle:hover {
+  background-color: #183D3D;
+}
+
+.arrowSvg {
+  /* filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%); */
+  filter: invert(48%) sepia(93%) saturate(7489%) hue-rotate(356deg) brightness(89%) contrast(136%);
 }
 
 .secondMainDiv {
@@ -275,8 +282,8 @@
   border-radius: 20px;
   padding: 26px;
   width: 100%;
-  max-width: 1000px;
-  background-color: #183D3D;
+  max-width: 500px;
+
 }
 
 @keyframes popAnimation {
@@ -298,7 +305,12 @@
   filter: invert(20%) sepia(93%) saturate(5892%) hue-rotate(356deg) brightness(106%) contrast(120%);
 }
 
-@media (min-width: 200px) and (max-width: 681px) {
+.footerDiv {
+  position: relative;
+  bottom: 0;
+}
+
+@media (min-width: 200px) and (max-width: 717px) {
   .mainDiv {
     margin-top: 110px;
   }
@@ -322,6 +334,14 @@
   .secondMainDiv {
     width: 320px;
     padding-bottom: 40px;
+    border: none;
+    padding: 10px;
+  }
+  .weekTitle {
+    flex-direction: column;
+  }
+  .mainDiv {
+    gap: 0;
   }
 }
 
@@ -330,8 +350,4 @@
     width: 290px;
     padding-bottom: 40px;
   }
-}
-
-@media (min-width: 681) and (max-width: 1100) {
-
 }
