@@ -22,6 +22,7 @@ export default function UserExercises({ params }) {
     for (let i = 0; i <= 7; i++) {
       return (
         <h1
+          className={styles.titleHover}
           onClick={() => router.push(`/exercises/${params.id}/${destination}`)}
         >
           {name}: {value}
@@ -58,9 +59,85 @@ export default function UserExercises({ params }) {
   if (
     session.status === "authenticated" &&
     session.data.user.email === adminEmail
-  ) {
+  ) {    
+    const exe = !isLoading && data.filter(item => item.username === params.id);
+
+    let uniqueWeeks = [];
+    const filteredData = !isLoading && data.filter(item => {
+      if (item.username === params.id) {
+        if (!uniqueWeeks.includes(item.week)) {
+          uniqueWeeks.push(item.week);
+          return true;
+        }
+      }
+      return false;
+    }).sort((a, b) => a.day - b.day);
+    
+    console.log(filteredData);
+
     return (
       <div className={styles.adminContainer}>
+        {!isLoading &&
+          filteredData.map((post) => (
+            <div key={post._id} className={styles.adminSecondContainer}>
+              <div className={styles.weekTitle}>
+                {daysLoop("Week", post.week, post.week)}
+                <span
+                  className={styles.delete}
+                  onClick={() => handleDeleteExerciseUser(post._id)}
+                >
+                  Delete
+                </span>
+              </div>
+            </div>
+          ))}
+        <div className={styles.footerDiv}>
+          <Footer />
+        </div>
+      </div>
+    );
+  } else if (
+    session.status === "authenticated" &&
+    session.data.user.email !== adminEmail
+  ) {
+    const filteredDays =
+      !isLoading &&
+      data.filter(
+        (wok) =>
+          session.data.user.name === wok.username && wok.week == params.id
+      );
+
+    return (
+      <div className={styles.mainDiv}>
+        {!isLoading &&
+          data
+            .filter(
+              (post) =>
+                session.data.user.name === post.username &&
+                post.week == params.id &&
+                post.hasOwnProperty("day")
+            )
+            .map((post) => post.day)
+            .filter((value, index, self) => self.indexOf(value) === index)
+            .sort((a, b) => a - b)
+            .map((day) => (
+            <div key={day._id} className={styles.secondMainDiv}>
+              <div className={styles.weekTitle}>
+                {daysLoop("day", day, day)}
+              </div>
+            </div>
+          ))}
+        <div className={styles.footerDiv}>
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+}
+
+/*
+
+<div className={styles.adminContainer}>
         {!isLoading &&
           filteredData?.map((post) => {
             const sortedExercises = post.exercises
@@ -104,39 +181,4 @@ export default function UserExercises({ params }) {
             );
           })}
       </div>
-    );
-  } else if (
-    session.status === "authenticated" &&
-    session.data.user.email !== adminEmail
-  ) {
-    const filteredDays =
-      !isLoading &&
-      data.filter(
-        (wok) =>
-          session.data.user.name === wok.username && wok.week == params.id
-      );
-
-    return (
-      <div className={styles.mainDiv}>
-        {!isLoading &&
-          filteredDays.map((day) => (
-            <div key={day._id} className={styles.secondMainDiv}>
-              <div className={styles.weekTitle}>
-                {daysLoop("day", day.day, day.day)}
-                <Image
-                  src={ArrowSvg}
-                  width={60}
-                  height={40}
-                  alt="arrow svg"
-                  className={styles.arrowSvg}
-                />
-              </div>
-            </div>
-          ))}
-        <div className={styles.footerDiv}>
-          <Footer />
-        </div>
-      </div>
-    );
-  }
-}
+*/

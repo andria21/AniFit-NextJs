@@ -52,7 +52,7 @@
   gap: 20px;
   width: 100%;
   /* max-width: 106.25em; */
-  padding: 200px 70px 0 70px;
+  padding: 120px 70px 0 70px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -70,23 +70,8 @@
   max-width: 500px;
 }
 
-.dayWeelTitle {
-  border: 5px solid;
-  border-radius: 15px;
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  align-items: center;
-  padding: 16px 60px 16px 60px;
-}
 
-.titleHover:hover {
-  color: #183D3D;
-  cursor: pointer;
-}
-
-
-@media (min-width: 200px) and (max-width: 718px) {
+@media (min-width: 200px) and (max-width: 717px) {
   .mainDiv {
     margin-top: 110px;
   }
@@ -94,22 +79,11 @@
     width: 320px;
     padding-bottom: 40px;
   }
-  .dayMainDiv {
-    margin-top: 110px;
-  }
-  .daySecondMainDiv {
-    width: 320px;
-    padding-bottom: 40px;
-    border: none;
-    padding: 10px;
-  }
 }
 
 @media (max-width: 310px) {
   .secondMainDiv {
     width: 290px;
-  }
-  .daySecondMainDiv {
-    width: 290px;
+    padding-bottom: 40px;
   }
 }

@@ -22,7 +22,7 @@ export default function Dashboard() {
   const daysLoop = (name, value, destination) => {
     for (let i = 0; i <= 7; i++) {
       return (
-        <h1 onClick={() => router.push(`/exercises/${destination}`)}>
+        <h1 className={styles.titleHover} onClick={() => router.push(`/exercises/${destination}`)}>
           {name}: {value}
         </h1>
       );
@@ -107,13 +107,6 @@ export default function Dashboard() {
               <div key={week} className={styles.secondMainDiv}>
                 <div className={styles.weekTitle}>
                   {daysLoop("Week", week, week)}
-                  <Image
-                    src={ArrowSvg}
-                    width={60}
-                    height={40}
-                    alt="arrow svg"
-                    className={styles.arrowSvg}
-                  />
                 </div>
               </div>
             ))}

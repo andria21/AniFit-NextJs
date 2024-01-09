@@ -9,7 +9,6 @@
   flex-direction: column;
   font-family: 'Lobster', cursive;
 }
-
 .secondMainDiv {
   display: flex;
   flex-direction: column;
@@ -30,7 +29,6 @@
   flex-direction: row;
   align-items: center;
   padding: 16px 60px 16px 60px;
-  cursor: pointer;
 }
 
 .postDescription {
@@ -55,7 +53,7 @@
 
 .adminContainer {
   display: flex;
-  gap: 100px;
+  gap: 20px;
   width: 100%;
   /* max-width: 106.25em; */
   padding: 200px 70px 0 70px;
@@ -74,8 +72,7 @@
   border-radius: 20px;
   padding: 26px;
   width: 100%;
-  max-width: 1000px;
-  background-color: #183D3D;
+  max-width: 500px;
 }
 
 .adminWeekTitle {
@@ -89,8 +86,13 @@
   padding: 16px 60px 16px 60px;
 }
 
+.titleHover:hover {
+  color: #183D3D;
+  cursor: pointer;
+}
 
-@media (min-width: 200px) and (max-width: 717px) {
+
+@media (min-width: 200px) and (max-width: 718px) {
   .mainDiv {
     margin-top: 110px;
   }
@@ -113,16 +115,16 @@
   .adminSecondContainer {
     width: 320px;
     padding-bottom: 40px;
+    border: none;
+    padding: 10px;
   }
 }
 
 @media (max-width: 310px) {
   .secondMainDiv {
     width: 290px;
-    padding-bottom: 40px;
   }
   .adminSecondContainer {
     width: 290px;
-    padding-bottom: 40px;
   }
 }

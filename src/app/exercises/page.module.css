@@ -261,12 +261,11 @@
   flex-direction: row;
   align-items: center;
   padding: 16px 60px 16px 60px;
-  cursor: pointer;
 }
 
-.weekTitle:hover {
+/* .weekTitle:hover {
   background-color: #183D3D;
-}
+} */
 
 .arrowSvg {
   /* filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%); */
@@ -284,6 +283,11 @@
   width: 100%;
   max-width: 500px;
 
+}
+
+.titleHover:hover {
+  color: #183D3D;
+  cursor: pointer;
 }
 
 @keyframes popAnimation {
@@ -310,7 +314,7 @@
   bottom: 0;
 }
 
-@media (min-width: 200px) and (max-width: 717px) {
+@media (min-width: 200px) and (max-width: 718px) {
   .mainDiv {
     margin-top: 110px;
   }
@@ -348,6 +352,8 @@
 @media (max-width: 310px) {
   .secondMainDiv {
     width: 290px;
-    padding-bottom: 40px;
+  }
+  .footerDiv{
+    padding-top: 40px;
   }
 }
