@@ -42,9 +42,10 @@ export default function AdminDays({ params }) {
     session.status === "authenticated" &&
     session.data.user.email === adminEmail
   ) {
+    const nameWithoutPercent = params.id.replace(/%20/g, " ");
     const filteredByWeek = !isLoading
       ? data.filter(
-          (item) => item.day == params.adminDay && params.id === item.username
+          (item) => item.day == params.adminDay && nameWithoutPercent === item.username
         )
       : [];
 

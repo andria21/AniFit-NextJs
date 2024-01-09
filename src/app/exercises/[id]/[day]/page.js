@@ -54,17 +54,22 @@ export default function UserExercises({ params }) {
         (wok) => params.id === wok.username && wok.week == params.day
       );
 
+    const nameWithoutPercent = params.id.replace(/%20/g, " ");
     let uniqueWeeks = [];
-    const filteredData = !isLoading && data.filter(item => {
-      if (item.username === params.id && params.day == item.week) {
-        if (!uniqueWeeks.includes(item.day)) {
-          uniqueWeeks.push(item.day);
-          return true;
-        }
-      }
-      return false;
-    }).sort((a, b) => a.day - b.day);
-    
+    const filteredData =
+      !isLoading &&
+      data
+        .filter((item) => {
+          if (item.username === nameWithoutPercent && params.day == item.week) {
+            if (!uniqueWeeks.includes(item.day)) {
+              uniqueWeeks.push(item.day);
+              return true;
+            }
+          }
+          return false;
+        })
+        .sort((a, b) => a.day - b.day);
+
     // console.log(filteredData);
 
     return (
@@ -95,12 +100,14 @@ export default function UserExercises({ params }) {
     const filteredByWeek = !isLoading
       ? data.filter(
           (item) =>
-            item.week == params.id && session.data.user.name === item.username && item.day == params.day
+            item.week == params.id &&
+            session.data.user.name === item.username &&
+            item.day == params.day
         )
       : [];
-    
+
     // console.log(filteredByWeek);
-    
+
     return (
       <div className={styles.mainDiv}>
         {!isLoading &&

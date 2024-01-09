@@ -62,9 +62,10 @@ export default function UserExercises({ params }) {
   ) {    
     const exe = !isLoading && data.filter(item => item.username === params.id);
 
+    const nameWithoutPercent = params.id.replace(/%20/g, ' ');
     let uniqueWeeks = [];
     const filteredData = !isLoading && data.filter(item => {
-      if (item.username === params.id) {
+      if (item.username === nameWithoutPercent) {
         if (!uniqueWeeks.includes(item.week)) {
           uniqueWeeks.push(item.week);
           return true;
