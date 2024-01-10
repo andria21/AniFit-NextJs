@@ -385,13 +385,20 @@
 .removeExercise {
   filter: invert(20%) sepia(93%) saturate(5892%) hue-rotate(356deg)
     brightness(106%) contrast(120%);
+    
 }
 
 .exitModal {
   margin: 0 auto;
   cursor: pointer;
-  color: red;
+  color: #fff;
   font-weight: 800;
+  /* position: fixed;
+  top: 110px;
+  right: 230px; */
+  background-color: #ff0000;
+  padding: 10px;
+  border-radius: 16px;
 }
 
 /* ---------------------- MEDIA MEDIA MEDIA QUERIES -----------------------------------------------*/

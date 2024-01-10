@@ -387,7 +387,7 @@ const Dashboard = () => {
                                 <Image
                                   className={styles.removeExercise}
                                   src={X}
-                                  width={20}
+                                  width={30}
                                   height={20}
                                   alt="plus"
                                 />
