@@ -361,7 +361,7 @@ const Dashboard = () => {
                               key={vid._id}
                               className={styles.videoContainer}
                             >
-                              <h1>{vid.title}</h1>
+                              <h2>{vid.title}</h2>
                               <iframe
                                 allowFullscreen
                                 frameborder="0"
