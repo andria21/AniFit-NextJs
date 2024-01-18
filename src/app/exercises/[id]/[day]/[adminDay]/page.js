@@ -45,9 +45,10 @@ export default function AdminDays({ params }) {
     const nameWithoutPercent = params.id.replace(/%20/g, " ");
     const filteredByWeek = !isLoading
       ? data.filter(
-          (item) => item.day == params.adminDay && nameWithoutPercent === item.username
+          (item) => item.day == params.adminDay && nameWithoutPercent === item.username && params.day == item.week
         )
       : [];
+    
 
     return (
       <div className={styles.mainDiv}>
