@@ -21,9 +21,13 @@
 }
 
 .userUsername {
-  background-color: rgb(41, 41, 41);
+  background-color: #232D3F;
   padding: 10px;
   border-radius: 10px;
+}
+
+.usersContainer div:nth-child(even) .userUsername {
+  background-color: #0F0F0F
 }
 
 .userContainer {

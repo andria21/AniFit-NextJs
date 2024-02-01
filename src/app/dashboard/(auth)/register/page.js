@@ -126,9 +126,6 @@ export default function Register() {
           <button className={styles.submitButton}>Submit</button>
         </form>
       </div>
-      <div className={styles.footerContainer}>
-        <Footer />
-      </div>
       {err && <h1>{err}</h1>}
     </div>
   );

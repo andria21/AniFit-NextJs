@@ -1,11 +1,13 @@
-.container {
+.footerContainer {
   height: 50px;
   font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1700px;
+  padding: 0 70px 0 70px;
   width: 100%;
+  /* position: sticky;
+  bottom: 0; */
 }
 
 .social {
@@ -19,8 +21,7 @@
   cursor: pointer;
 }
 
-@media (min-width: 300px) and (max-width: 400px) {
-  /* CSS rules for smaller screens */
+/* @media (min-width: 300px) and (max-width: 400px) {
   .container {
     height: 50px;
     font-size: 14px;
@@ -33,9 +34,7 @@
   }
 }
 
-/* For screens between 768px and 991px */
 @media (min-width: 768px) and (max-width: 991px) {
-  /* CSS rules for medium-sized screens */
   .container {
     height: 50px;
     font-size: 14px;
@@ -46,9 +45,4 @@
     margin: 0 auto;
     width: 100%;
   }
-}
-
-/* For screens larger than 992px */
-@media (min-width: 992px) {
-  /* CSS rules for larger screens */
-}
+} */

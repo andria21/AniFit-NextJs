@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className={styles.container}>
+    <div className={styles.footerContainer}>
       <div>©2023 AniFit. All rights reserved.</div>
       <div className={styles.social}>
         <Link href={"https://www.facebook.com/ani.margieva"}>

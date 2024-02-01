@@ -2,12 +2,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(45deg, grey, black, grey);
+  background: linear-gradient(45deg, #30475E, black, #30475E);
   flex-direction: column;
 }
 
 .mainContainer {
-  padding-top: 120px;
+  padding-top: 160px;
 }
 
 .title {
@@ -19,7 +19,9 @@
   width: 500px;
   padding: 30px;
   border-radius: 10px;
-  background: linear-gradient(135deg, grey, black, grey);
+  /* background: linear-gradient(135deg, grey, black, grey); */
+  background: #191919;
+  margin-bottom: 50px;
 }
 
 .formGroup {
@@ -100,7 +102,7 @@
   width: 100%;
 }
 
-@media (min-width: 200px) and (max-width: 681px) {
+@media (min-width: 200px) and (max-width: 718px) {
   .container {
     height: 100%;
   }

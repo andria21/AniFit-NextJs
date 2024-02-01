@@ -73,8 +73,7 @@ export default function UserExercises({ params }) {
       }
       return false;
     }).sort((a, b) => a.day - b.day);
-    
-    console.log(filteredData);
+  
 
     return (
       <div className={styles.adminContainer}>
@@ -92,9 +91,6 @@ export default function UserExercises({ params }) {
               </div>
             </div>
           ))}
-        <div className={styles.footerDiv}>
-          <Footer />
-        </div>
       </div>
     );
   } else if (
@@ -128,9 +124,6 @@ export default function UserExercises({ params }) {
               </div>
             </div>
           ))}
-        <div className={styles.footerDiv}>
-          <Footer />
-        </div>
       </div>
     );
   }

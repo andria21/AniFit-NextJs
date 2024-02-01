@@ -38,6 +38,25 @@ export default function AdminDays({ params }) {
     }
   };
 
+  const handleEditExerciseDescription = async (e, exerciseId) => {
+    e.preventDefault();
+    const description = e.target[0].value;
+
+    try {
+      await fetch(`/api/exercises/${exerciseId}`, {
+        method: "POST",
+        body: JSON.stringify({
+          exerciseId,
+          description,
+        }),
+      });
+      mutate();
+      e.target.reset();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   if (
     session.status === "authenticated" &&
     session.data.user.email === adminEmail
@@ -45,10 +64,12 @@ export default function AdminDays({ params }) {
     const nameWithoutPercent = params.id.replace(/%20/g, " ");
     const filteredByWeek = !isLoading
       ? data.filter(
-          (item) => item.day == params.adminDay && nameWithoutPercent === item.username && params.day == item.week
+          (item) =>
+            item.day == params.adminDay &&
+            nameWithoutPercent === item.username &&
+            params.day == item.week
         )
       : [];
-    
 
     return (
       <div className={styles.mainDiv}>
@@ -57,10 +78,32 @@ export default function AdminDays({ params }) {
             return (
               <>
                 <div className={styles.secondMainDiv}>
-                  <span className={styles.delete} onClick={() => handleDeleteExerciseUser(post._id)}>Delete</span>
+                  <span
+                    className={styles.delete}
+                    onClick={() => handleDeleteExerciseUser(post._id)}
+                  >
+                    Delete
+                  </span>
                   <div className={styles.weekTitle}>
                     <h3>Description:</h3>
                     <p className={styles.postDescription}>{post.description}</p>
+
+                    <form
+                      onSubmit={(e) =>
+                        handleEditExerciseDescription(e, post._id)
+                      }
+                      className={styles.editform}
+                    >
+                      <h3 className={styles.editHeading}>
+                        Update the description
+                      </h3>
+                      <textarea
+                        type="text"
+                        placeholder="New description..."
+                        className={styles.editInput}
+                      />
+                      <button className={styles.editButton}>Submit</button>
+                    </form>
                   </div>
 
                   {post.exercises.map((workout) => (
@@ -83,7 +126,6 @@ export default function AdminDays({ params }) {
               </>
             );
           })}
-        <Footer />
       </div>
     );
   }

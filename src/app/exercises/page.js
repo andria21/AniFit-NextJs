@@ -110,9 +110,6 @@ export default function Dashboard() {
                 </div>
               </div>
             ))}
-        <div className={styles.footerDiv}>
-          <Footer />
-        </div>
       </div>
     );
   }

@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, grey, black, grey);
+  background: linear-gradient(135deg, #30475E, black, #30475E);
   flex-direction: column;
   height: 100svh;
 }
@@ -16,7 +16,8 @@
   width: 500px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(45deg, white, black, grey);
+  background: #191919;
+  text-align: center;
 }
 
 
@@ -32,6 +33,7 @@
 .label {
   display: block;
   font-weight: bold;
+  text-align: left;
 }
 
 .input {
@@ -43,24 +45,25 @@
 
 .loginButton {
   width: 100%;
-  padding: 12px 24px;
-  font-size: 18px;
+  font-family: lato, sans-serif;
   font-weight: bold;
-  text-transform: uppercase;
-  color: black;
-  background: linear-gradient(45deg, grey, white, black);
-  border: none;
-  border-radius: 50px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #191919;
+  display: inline-block;
+  padding: 10px 40px;
   position: relative;
-  overflow: hidden;
+  border: 2px solid #ffffff;
+  width: 200px;
+  cursor: pointer;
   z-index: 1;
 }
 
 .loginButton:hover {
-  background-color: limegreen;
+  color: #000000;
+    background-color: #ffffff;
 }
 
 .newDiv {
@@ -114,7 +117,7 @@
 }
 
 
-@media (min-width: 200px) and (max-width: 681px) {
+@media (min-width: 200px) and (max-width: 718px) {
   .loginForm {
     width: 350px;
     margin-bottom: 50px;

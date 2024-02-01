@@ -82,9 +82,6 @@ export default function Login() {
           </div>
         </form>
       </div>
-      <div className={styles.footerContainer}>
-        <Footer />
-      </div>
     </div>
   );
 }

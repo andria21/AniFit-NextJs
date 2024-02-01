@@ -78,7 +78,7 @@ export default function UserExercises({ params }) {
           filteredData.map((item) => (
             <div key={item._id} className={styles.daySecondMainDiv}>
               <div className={styles.dayWeelTitle}>
-                {daysLoop("day", item.day, item.day)}
+                {daysLoop("Day", item.day, item.day)}
                 <span
                   className={styles.delete}
                   onClick={() => handleDeleteExerciseUser(item._id)}
@@ -88,9 +88,6 @@ export default function UserExercises({ params }) {
               </div>
             </div>
           ))}
-        <div className={styles.footerDiv}>
-          <Footer />
-        </div>
       </div>
     );
   } else if (
@@ -143,7 +140,6 @@ export default function UserExercises({ params }) {
               );
             }
           })}
-        <Footer />
       </div>
     );
   }

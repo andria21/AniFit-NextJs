@@ -42,7 +42,7 @@
   padding: 8px;
   border-radius: 15px;
   cursor: pointer;
-  
+  margin-left: 20px;
 }
 
 .arrowSvg {
@@ -118,6 +118,10 @@
     padding-bottom: 40px;
     border: none;
     padding: 10px;
+  }
+  .delete {
+    margin-left: 0;
+    margin-top: 10px;
   }
 }
 

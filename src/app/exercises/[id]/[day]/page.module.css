@@ -45,6 +45,7 @@
   padding: 8px;
   border-radius: 15px;
   cursor: pointer;
+  margin-left: 20px;
 }
 
 .dayMainDiv {
@@ -102,6 +103,13 @@
     padding-bottom: 40px;
     border: none;
     padding: 10px;
+  }
+  .dayWeelTitle {
+    flex-direction: column;
+  }
+  .delete {
+    margin-left: 0;
+    margin-top: 10px;
   }
 }
 
