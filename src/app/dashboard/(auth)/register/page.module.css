@@ -33,6 +33,23 @@
   margin-bottom: 5px;
 }
 
+.gender {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 10px;
+  background-color: #fff;
+  font-size: 16px;
+}
+
+.gender:focus {
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3); /* Add a subtle box shadow on focus */
+}
+
+.gender option {
+  padding: 8px 16px; /* Adjust padding for options */
+}
+
 .input {
   width: 100%;
   padding: 10px;

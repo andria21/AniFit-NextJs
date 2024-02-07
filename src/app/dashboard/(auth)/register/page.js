@@ -20,7 +20,7 @@ export default function Register() {
     const age = e.target[3].value;
     const weight = e.target[4].value;
     const height = e.target[5].value;
-    const pulse = e.target[6].value;
+    const gender = e.target[6].value;
 
     try {
       const res = await fetch("/api/auth/register", {
@@ -36,7 +36,7 @@ export default function Register() {
           age,
           weight,
           height,
-          pulse,
+          gender,
         }),
       });
 
@@ -114,14 +114,11 @@ export default function Register() {
             />
           </div>
           <div className={styles.formGroup}>
-            <label className={styles.label}>Pulse:</label>
-            <input
-              type="number"
-              id="pulse"
-              name="pulse"
-              className={styles.input}
-              required
-            />
+            <label className={styles.label}>Gender:</label>
+            <select name="gender" className={styles.gender}>
+              <option selected value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
           </div>
           <button className={styles.submitButton}>Submit</button>
         </form>

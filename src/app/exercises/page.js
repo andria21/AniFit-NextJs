@@ -22,7 +22,10 @@ export default function Dashboard() {
   const daysLoop = (name, value, destination) => {
     for (let i = 0; i <= 7; i++) {
       return (
-        <h1 className={styles.titleHover} onClick={() => router.push(`/exercises/${destination}`)}>
+        <h1
+          className={styles.titleHover}
+          onClick={() => router.push(`/exercises/${destination}`)}
+        >
           {name}: {value}
         </h1>
       );
@@ -34,8 +37,16 @@ export default function Dashboard() {
   const dataUserName = session?.data?.user.name;
   const { data, mutate, error, isLoading } = useSWR(`/api/exercises`, fetcher);
 
+  const doesUserHaveAccess =
+    !isLoading &&
+    data.some((post) => session.data?.user.name === post.username);
+
   if (session.status === "loading") {
-    return <p>Loading...</p>;
+    return (
+      <div className={styles.mainDiv}>
+        <p>Loading...</p>
+      </div>
+    );
   }
 
   if (session.status === "unauthenticated") {
@@ -89,7 +100,8 @@ export default function Dashboard() {
     );
   } else if (
     session.status === "authenticated" &&
-    session.data.user.email !== adminEmail
+    session.data.user.email !== adminEmail &&
+    doesUserHaveAccess !== false
   ) {
     return (
       <div className={styles.mainDiv}>
@@ -110,6 +122,12 @@ export default function Dashboard() {
                 </div>
               </div>
             ))}
+      </div>
+    );
+  } else {
+    return (
+      <div className={styles.mainDiv}>
+        {!isLoading && <p>Please contact Ani to receive exercises.</p>}
       </div>
     );
   }

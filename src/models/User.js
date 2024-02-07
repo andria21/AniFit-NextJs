@@ -34,8 +34,8 @@ const userSchema = new Schema(
       type: Number,
       required: true,
     },
-    pulse: {
-      type: Number,
+    gender: {
+      type: String,
       required: true,
     },
   },
