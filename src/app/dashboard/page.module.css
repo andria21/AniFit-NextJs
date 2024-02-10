@@ -14,6 +14,47 @@
   
 } */
 
+.editform {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  gap: 5px;
+}
+
+.editInput {
+  border: 2px solid transparent;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #404040;
+  color: #000;
+  outline: none;
+  max-width: 1000px;
+}
+.editInput:focus {
+  border-color: #fff;
+  box-shadow: none;
+}
+.editInput::placeholder {
+  color: #fff;
+}
+
+.editHeading {
+  color: #606060;
+}
+
+.editButton {
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #404040;
+  color: #fff;
+  width: 30%;
+  cursor: pointer;
+  font-family: "Lobster", cursive;
+}
+
 .mainDiv {
   display: flex;
   justify-content: space-between;
@@ -37,13 +78,11 @@
   justify-content: center;
   margin: 40px 0px;
   flex-direction: column;
-
   width: 350px;
-  border: 4px solid #e2e2e2;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
   margin-bottom: 1.5em;
-  background: linear-gradient(45deg, #ffffff, #f7f7f7);
+  background: #212121;
+  box-shadow: 15px 15px 30px rgb(25, 25, 25), -15px -15px 30px rgb(60, 60, 60);
 }
 
 .playlistContainer {
@@ -62,7 +101,7 @@
   width: 100%;
   color: #aed2ff;
   margin: 0 auto;
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
 }
 
 .playlistTitleContaner {
@@ -106,13 +145,16 @@
 .videoContent {
   padding: 16px;
   color: white;
-  background: linear-gradient(45deg, #000, #000);
+  background: #212121;
+  text-align: center;
+  border-radius: 30px;
 }
 
 .videoWrapper {
   position: relative;
-  border-bottom: 1px solid white;
-  background: linear-gradient(45deg, #000, #000);
+  /* border-bottom: 1px solid white; */
+  background: #212121;
+  border-radius: 30px;
 }
 
 .video {
@@ -242,10 +284,8 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 300px;
-  margin: 0 auto;
-  margin-top: -20px;
-  margin-bottom: 10px;
+  padding-left: calc((100% - 300px) / 2);
+  padding-right: calc((100% - 300px) / 2);
 }
 
 .cartImage {
@@ -303,7 +343,8 @@
   align-items: center;
   flex-direction: column;
   gap: 20px;
-  background-color: #252b48;
+  /* background-color: #252b48; */
+  background: #212121;
   color: black;
   padding: 20px;
   border-radius: 8px;
@@ -316,7 +357,7 @@
 }
 
 .modalTitle {
-  color: #f2bed1;
+  color: #fff;
   letter-spacing: 6px;
 }
 
@@ -362,7 +403,6 @@
   gap: 15px;
   justify-content: center;
   align-items: center;
-
 }
 
 .popup ul {
@@ -385,7 +425,6 @@
 .removeExercise {
   filter: invert(20%) sepia(93%) saturate(5892%) hue-rotate(356deg)
     brightness(106%) contrast(120%);
-    
 }
 
 .exitModal {

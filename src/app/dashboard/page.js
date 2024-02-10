@@ -157,6 +157,23 @@ const Dashboard = () => {
     }
   };
 
+  const handleEditExerciseDescription = async (e, postId, exerciseId) => {
+    e.preventDefault();
+    const content = e.target[0].value;
+    try {
+      await fetch(`/api/posts/${postId}/posts/${exerciseId}`, {
+        method: "POST",
+        body: JSON.stringify({
+          content,
+        }),
+      });
+      mutate();
+      e.target.reset();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   //<Image src={post.img} alt="" width={300} height={200} />
   if (
     session.status === "authenticated" &&
@@ -259,6 +276,24 @@ const Dashboard = () => {
                                 <h2 className={styles.postContent}>
                                   {exe.content}
                                 </h2>
+                                <form
+                                  onSubmit={(e) =>
+                                    handleEditExerciseDescription(e, post._id, exe._id)
+                                  }
+                                  className={styles.editform}
+                                >
+                                  <h3 className={styles.editHeading}>
+                                    Update the content
+                                  </h3>
+                                  <textarea
+                                    type="text"
+                                    placeholder="New content..."
+                                    className={styles.editInput}
+                                  />
+                                  <button className={styles.editButton}>
+                                    Submit
+                                  </button>
+                                </form>
                               </div>
                             </div>
                           ))}

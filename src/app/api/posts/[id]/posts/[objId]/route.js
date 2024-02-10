@@ -3,6 +3,31 @@ import connect from "@/utils/db";
 import Post from "@/models/Post";
 
 
+export const POST = async (request, { params }) => {
+  const body = await request.json();
+  try {
+    await connect();
+    
+    Post.findOneAndUpdate(
+      { _id: params.id, 'posts._id': params.objId },
+      { $set: { 'posts.$.content': body.content } },
+      { upsert: true, new: true },
+      (err, result) => {
+        if (err) {
+          console.error('Error:', err);
+          return;
+        }
+    
+      }
+    );
+
+    return new NextResponse("Post has been created", { status: 201 });
+  } catch (err) {
+    return new NextResponse("Database Error", { status: 500 });
+  }
+};
+
+
 export const DELETE = async (request, { params }) => {
   const { id, objId } = params;
 

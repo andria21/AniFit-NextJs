@@ -36,6 +36,7 @@ export default function Dashboard() {
 
   const dataUserName = session?.data?.user.name;
   const { data, mutate, error, isLoading } = useSWR(`/api/exercises`, fetcher);
+  const { data: userData, mutate: userMutate, error: userError, isLoading: isUserLoading } = useSWR(`/api/users`, fetcher);
 
   const doesUserHaveAccess =
     !isLoading &&
@@ -52,27 +53,6 @@ export default function Dashboard() {
   if (session.status === "unauthenticated") {
     router?.push("/dashboard/login");
   }
-
-  // const handleDeleteExerciseUser = async (name) => {
-  //   try {
-  //     await fetch(`/api/exercises/${name}`, {
-  //       method: "DELETE",
-  //     });
-  //     mutate();
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
-  // const organizedData = data?.reduce((acc, exercise) => {
-  //   const username = exercise.username;
-  //   if (!acc[username]) {
-  //     acc[username] = [];
-  //   }
-  //   acc[username].push(exercise);
-
-  //   return acc;
-  // }, {});
 
   if (
     session.status === "authenticated" &&
@@ -128,25 +108,19 @@ export default function Dashboard() {
     return (
       <div className={styles.mainDiv}>
         {!isLoading && <p>Please contact Ani to receive exercises.</p>}
+        {!isUserLoading && userData.map(user => {
+          if (session.data?.user.name === user.name) {
+            if (user.gender === "male") {
+              !isLoading && data.map(u => {
+                if (u.username === "male") {
+                  //to be continued
+                }
+              })
+            }
+          }
+        })}
       </div>
     );
   }
 }
 
-// {daysLoop("Day", post.day)}
-// <h4>Description:</h4>
-// <p className={styles.postDescription}>{post.description}</p>
-
-// {sortedExercises?.map((workout) => (
-//   <ExerciseCard
-//     key={workout._id}
-//     videoUrl={workout.img}
-//     videoTitle={workout.title}
-//     videoDesc={workout.desc}
-//     videoContent={workout.content}
-//     isAdmin={
-//       session.status === "authenticated" &&
-//       session.data.user.email === adminEmail
-//     }
-//   />
-// ))}
