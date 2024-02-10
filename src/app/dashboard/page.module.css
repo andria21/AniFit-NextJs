@@ -37,7 +37,11 @@
   box-shadow: none;
 }
 .editInput::placeholder {
-  color: #fff;
+  color: #ccc;
+}
+
+.editInput input {
+  font-size: 2px;
 }
 
 .editHeading {

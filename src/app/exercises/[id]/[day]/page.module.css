@@ -69,6 +69,7 @@
   padding: 26px;
   width: 100%;
   max-width: 500px;
+  gap: 30px;
 }
 
 .dayWeelTitle {
@@ -103,6 +104,7 @@
     padding-bottom: 40px;
     border: none;
     padding: 10px;
+    gap: 0;
   }
   .dayWeelTitle {
     flex-direction: column;

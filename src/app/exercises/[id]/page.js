@@ -59,21 +59,25 @@ export default function UserExercises({ params }) {
   if (
     session.status === "authenticated" &&
     session.data.user.email === adminEmail
-  ) {    
-    const exe = !isLoading && data.filter(item => item.username === params.id);
+  ) {
+    const exe =
+      !isLoading && data.filter((item) => item.username === params.id);
 
-    const nameWithoutPercent = params.id.replace(/%20/g, ' ');
+    const nameWithoutPercent = params.id.replace(/%20/g, " ");
     let uniqueWeeks = [];
-    const filteredData = !isLoading && data.filter(item => {
-      if (item.username === nameWithoutPercent) {
-        if (!uniqueWeeks.includes(item.week)) {
-          uniqueWeeks.push(item.week);
-          return true;
-        }
-      }
-      return false;
-    }).sort((a, b) => a.day - b.day);
-  
+    const filteredData =
+      !isLoading &&
+      data
+        .filter((item) => {
+          if (item.username === nameWithoutPercent) {
+            if (!uniqueWeeks.includes(item.week)) {
+              uniqueWeeks.push(item.week);
+              return true;
+            }
+          }
+          return false;
+        })
+        .sort((a, b) => a.day - b.day);
 
     return (
       <div className={styles.adminContainer}>
@@ -82,13 +86,13 @@ export default function UserExercises({ params }) {
             <div key={post._id} className={styles.adminSecondContainer}>
               <div className={styles.weekTitle}>
                 {daysLoop("Week", post.week, post.week)}
-                <span
-                  className={styles.delete}
-                  onClick={() => handleDeleteExerciseUser(post._id)}
-                >
-                  Delete
-                </span>
               </div>
+              <span
+                className={styles.delete}
+                onClick={() => handleDeleteExerciseUser(post._id)}
+              >
+                Delete
+              </span>
             </div>
           ))}
       </div>
@@ -118,12 +122,12 @@ export default function UserExercises({ params }) {
             .filter((value, index, self) => self.indexOf(value) === index)
             .sort((a, b) => a - b)
             .map((day) => (
-            <div key={day._id} className={styles.secondMainDiv}>
-              <div className={styles.weekTitle}>
-                {daysLoop("day", day, day)}
+              <div key={day._id} className={styles.secondMainDiv}>
+                <div className={styles.weekTitle}>
+                  {daysLoop("day", day, day)}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
       </div>
     );
   }

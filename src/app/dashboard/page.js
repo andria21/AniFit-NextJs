@@ -159,11 +159,15 @@ const Dashboard = () => {
 
   const handleEditExerciseDescription = async (e, postId, exerciseId) => {
     e.preventDefault();
-    const content = e.target[0].value;
+    const title = e.target[0].value;
+    const description = e.target[1].value;
+    const content = e.target[2].value;
     try {
       await fetch(`/api/posts/${postId}/posts/${exerciseId}`, {
         method: "POST",
         body: JSON.stringify({
+          title,
+          description,
           content,
         }),
       });
@@ -283,11 +287,21 @@ const Dashboard = () => {
                                   className={styles.editform}
                                 >
                                   <h3 className={styles.editHeading}>
-                                    Update the content
+                                    Update
                                   </h3>
+                                  <input
+                                    type="text"
+                                    placeholder="Title..."
+                                    className={styles.editInput}
+                                  />
+                                  <input
+                                    type="text"
+                                    placeholder="Description..."
+                                    className={styles.editInput}
+                                  />
                                   <textarea
                                     type="text"
-                                    placeholder="New content..."
+                                    placeholder="Content..."
                                     className={styles.editInput}
                                   />
                                   <button className={styles.editButton}>

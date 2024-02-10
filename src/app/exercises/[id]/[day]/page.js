@@ -79,13 +79,13 @@ export default function UserExercises({ params }) {
             <div key={item._id} className={styles.daySecondMainDiv}>
               <div className={styles.dayWeelTitle}>
                 {daysLoop("Day", item.day, item.day)}
-                <span
-                  className={styles.delete}
-                  onClick={() => handleDeleteExerciseUser(item._id)}
-                >
-                  Delete
-                </span>
               </div>
+              <span
+                className={styles.delete}
+                onClick={() => handleDeleteExerciseUser(item._id)}
+              >
+                Delete
+              </span>
             </div>
           ))}
       </div>
