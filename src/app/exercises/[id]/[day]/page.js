@@ -18,6 +18,17 @@ export default function UserExercises({ params }) {
   const session = useSession();
   const adminEmail = process.env.ADMIN_EMAIL;
 
+  const {
+    data: userData,
+    mutate: userMutate,
+    error: userError,
+    isLoading: isUserLoading,
+  } = useSWR(`/api/users`, fetcher);
+
+  const doesUserHaveAccess =
+    !isLoading &&
+    data.some((post) => session.data?.user.name === post.username);
+
   const daysLoop = (name, value, destination) => {
     for (let i = 0; i <= 7; i++) {
       return (
@@ -92,7 +103,8 @@ export default function UserExercises({ params }) {
     );
   } else if (
     session.status === "authenticated" &&
-    session.data.user.email !== adminEmail
+    session.data.user.email !== adminEmail &&
+    doesUserHaveAccess !== false
   ) {
     const filteredByWeek = !isLoading
       ? data.filter(
@@ -111,32 +123,98 @@ export default function UserExercises({ params }) {
           filteredByWeek.map((post) => {
             if (session.data.user.name === post.username) {
               return (
-                <>
-                  <div className={styles.secondMainDiv}>
-                    <div className={styles.weekTitle}>
-                      <h3>Description:</h3>
-                      <p className={styles.postDescription}>
-                        {post.description}
-                      </p>
-                    </div>
-
-                    {filteredByWeek?.map((exe) =>
-                      exe.exercises.map((workout) => (
-                        <ExerciseCard
-                          key={workout._id}
-                          videoUrl={workout.img}
-                          videoTitle={workout.title}
-                          videoDesc={workout.desc}
-                          videoContent={workout.content}
-                          isAdmin={
-                            session.status === "authenticated" &&
-                            session.data.user.email === adminEmail
-                          }
-                        />
-                      ))
-                    )}
+                <div className={styles.secondMainDiv}>
+                  <div className={styles.weekTitle}>
+                    <h3>Description:</h3>
+                    <p className={styles.postDescription}>{post.description}</p>
                   </div>
-                </>
+
+                  {filteredByWeek?.map((exe) =>
+                    exe.exercises.map((workout) => (
+                      <ExerciseCard
+                        key={workout._id}
+                        videoUrl={workout.img}
+                        videoTitle={workout.title}
+                        videoDesc={workout.desc}
+                        videoContent={workout.content}
+                        isAdmin={
+                          session.status === "authenticated" &&
+                          session.data.user.email === adminEmail
+                        }
+                      />
+                    ))
+                  )}
+                </div>
+              );
+            }
+          })}
+      </div>
+    );
+  } else {
+    const isMale =
+      !isUserLoading &&
+      userData.some(
+        (user) =>
+          session.data?.user.name === user.name && user.gender === "male"
+      );
+      const isFemale =
+      !isUserLoading &&
+      userData.some(
+        (user) =>
+          session.data?.user.name === user.name && user.gender === "female"
+      );
+    const filteredByWeek = !isLoading
+      ? data.filter((item) => item.week == params.id && item.day == params.day)
+      : [];
+    return (
+      <div className={styles.mainDiv}>
+        {!isLoading &&
+          filteredByWeek.map((post) => {
+            if (post.username === "male" && isMale) {
+              return (
+                <div className={styles.secondMainDiv}>
+                  <div className={styles.weekTitle}>
+                    <h3>Description:</h3>
+                    <p className={styles.postDescription}>{post.description}</p>
+                  </div>
+
+                  {post.exercises.map((workout) => (
+                    <ExerciseCard
+                      key={workout._id}
+                      videoUrl={workout.img}
+                      videoTitle={workout.title}
+                      videoDesc={workout.desc}
+                      videoContent={workout.content}
+                      isAdmin={
+                        session.status === "authenticated" &&
+                        session.data.user.email === adminEmail
+                      }
+                    />
+                  ))}
+                </div>
+              );
+            } else if (post.username === "female" && isFemale) {
+              return (
+                <div className={styles.secondMainDiv}>
+                  <div className={styles.weekTitle}>
+                    <h3>Description:</h3>
+                    <p className={styles.postDescription}>{post.description}</p>
+                  </div>
+
+                  {post.exercises.map((workout) => (
+                    <ExerciseCard
+                      key={workout._id}
+                      videoUrl={workout.img}
+                      videoTitle={workout.title}
+                      videoDesc={workout.desc}
+                      videoContent={workout.content}
+                      isAdmin={
+                        session.status === "authenticated" &&
+                        session.data.user.email === adminEmail
+                      }
+                    />
+                  ))}
+                </div>
               );
             }
           })}

@@ -18,6 +18,17 @@ export default function UserExercises({ params }) {
   const session = useSession();
   const adminEmail = process.env.ADMIN_EMAIL;
 
+  const {
+    data: userData,
+    mutate: userMutate,
+    error: userError,
+    isLoading: isUserLoading,
+  } = useSWR(`/api/users`, fetcher);
+
+  const doesUserHaveAccess =
+    !isLoading &&
+    data.some((post) => session.data?.user.name === post.username);
+
   const daysLoop = (name, value, destination) => {
     for (let i = 0; i <= 7; i++) {
       return (
@@ -99,7 +110,8 @@ export default function UserExercises({ params }) {
     );
   } else if (
     session.status === "authenticated" &&
-    session.data.user.email !== adminEmail
+    session.data.user.email !== adminEmail &&
+    doesUserHaveAccess !== false
   ) {
     const filteredDays =
       !isLoading &&
@@ -128,6 +140,89 @@ export default function UserExercises({ params }) {
                 </div>
               </div>
             ))}
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        {!isUserLoading &&
+          userData.map((user) => {
+            if (
+              session.data?.user.name === user.name &&
+              user.gender === "male"
+            ) {
+              return (
+                <div className={styles.mainDiv}>
+                  {!isLoading && (
+                    <p className={styles.contactToAniText}>
+                      Hey there! Reach out to Ani to get your hands on some
+                      exercises.
+                      <br />
+                      These are some basic exercises you can start with before
+                      getting ones tailored specifically for your body.
+                    </p>
+                  )}
+                  {!isLoading &&
+                    data
+                      .filter(
+                        (post) =>
+                          post.username === "male" &&
+                          post.week == params.id &&
+                          post.hasOwnProperty("day")
+                      )
+                      .map((post) => post.day)
+                      .filter(
+                        (value, index, self) => self.indexOf(value) === index
+                      )
+                      .sort((a, b) => a - b)
+                      .map((day) => (
+                        <div key={day._id} className={styles.secondMainDiv}>
+                          <div className={styles.weekTitle}>
+                            {daysLoop("day", day, day)}
+                          </div>
+                        </div>
+                      ))}
+                </div>
+              );
+            } else if (
+              session.data?.user.name === user.name &&
+              user.gender === "female"
+            ) {
+              return (
+                <div className={styles.mainDiv}>
+                  {!isLoading && (
+                    <p className={styles.contactToAniText}>
+                      Hey there! Reach out to Ani to get your hands on some
+                      exercises.
+                      <br />
+                      These are some basic exercises you can start with before
+                      getting ones tailored specifically for your body.
+                    </p>
+                  )}
+                  {!isLoading &&
+                    data
+                      .filter(
+                        (post) =>
+                          post.username === "female" &&
+                          post.week == params.id &&
+                          post.hasOwnProperty("day")
+                      )
+                      .map((post) => post.day)
+                      .filter(
+                        (value, index, self) => self.indexOf(value) === index
+                      )
+                      .sort((a, b) => a - b)
+                      .map((day) => (
+                        <div key={day._id} className={styles.secondMainDiv}>
+                          <div className={styles.weekTitle}>
+                            {daysLoop("day", day, day)}
+                          </div>
+                        </div>
+                      ))}
+                </div>
+              );
+            }
+          })}
       </div>
     );
   }
