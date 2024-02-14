@@ -11,8 +11,8 @@ export default function PlaylistModal({ prop }) {
         <div className={styles.post} key={prop._id}>
           <div className={styles.videoWrapper}>
             <iframe
-              allowfullscreen
-              frameborder="0"
+              allowFullScreen
+              frameBorder="0"
               width="350"
               height="250"
               type="text/html"

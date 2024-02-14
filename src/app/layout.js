@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
       <Head>
         <link rel="shortcut icon" href="./favicon.ico" />
       </Head>
-      <body className={poppins.className}>
+      <body className={poppins.className} suppressHydrationWarning={true}>
         <ExerciseProvider>
           <div className="container">
             <AuthProvider>

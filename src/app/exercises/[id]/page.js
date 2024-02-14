@@ -152,7 +152,7 @@ export default function UserExercises({ params }) {
               user.gender === "male"
             ) {
               return (
-                <div className={styles.mainDiv}>
+                <div key={user._id} className={styles.mainDiv}>
                   {!isLoading && (
                     <p className={styles.contactToAniText}>
                       Hey there! Reach out to Ani to get your hands on some
@@ -176,7 +176,7 @@ export default function UserExercises({ params }) {
                       )
                       .sort((a, b) => a - b)
                       .map((day) => (
-                        <div key={day._id} className={styles.secondMainDiv}>
+                        <div key={day} className={styles.secondMainDiv}>
                           <div className={styles.weekTitle}>
                             {daysLoop("day", day, day)}
                           </div>
@@ -189,7 +189,7 @@ export default function UserExercises({ params }) {
               user.gender === "female"
             ) {
               return (
-                <div className={styles.mainDiv}>
+                <div key={user._id} className={styles.mainDiv}>
                   {!isLoading && (
                     <p className={styles.contactToAniText}>
                       Hey there! Reach out to Ani to get your hands on some
@@ -213,7 +213,7 @@ export default function UserExercises({ params }) {
                       )
                       .sort((a, b) => a - b)
                       .map((day) => (
-                        <div key={day._id} className={styles.secondMainDiv}>
+                        <div key={day} className={styles.secondMainDiv}>
                           <div className={styles.weekTitle}>
                             {daysLoop("day", day, day)}
                           </div>

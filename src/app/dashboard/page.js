@@ -229,8 +229,8 @@ const Dashboard = () => {
                             <div className={styles.post} key={exe._id}>
                               <div className={styles.videoWrapper}>
                                 <iframe
-                                  allowFullscreen
-                                  frameborder="0"
+                                  allowFullScreen
+                                  frameBorder="0"
                                   width="350"
                                   height="250"
                                   type="text/html"
@@ -282,13 +282,15 @@ const Dashboard = () => {
                                 </h2>
                                 <form
                                   onSubmit={(e) =>
-                                    handleEditExerciseDescription(e, post._id, exe._id)
+                                    handleEditExerciseDescription(
+                                      e,
+                                      post._id,
+                                      exe._id
+                                    )
                                   }
                                   className={styles.editform}
                                 >
-                                  <h3 className={styles.editHeading}>
-                                    Update
-                                  </h3>
+                                  <h3 className={styles.editHeading}>Update</h3>
                                   <input
                                     type="text"
                                     placeholder="Title..."
@@ -412,8 +414,8 @@ const Dashboard = () => {
                             >
                               <h2>{vid.title}</h2>
                               <iframe
-                                allowFullscreen
-                                frameborder="0"
+                                allowFullScreen
+                                frameBorder="0"
                                 width="160"
                                 height="130"
                                 type="text/html"
