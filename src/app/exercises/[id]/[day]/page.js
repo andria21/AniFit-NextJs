@@ -129,21 +129,19 @@ export default function UserExercises({ params }) {
                     <p className={styles.postDescription}>{post.description}</p>
                   </div>
 
-                  {filteredByWeek?.map((exe) =>
-                    exe.exercises.map((workout) => (
-                      <ExerciseCard
-                        key={workout._id}
-                        videoUrl={workout.img}
-                        videoTitle={workout.title}
-                        videoDesc={workout.desc}
-                        videoContent={workout.content}
-                        isAdmin={
-                          session.status === "authenticated" &&
-                          session.data.user.email === adminEmail
-                        }
-                      />
-                    ))
-                  )}
+                  {post.exercises.map((workout) => (
+                    <ExerciseCard
+                      key={workout._id}
+                      videoUrl={workout.img}
+                      videoTitle={workout.title}
+                      videoDesc={workout.desc}
+                      videoContent={workout.content}
+                      isAdmin={
+                        session.status === "authenticated" &&
+                        session.data.user.email === adminEmail
+                      }
+                    />
+                  ))}
                 </div>
               );
             }
@@ -157,7 +155,7 @@ export default function UserExercises({ params }) {
         (user) =>
           session.data?.user.name === user.name && user.gender === "male"
       );
-      const isFemale =
+    const isFemale =
       !isUserLoading &&
       userData.some(
         (user) =>
@@ -166,7 +164,7 @@ export default function UserExercises({ params }) {
     const filteredByWeek = !isLoading
       ? data.filter((item) => item.week == params.id && item.day == params.day)
       : [];
-    
+
     return (
       <div className={styles.mainDiv}>
         {!isLoading &&

@@ -88,7 +88,8 @@ export default function UserExercises({ params }) {
           }
           return false;
         })
-        .sort((a, b) => a.day - b.day);
+        .sort((a, b) => a.week - b.week);
+    
 
     return (
       <div className={styles.adminContainer}>
