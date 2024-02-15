@@ -15,6 +15,8 @@ import PlusSvg from "../../../public/plus.svg";
 import X from "../../../public/x.svg";
 import Footer from "@/components/footer/Footer";
 
+import Spinner from "@/components/spinner/Spinner";
+
 const Dashboard = () => {
   const session = useSession();
 
@@ -63,7 +65,7 @@ const Dashboard = () => {
   );
 
   if (session.status === "loading") {
-    return <p>Loading...</p>;
+    return <div className={styles.spinnerContainer}><Spinner /></div>;
   }
 
   if (session.status === "unauthenticated") {
@@ -188,7 +190,7 @@ const Dashboard = () => {
         <div className={styles.mainDiv}>
           <div className={styles.videoCardContainer}>
             {isLoading
-              ? "loading"
+              ? <Spinner />
               : data?.map((post, index) => (
                   <div className={styles.playlistContainer} key={post._id}>
                     <div className={styles.playlistTitleContaner}>

@@ -14,6 +14,8 @@ import ExerciseCard from "@/components/ExerciseCard/ExerciseCard";
 import ArrowSvg from "../../../public/arrow.svg";
 import Image from "next/image";
 
+import Spinner from "@/components/spinner/Spinner";
+
 export default function Dashboard() {
   const session = useSession();
   const router = useRouter();
@@ -50,7 +52,7 @@ export default function Dashboard() {
   if (session.status === "loading") {
     return (
       <div className={styles.mainDiv}>
-        <p>Loading...</p>
+        <Spinner />
       </div>
     );
   }

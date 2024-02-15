@@ -7,6 +7,7 @@ import { signIn, useSession } from "next-auth/react";
 
 import Footer from "@/components/footer/Footer";
 import Image from "next/image";
+import Spinner from "@/components/spinner/Spinner";
 
 export default function Login() {
   const session = useSession();
@@ -14,7 +15,7 @@ export default function Login() {
   const adminEmail = process.env.ADMIN_EMAIL;
 
   if (session.status === "loading") {
-    return <p>Loading...</p>;
+    return <div className={styles.container}><Spinner /></div>;
   }
 
   if (

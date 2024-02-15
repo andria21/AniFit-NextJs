@@ -17,6 +17,7 @@ export default function UserExercises({ params }) {
   const router = useRouter();
   const session = useSession();
   const adminEmail = process.env.ADMIN_EMAIL;
+  
 
   const {
     data: userData,
