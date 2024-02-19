@@ -34,6 +34,55 @@
 
 }
 
+.delete {
+  margin: 12px;
+  height: 40px;
+  width: 80px;
+  border-radius: 10px;
+  background: #201f1f;
+  justify-content: center;
+  align-items: center;
+  box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #444,
+    inset -5px -5px 10px #222;
+  font-family: "Damion", cursive;
+  cursor: pointer;
+  border: none;
+  font-size: 13px;
+  color: rgb(161, 161, 161);
+  transition: 500ms;
+}
+
+.delete:hover {
+  box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #222,
+    inset -5px -5px 10px #444;
+  color: #d6d6d6;
+  transition: 500ms;
+}
+
+.answersContainer {
+  text-align: center;
+
+}
+
+.answerButton {
+  border: none;
+  padding: 10px;
+  margin: 8px;
+  width: 60px;
+  border-radius: 10px;
+  box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #444,
+    inset -5px -5px 10px #222;
+  font-family: "Damion", cursive;
+  cursor: pointer;
+}
+.answerButton:hover {
+  box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #222,
+    inset -5px -5px 10px #444;
+  color: #be0a0a;
+  background-color: #0F0F0F;
+  transition: 500ms;
+}
+
 .username {
   font-size: 29px;
   font-weight: bold;

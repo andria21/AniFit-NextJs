@@ -20,12 +20,13 @@
   padding: 26px;
   width: 100%;
   max-width: 1000px;
-  background-color: #183D3D;
+  /* background-color: #183D3D; */
+  background: #212121;
 }
 
 .weekTitle {
   margin-bottom: 25px;
-  border: 5px solid;
+  border: 2px solid;
   border-radius: 15px;
   display: flex;
   justify-content: center;
@@ -91,6 +92,7 @@
 @media (min-width: 200px) and (max-width: 718px) {
   .mainDiv {
     margin-top: 110px;
+    /* margin-bottom: 110px; */
   }
   .secondMainDiv {
     width: 320px;

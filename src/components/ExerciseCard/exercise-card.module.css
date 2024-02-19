@@ -1,50 +1,70 @@
 .card {
-  width: 500px;
-  border: 1px solid #5C8374;
-  border-radius: 15px;
+  width: 550px;
+  /* border: 1px solid #5C8374; */
+  /* border-radius: 15px; */
   overflow: hidden;
-  box-shadow: 0 0px 16px #5C8374;
+  /* box-shadow: 0 0px 16px #5C8374; */
   margin-bottom: 1.5em;
-  background-color: #000;
+  /* background-color: #000; */
+  background: #212121;
+  border-radius: 20px;
   /* padding: 12px; */
   text-align: center;
+  padding: 20px;
+  box-shadow: 5px 5px 8px #1b1b1b,
+             -5px -5px 8px #272727;
+  transition: 0.4s;
 }
 
-.card:hover {
+/* .card:hover {
   box-shadow: 0 0px 26px 0 #93B1A6;
+} */
+.card:hover {
+  translate: 0 -10px;
 }
 
 .videoWrapper {
   position: relative;
-  background-color: #000;
+  /* background-color: #000; */
 }
 
 .video {
-  border-radius: 10px 10px 0 0;
-
+  /* border-radius: 10px 10px 0 0; */
+  border-radius: 15px;
 }
 
 .cardContent {
   padding: 16px;
-  background-color: #000;
+  /* background-color: #000; */
 }
 
 .videoTitle {
-  font-size: 28px;
+  /* font-size: 28px;
   font-weight: bold;
   margin-bottom: 8px;
-  color: #CEDEBD;
+  color: #CEDEBD; */
+  font-size: 18px;
+  font-weight: 600;
+  color: #b2eccf;
+  margin: 15px 0 0 10px;
+  /* text-align: left; */
 }
 
 .videoDescription {
-  font-size: 19px;
+  /* font-size: 19px;
   color: #CEDEBD;
-  margin-bottom: 8px;
+  margin-bottom: 8px; */
+  margin: 13px 0 0 10px;
+  color: rgb(184, 184, 184);
+  font-size: 15px;
 }
 
 .videoContent {
-  font-size: 17px;
-  color: #CEDEBD;
+  /* font-size: 17px;
+  color: #CEDEBD; */
+  margin: 13px 0 0 10px;
+  color: rgb(184, 184, 184);
+  font-size: 15px;
 }
 .delete {
   display: flex;
@@ -59,11 +79,13 @@
 @media (min-width: 200px) and (max-width: 718px) {
   .card {
     width: 300px;
-    margin-bottom: 1em;
+    /* margin-bottom: 1em; */
+    padding: 0;
   }
 
   .video {
-    padding-right: 202px;
+    margin: 0 auto;
+    max-width: 300px;
     /* 212px */
   }
 }
