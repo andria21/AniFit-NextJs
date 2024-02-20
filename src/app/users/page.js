@@ -13,8 +13,7 @@ export default function Users() {
   const session = useSession();
   const router = useRouter();
 
-  const [confirmDelete, setConfirmDelete] = useState(false);
-  const [userIdToDelete, setUserIdToDelete] = useState(null);
+  const [confirmDelete, setConfirmDelete] = useState(null);
 
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -24,14 +23,13 @@ export default function Users() {
     router?.push("/dashboard/login");
   }
 
-  const handleDeleteUser = async (userId) => {
-    setUserIdToDelete(userId);
-    setConfirmDelete(true);
+  const handleDeleteUser = (user) => {
+    setConfirmDelete(user);
   };
 
   const confirmDeleteAction = async () => {
     try {
-      await fetch(`/api/users/${userIdToDelete}`, {
+      await fetch(`/api/users/${confirmDelete._id}`, {
         method: "DELETE",
       });
       mutate();
@@ -42,8 +40,7 @@ export default function Users() {
   };
 
   const cancelDeleteAction = () => {
-    setConfirmDelete(false);
-    setUserIdToDelete(null);
+    setConfirmDelete(null);
   };
 
   // !isLoading && console.log(data, error);
@@ -65,33 +62,33 @@ export default function Users() {
                       <h4>{user.email}</h4>
                       <button
                         className={styles.delete}
-                        onClick={() => handleDeleteUser(user._id)}
+                        onClick={() => handleDeleteUser(user)}
                       >
                         Delete
-                      </button>
+                    </button>
+                    {confirmDelete && confirmDelete._id === user._id &&(
+                      <div className={styles.answersContainer}>
+                        <p>Are you sure you want to delete this user?</p>
+                        <button
+                          onClick={confirmDeleteAction}
+                          className={styles.answerButton}
+                        >
+                          Yes
+                        </button>
+                        <button
+                          onClick={cancelDeleteAction}
+                          className={styles.answerButton}
+                        >
+                          No
+                        </button>
+                      </div>
+                    )}
                     </div>
                     <br />
                   </div>
                 </div>
               ))}
         </div>
-        {confirmDelete && (
-          <div className={styles.answersContainer}>
-            <p>Are you sure you want to delete this user?</p>
-            <button
-              onClick={confirmDeleteAction}
-              className={styles.answerButton}
-            >
-              Yes
-            </button>
-            <button
-              onClick={cancelDeleteAction}
-              className={styles.answerButton}
-            >
-              No
-            </button>
-          </div>
-        )}
       </div>
     );
   }
