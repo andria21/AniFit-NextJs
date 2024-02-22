@@ -13,7 +13,7 @@ import Image from "next/image";
 import GymGirl from "../../public/gym-girl.jpg";
 import styles from "./page.module.css";
 import AuthProvider from "@/components/auth-provider/AuthProvider";
-import Head from 'next/head';
+import Head from "next/head";
 
 import { ExerciseProvider } from "@/context/ExerciseContext";
 
@@ -25,6 +25,7 @@ const metrophobic = Metrophobic({ subsets: ["latin"], weight: "400" });
 const cinzel = Cinzel({ subsets: ["latin"], weight: "400" });
 
 export const metadata = {
+  manifest: "./manifest.json",
   title: "AniFit",
   description: "Personal fitness coach AniFit",
 };
@@ -50,3 +51,8 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
+// <meta
+// name='viewport'
+// content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover'
+// />
