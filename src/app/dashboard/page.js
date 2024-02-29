@@ -218,8 +218,7 @@ const Dashboard = () => {
                           onClick={(e) => e.stopPropagation()}
                         >
                           <h1 className={styles.modalTitle}>
-                            {" "}
-                            -{post.playlist}-{" "}
+                            -{post.playlist}-
                           </h1>
                           <span
                             className={styles.exitModal}
