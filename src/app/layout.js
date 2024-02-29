@@ -25,7 +25,7 @@ const metrophobic = Metrophobic({ subsets: ["latin"], weight: "400" });
 const cinzel = Cinzel({ subsets: ["latin"], weight: "400" });
 
 export const metadata = {
-  manifest: "./manifest.json",
+  manifest: "/manifest.json",
   title: "AniFit",
   description: "Personal fitness coach AniFit",
 };

@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div>
       <div className={styles.imgCont}>
-        <Image src={AnifitMainPhoto} alt="AniFit" className={styles.gymImage} />
+        <Image src={AnifitMainPhoto} alt="AniFit" className={styles.gymImage} width={"auto"} height={"auto"} />
         <div className={styles.filter}></div>
         <div className={styles.filter}></div>
         <div className={styles.filter1}>

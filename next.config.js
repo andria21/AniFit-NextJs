@@ -2,7 +2,7 @@
 
 const withPWA = require('next-pwa')({
   dest: 'public',
-  cacheOnFrontEndNav: false,
+  cacheOnFrontEndNav: true,
   reloadOnOnline: true,
   disable: false,
 })
