@@ -24,29 +24,29 @@ export const POST = async (request) => {
 
   try {
 
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      host: 'smpt.gmail.com',
-      port: 465,
-      secure: true,
-      auth: {
-        user: process.env.NEXT_EMAIL,
-        pass: process.env.NEXT_EMAIL_PASSWORD
-      }
-    })
+    // const transporter = nodemailer.createTransport({
+    //   service: 'gmail',
+    //   host: 'smpt.gmail.com',
+    //   port: 465,
+    //   secure: true,
+    //   auth: {
+    //     user: process.env.NEXT_EMAIL,
+    //     pass: process.env.NEXT_EMAIL_PASSWORD
+    //   }
+    // })
 
-    const mailOption = {
-      from: 'andriamarqarovi21@gmail.com',
-      to: 'annikni@gmail.com',
-      subject: "New user just registered on the website!",
-      html: `
-      <h3>Hello Ani, a new user has been registered.</h3>
-      <p>Name: ${name}</p>
-      <p>Email: ${email}</p>
-      `
-    }
+    // const mailOption = {
+    //   from: 'andriamarqarovi21@gmail.com',
+    //   to: 'annikni@gmail.com',
+    //   subject: "New user just registered on the website!",
+    //   html: `
+    //   <h3>Hello Ani, a new user has been registered.</h3>
+    //   <p>Name: ${name}</p>
+    //   <p>Email: ${email}</p>
+    //   `
+    // }
 
-    await transporter.sendMail(mailOption)
+    // await transporter.sendMail(mailOption)
 
     await newUser.save();
     return new NextResponse("User has been created!", {
