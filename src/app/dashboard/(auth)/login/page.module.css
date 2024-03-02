@@ -1,4 +1,4 @@
-.container {
+/* .container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,49 +108,7 @@
   50% {
     opacity: 0.5;
   }
-}
-
-.footerContainer {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-}
-
-
-@media (min-width: 200px) and (max-width: 718px) {
-  .loginForm {
-    width: 350px;
-    margin-bottom: 50px;
-    margin-top: 110px;
-  }
-  .form {
-    margin-bottom: 50px;
-    margin-top: 300px;
-  }
-}
-
-@media (max-width: 375px) {
-  .loginForm {
-    width: 280px;
-    margin-top: 150px;
-  }
-  .form .formFront{
-    max-width: 280px;
-  }
-  /* .container {
-    height: 100%;
-  } */
-  .footerContainer {
-    position: sticky;
-  }
-}
-
-
-
-
-
-
-
+} */
 
 
 
@@ -160,6 +118,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(135deg, #30475E, black, #30475E);
+  flex-direction: column;
+  height: 100svh;
 }
 
 .form {
@@ -285,3 +246,46 @@
 .container #signupToggle:checked + .form {
   transform: rotateY(-180deg);
 }
+
+.footerContainer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+
+@media (min-width: 200px) and (max-width: 718px) {
+  .loginForm {
+    width: 350px;
+    margin-bottom: 50px;
+    margin-top: 110px;
+  }
+  .form {
+    margin-bottom: 50px;
+    margin-top: 300px;
+  }
+}
+
+@media (max-width: 375px) {
+  .loginForm {
+    width: 280px;
+    margin-top: 150px;
+  }
+  .form .formFront{
+    max-width: 280px;
+  }
+  /* .container {
+    height: 100%;
+  } */
+  .footerContainer {
+    position: sticky;
+  }
+}
+
+
+
+
+
+
+
+
