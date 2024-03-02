@@ -2,11 +2,10 @@ import { NextResponse } from "next/server";
 import connect from "@/utils/db";
 import Exercise from "@/models/Exercise";
 
-
 export const DELETE = async (request, { params }) => {
   const { id, objId } = params;
 
-  console.log(id, objId);
+  // console.log(id, objId);
 
   try {
     await connect();
@@ -24,6 +23,42 @@ export const DELETE = async (request, { params }) => {
     }
 
     return new NextResponse("Post has been deleted", { status: 200 });
+  } catch (err) {
+    return new NextResponse("Database Error", { status: 500 });
+  }
+};
+
+export const POST = async (request, { params }) => {
+  const { id, objId } = params;
+  const { post } = await request.json();
+
+  // console.log(id, objId, post);
+
+  try {
+    await connect();
+
+    Exercise.findOneAndUpdate(
+      { _id: id, "exercises._id": objId },
+      {
+        $set: {
+          "exercises.$._id": post._id,
+          "exercises.$.title": post.title,
+          "exercises.$.desc": post.desc,
+          "exercises.$.img": post.img,
+          "exercises.$.content": post.content,
+          "exercises.$.username": post.username,
+        },
+      },
+      { upsert: true, new: true },
+      (err, result) => {
+        if (err) {
+          console.error("Error:", err);
+          return;
+        }
+      }
+    );
+
+    return new NextResponse("Post has been edited!", { status: 200 });
   } catch (err) {
     return new NextResponse("Database Error", { status: 500 });
   }

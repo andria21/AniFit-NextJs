@@ -12,7 +12,22 @@ export default function ExerciseCard({
   deleteId,
   objectId,
   isAdmin,
+  handleExerciseModalclick,
+  id,
+  isExerciseModalOpen,
+  closeExerciseModal,
+  playlistData,
+  playlistName,
+  setPlaylistName,
+  handleExerciseEdit,
 }) {
+  const handlePlaylistClick = (clickedPlaylist) => {
+    if (playlistName === clickedPlaylist) {
+      setPlaylistName("");
+    } else {
+      setPlaylistName(clickedPlaylist);
+    }
+  };
   return (
     <div className={styles.card}>
       <div className={styles.videoWrapper}>
@@ -31,13 +46,76 @@ export default function ExerciseCard({
         <h2 className={styles.videoDescription}>{videoDesc}</h2>
         <h2 className={styles.videoContent}>{videoContent}</h2>
         <h2 className={styles.videoContent}>{videoDay}</h2>
-        {isAdmin && (
-          <span
-            className={styles.delete}
-            onClick={() => deleteFunc(deleteId, objectId)}
+        <div className={styles.buttonsContainer}>
+          {isAdmin && (
+            <span
+              className={styles.delete}
+              onClick={() => deleteFunc(deleteId, objectId)}
+            >
+              Delete
+            </span>
+          )}
+          {isAdmin && (
+            <span
+              className={styles.editSpan}
+              onClick={() => handleExerciseModalclick(id)}
+            >
+              Edit
+            </span>
+          )}
+        </div>
+        {isAdmin && isExerciseModalOpen === id && (
+          <div
+            className={styles.playlistsModalOverlay}
+            onClick={closeExerciseModal}
           >
-            Delete
-          </span>
+            <div
+              className={styles.playlistsModalContent}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <span className={styles.close} onClick={closeExerciseModal}>
+                CLOSE
+              </span>
+              <h2 className={styles.sectionHeading}>Choose the PLaylist</h2>
+              {playlistData.map((playlist) => (
+                <div key={playlist._id}>
+                  <h3 className={styles.playlistName} onClick={() => handlePlaylistClick(playlist.playlist)}>
+                    {playlist.playlist}
+                  </h3>
+                  {playlist.playlist === playlistName && (
+                    <div>
+                      {playlist.posts.map((post) => (
+                        <div className={styles.post} key={post._id}>
+                          <div className={styles.videoWrapper}>
+                            <iframe
+                              allowFullScreen
+                              frameBorder="0"
+                              width="350"
+                              height="250"
+                              type="text/html"
+                              className={styles.video}
+                              sandbox
+                              src={`https://www.youtube.com/embed/${post.img}?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com`}
+                            ></iframe>
+                          </div>
+                          <div className={styles.playlistVideoContent}>
+                            <h2 className={styles.playlistTitle}>{post.title}</h2>
+                            <h2 className={styles.postDescription}>
+                              {post.desc}
+                            </h2>
+                            <h2 className={styles.postContent}>
+                              {post.content}
+                            </h2>
+                            <button className={styles.submitChange} type="submit" onClick={() => handleExerciseEdit(deleteId,objectId, post)}>Submit</button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
         )}
       </div>
     </div>
