@@ -46,47 +46,47 @@ export default function Login() {
 
   return (
     <div className={styles.container}>
-      <input id={styles.signupToggle} type="checkbox" />
-      <form className={styles.form} onSubmit={handleLogin}>
-        <div className={styles.formFront}>
-          <div className={styles.formDetails}>Login</div>
+    <div className={styles.mainContainer}>
+      <form className={styles.loginForm} onSubmit={handleLogin}>
+        <h2 className={styles.title}>Login</h2>
+        <div className={styles.formGroup}>
+          <label htmlFor="email" className={styles.label}>
+            Email:
+          </label>
           <input
-            type="text"
+            type="email"
+            id="email"
             name="email"
             className={styles.input}
-            placeholder="Email"
+            required
           />
+        </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="password" className={styles.label}>
+            Password:
+          </label>
           <input
             type="password"
+            id="password"
             name="password"
             className={styles.input}
-            placeholder="Password"
+            required
           />
-          <button className={styles.btn} type="submit">
-            Login
+        </div>
+        <button type="submit" className={styles.loginButton}>
+          Login
+        </button>
+        <div className={styles.newDiv}>
+          <button
+            type="text"
+            onClick={() => router?.push("/dashboard/register")}
+            className={styles.newAccButton}
+          >
+            - Create a new account -
           </button>
-          <span className={styles.switch}>
-            Don&apos;t have an account?
-            <label htmlFor="signupToggle" className={styles.signupTog} onClick={() => router?.push("/dashboard/register")}>
-              Sign Up
-            </label>
-          </span>
         </div>
       </form>
     </div>
+  </div>
   );
 }
-
-// <div className={styles.formBack}>
-//               <div className={styles.formDetails}>Sign Up</div>
-//               <input type="text" className={styles.input} placeholder="Firstname" />
-//               <input type="text" className={styles.input} placeholder="Username" />
-//               <input type="password" className={styles.input} placeholder="Password" />
-//               <input type="password" className={styles.input} placeholder="Confirm Password" />
-//               <button className={styles.btn}>Sign Up</button>
-//               <span className={styles.switch}>Already have an account?
-//                   <label htmlFor="signup_toggle" className={styles.signupTog}>
-//                       Sign In
-//                   </label>
-//               </span>
-//           </div>
