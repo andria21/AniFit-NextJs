@@ -66,7 +66,7 @@ export default function Login() {
             Login
           </button>
           <span className={styles.switch}>
-            Don't have an account?
+            Don&apos;t have an account?
             <label htmlFor="signupToggle" className={styles.signupTog} onClick={() => router?.push("/dashboard/register")}>
               Sign Up
             </label>
