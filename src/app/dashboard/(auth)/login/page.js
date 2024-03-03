@@ -73,7 +73,7 @@ export default function Login() {
             required
           />
         </div>
-        <button type="submit" className={styles.loginButton}>
+        <button type="submit" className={styles.newLoginButton}>
           Login
         </button>
         <div className={styles.newDiv}>

@@ -120,7 +120,7 @@ export default function Register() {
               <option value="female">Female</option>
             </select>
           </div>
-          <button className={styles.submitButton}>Submit</button>
+          <button className={styles.newRegisterButton}>Sign Up</button>
         </form>
       </div>
       {err && <h1>{err}</h1>}
