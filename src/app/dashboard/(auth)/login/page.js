@@ -78,7 +78,7 @@ export default function Login() {
         </button>
         <div className={styles.newDiv}>
           <button
-            type="text"
+            type="button"
             onClick={() => router?.push("/dashboard/register")}
             className={styles.newAccButton}
           >
