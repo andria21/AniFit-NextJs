@@ -114,6 +114,7 @@
     aspect-ratio: 3/2;
     object-fit: cover;
     mix-blend-mode: color-burn;
+    overflow: visible;
   }
 
   .logout {

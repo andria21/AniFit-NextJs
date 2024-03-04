@@ -93,6 +93,9 @@
   .mainDiv {
     margin-top: 110px;
     /* margin-bottom: 110px; */
+    font-family: "Kanit", sans-serif;
+    font-weight: 700;
+    font-style: normal;
   }
   .secondMainDiv {
     width: 320px;

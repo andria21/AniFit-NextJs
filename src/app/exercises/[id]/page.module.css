@@ -101,6 +101,9 @@
 @media (min-width: 200px) and (max-width: 718px) {
   .mainDiv {
     margin-top: 110px;
+    font-family: "Kanit", sans-serif;
+    font-weight: 700;
+    font-style: normal;
   }
   .secondMainDiv {
     width: 320px;

@@ -184,6 +184,10 @@
     padding: 0px;
   }
 
+  .customButton {
+    display: none;
+  }
+
   .item {
     justify-content: center;
     align-items: center;
