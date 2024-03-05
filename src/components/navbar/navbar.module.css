@@ -112,7 +112,7 @@
     font-family: 'Pacifico', cursive; */
     width: 100%;
     aspect-ratio: 3/2;
-    object-fit: cover;
+    object-fit: contain;
     mix-blend-mode: color-burn;
     overflow: visible;
   }
