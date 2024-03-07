@@ -31,7 +31,7 @@ const Navbar = () => {
           </Link>
 
           <Link href={"/beginners"} className={styles.link}>
-            Guide
+            Guide&apos;s
           </Link>
 
           {session.data?.user.email === adminEmail && (
