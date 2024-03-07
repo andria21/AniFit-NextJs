@@ -147,7 +147,7 @@
 
 .playlistTitle {
   font-weight: 600;
-  color: #b2eccf;
+
 }
 
 .playlistName {
@@ -182,7 +182,7 @@
   cursor: pointer;
 }
 
-@media (min-width: 200px) and (max-width: 718px) {
+@media (min-width: 200px) and (max-width: 841px) {
   .card {
     width: 300px;
     /* margin-bottom: 1em; */

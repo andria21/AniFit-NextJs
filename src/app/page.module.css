@@ -170,7 +170,7 @@
 /* ---------- MEDIA QUERIES ---------- */
 
 
-@media (max-width: 718px) {
+@media (max-width: 841px) {
   .title {
     font-size: 40px;
     font-weight: bold;

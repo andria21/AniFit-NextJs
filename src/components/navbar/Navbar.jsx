@@ -16,12 +16,22 @@ const Navbar = () => {
     <div className={styles.container}>
       <div className={styles.flexContainer}>
         <Link href="/">
-          <Image className={styles.logo} src={Logo} width={850} height={90} alt="Logo" />
+          <Image
+            className={styles.logo}
+            src={Logo}
+            width={850}
+            height={90}
+            alt="Logo"
+          />
         </Link>
 
         <div className={styles.links}>
           <Link href={"/"} className={styles.link}>
             Home
+          </Link>
+
+          <Link href={"/beginners"} className={styles.link}>
+            Guide
           </Link>
 
           {session.data?.user.email === adminEmail && (

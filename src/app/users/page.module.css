@@ -94,7 +94,7 @@
   color: #FF0000
 }
 
-@media (min-width: 300px) and (max-width: 681px) {
+@media (min-width: 300px) and (max-width: 841px) {
   .container {
     padding-top: 300px;
     padding-bottom: 60px;

@@ -176,14 +176,14 @@
   width: 100%;
 }
 
-@media (min-width: 200px) and (max-width: 718px) {
+@media (min-width: 200px) and (max-width: 841px) {
   .container {
     height: 100%;
   }
   .form {
     width: 350px;
     margin-bottom: 50px;
-    margin-top: 200px;
+    margin-top: 160px;
   }
 }
 

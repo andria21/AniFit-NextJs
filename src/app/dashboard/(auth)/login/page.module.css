@@ -174,7 +174,7 @@
 }
 
 
-@media (min-width: 200px) and (max-width: 718px) {
+@media (min-width: 200px) and (max-width: 841px) {
   .loginForm {
     width: 350px;
     margin-bottom: 50px;
@@ -185,7 +185,7 @@
 @media (max-width: 375px) {
   .loginForm {
     width: 280px;
-    margin-top: 150px;
+    margin-top: 180px;
   }
   .container {
     height: 100%;

@@ -65,6 +65,7 @@
   height: 40px;
   color: black;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .btn:hover {
@@ -93,7 +94,7 @@
 
 /*  -------------------------- mediaaaaa queriesssssss ------------------------- */
 
-@media (max-width: 718px) {
+@media (max-width: 841px) {
   /* CSS rules for smaller screens */
   .container {
     font-family: 'Cinzel', serif;
