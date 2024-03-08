@@ -90,7 +90,7 @@ export default function ExerciseCard({
                             <iframe
                               allowFullScreen
                               frameBorder="0"
-                              width="350"
+                              width="300"
                               height="250"
                               type="text/html"
                               className={styles.video}
