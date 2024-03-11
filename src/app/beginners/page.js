@@ -119,7 +119,7 @@ export default function Beginners() {
                   </div>
                 )}
                 <h3 className={styles.title}>{guide.title}</h3>
-                <p>{guide.desc}</p>
+                <p className={styles.guideDesc}>{guide.desc}</p>
                 {isAdmin && (
                   <div>
                     <button

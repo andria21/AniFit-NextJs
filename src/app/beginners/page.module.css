@@ -33,6 +33,10 @@
     inset 3px 3px 4px #0e0e0e, inset -3px -3px 4px #5f5e5e;
 }
 
+.guideDesc {
+  white-space: pre-wrap;
+}
+
 .guideContainer {
   position: relative;
   margin: 40px 0px;
