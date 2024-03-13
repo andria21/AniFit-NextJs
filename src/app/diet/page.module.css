@@ -46,7 +46,7 @@
   /* box-shadow: 15px 15px 30px rgb(25, 25, 25), -15px -15px 30px rgb(60, 60, 60); */
 }
 
-.guide {
+.diet {
   background: #191919;
   padding: 24px;
   border-radius: 15px;
@@ -72,15 +72,12 @@
   color: #b2eccf;
 }
 
-.videoWrapper {
-  /* background-color: #000; */
-  position: relative;
-}
-
-.video {
-  /* border-radius: 10px 10px 0 0; */
-  border-radius: 15px;
+.dietImage {
   width: 100%;
+  object-fit: cover;
+  height: 100%;
+  border-radius: 15px;
+
 }
 
 .submitEditButton {

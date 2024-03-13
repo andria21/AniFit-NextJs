@@ -1,6 +1,6 @@
 import styles from "./form.module.css";
 
-export default function Form({ handlerFunction, buttonText }) {
+export default function Form({ handlerFunction, buttonText, urlLabelName }) {
   return (
     <form className={styles.adminInputsContainer} onSubmit={handlerFunction}>
       <div className={styles.formGroup}>
@@ -17,7 +17,7 @@ export default function Form({ handlerFunction, buttonText }) {
       </div>
       <div className={styles.formGroup}>
         <label htmlFor="video" className={styles.label}>
-          Video URL:
+          {urlLabelName}:
         </label>
         <input type="text" id="video" name="video" className={styles.input} />
       </div>

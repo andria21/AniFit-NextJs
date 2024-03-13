@@ -7,6 +7,7 @@ import useSWR from "swr";
 import Spinner from "@/components/spinner/Spinner";
 import { useState } from "react";
 import Form from "@/components/form-component/Form";
+import Image from "next/image";
 
 export default function Beginners() {
   const adminEmail = process.env.ADMIN_EMAIL;
@@ -14,7 +15,7 @@ export default function Beginners() {
   const router = useRouter();
 
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
-  const { data, mutate, error, isLoading } = useSWR(`/api/beginners`, fetcher);
+  const { data, mutate, error, isLoading } = useSWR(`/api/diet`, fetcher);
 
   const [editForm, setEditForm] = useState(null);
 
@@ -26,10 +27,10 @@ export default function Beginners() {
     e.preventDefault();
     const title = e.target[0].value;
     const desc = e.target[1].value;
-    const video = e.target[2].value;
+    const image = e.target[2].value;
 
     try {
-      await fetch("/api/beginners", {
+      await fetch("/api/diet", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,7 +38,7 @@ export default function Beginners() {
         body: JSON.stringify({
           title,
           desc,
-          video,
+          image,
         }),
       });
       mutate();
@@ -47,9 +48,9 @@ export default function Beginners() {
     }
   };
 
-  const handleDeleteGuide = async (guideId) => {
+  const handleDeleteGuide = async (dietId) => {
     try {
-      await fetch(`/api/beginners/${guideId}`, {
+      await fetch(`/api/diet/${dietId}`, {
         method: "DELETE",
       });
       mutate();
@@ -62,10 +63,10 @@ export default function Beginners() {
     e.preventDefault();
     const title = e.target[0].value;
     const desc = e.target[1].value;
-    const video = e.target[2].value;
+    const image = e.target[2].value;
 
     try {
-      await fetch(`/api/beginners/${editForm}`, {
+      await fetch(`/api/diet/${editForm}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -73,7 +74,7 @@ export default function Beginners() {
         body: JSON.stringify({
           title,
           desc,
-          video,
+          image,
         }),
       });
       mutate();
@@ -85,12 +86,12 @@ export default function Beginners() {
 
   return (
     <div className={styles.container}>
-      <h1>Guide&apos;s for Beginners</h1>
+      <h1>Diet Plans</h1>
       {isAdmin && (
         <Form
           handlerFunction={handleAddBeginners}
           buttonText={"Add"}
-          urlLabelName={"Video URL"}
+          urlLabelName={"Image URL"}
         />
       )}
 
@@ -98,50 +99,45 @@ export default function Beginners() {
         {isLoading ? (
           <Spinner />
         ) : (
-          data.map((guide) => (
-            <div key={guide._id} className={styles.guideContainer}>
-              <div className={styles.guide}>
+          data.map((diet) => (
+            <div key={diet._id} className={styles.guideContainer}>
+              <div className={styles.diet}>
                 {isAdmin && (
                   <span
                     className={styles.delete}
-                    onClick={() => handleDeleteGuide(guide._id)}
+                    onClick={() => handleDeleteGuide(diet._id)}
                   >
                     X
                   </span>
                 )}
-                {guide.video && (
-                  <div className={styles.videoWrapper}>
-                    <iframe
-                      className={styles.video}
-                      allowFullScreen
-                      frameBorder="0"
-                      width="500"
-                      height="400"
-                      type="text/html"
-                      src={`https://www.youtube.com/embed/${guide.video}?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com`}
-                    ></iframe>
-                  </div>
+                {diet.image && (
+                  <Image
+                    src={diet.image}
+                    height={100}
+                    width={300}
+                    className={styles.dietImage}
+                  />
                 )}
-                <h3 className={styles.title}>{guide.title}</h3>
-                <p className={styles.guideDesc}>{guide.desc}</p>
+                <h3 className={styles.title}>{diet.title}</h3>
+                <p className={styles.guideDesc}>{diet.desc}</p>
                 {isAdmin && (
                   <div>
                     <button
                       className={styles.editButton}
                       type="button"
                       onClick={() =>
-                        editForm !== guide._id
-                          ? setEditForm(guide._id)
+                        editForm !== diet._id
+                          ? setEditForm(diet._id)
                           : setEditForm(null)
                       }
                     >
                       Edit
                     </button>
-                    {editForm === guide._id && (
+                    {editForm === diet._id && (
                       <Form
                         handlerFunction={handleEdit}
                         buttonText={"Submit"}
-                        urlLabelName={"Video URL"}
+                        urlLabelName={"Image URL"}
                       />
                     )}
                   </div>

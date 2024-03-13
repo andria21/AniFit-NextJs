@@ -34,6 +34,10 @@ const Navbar = () => {
             Guide&apos;s
           </Link>
 
+          <Link href={"/diet"} className={styles.link}>
+            Diet Hub
+          </Link>
+
           {session.data?.user.email === adminEmail && (
             <Link href={"/dashboard"} className={styles.link}>
               Dashboard
