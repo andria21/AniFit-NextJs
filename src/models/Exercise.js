@@ -27,6 +27,9 @@ const postSchema = new Schema({
     type: String,
     required: true,
   },
+  driveImage: {
+    type: String,
+  },
 });
 
 const arrayOfPostsSchema = Schema({
