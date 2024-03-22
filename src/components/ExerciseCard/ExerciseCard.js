@@ -1,6 +1,8 @@
 import React from "react";
 
 import styles from "./exercise-card.module.css";
+import Image from "next/image";
+import Form from "../form-component/Form";
 
 export default function ExerciseCard({
   videoUrl,
@@ -20,6 +22,9 @@ export default function ExerciseCard({
   playlistName,
   setPlaylistName,
   handleExerciseEdit,
+  driveImage,
+  handleAddDriveImage,
+  deleteDriveImage,
 }) {
   const handlePlaylistClick = (clickedPlaylist) => {
     if (playlistName === clickedPlaylist) {
@@ -40,6 +45,35 @@ export default function ExerciseCard({
           type="text/html"
           src={`https://www.youtube.com/embed/${videoUrl}?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com`}
         ></iframe>
+
+        {driveImage && (
+          <Image
+            src={`https://drive.google.com/uc?export=view&id=${driveImage}`}
+            width={900}
+            height={800}
+            className={styles.driveImage}
+          />
+        )}
+
+        {isAdmin && (
+          <div className={styles.driveContainer}>
+            {driveImage && (
+              <span
+                className={styles.deleteImage}
+                onClick={() => deleteDriveImage(deleteId, objectId)}
+              >
+                Delete Image
+              </span>
+            )}
+            <Form
+              buttonText="Add"
+              urlLabelName={"Image URL"}
+              handlerFunction={(e) =>
+                handleAddDriveImage(e, deleteId, objectId)
+              }
+            />
+          </div>
+        )}
       </div>
       <div className={styles.cardContent}>
         <h1 className={styles.videoTitle}>{videoTitle}</h1>
@@ -79,7 +113,10 @@ export default function ExerciseCard({
               <h2 className={styles.sectionHeading}>Choose the PLaylist</h2>
               {playlistData.map((playlist) => (
                 <div key={playlist._id}>
-                  <h3 className={styles.playlistName} onClick={() => handlePlaylistClick(playlist.playlist)}>
+                  <h3
+                    className={styles.playlistName}
+                    onClick={() => handlePlaylistClick(playlist.playlist)}
+                  >
                     {playlist.playlist}
                   </h3>
                   {playlist.playlist === playlistName && (
@@ -99,14 +136,24 @@ export default function ExerciseCard({
                             ></iframe>
                           </div>
                           <div className={styles.playlistVideoContent}>
-                            <h2 className={styles.playlistTitle}>{post.title}</h2>
+                            <h2 className={styles.playlistTitle}>
+                              {post.title}
+                            </h2>
                             <h2 className={styles.postDescription}>
                               {post.desc}
                             </h2>
                             <h2 className={styles.postContent}>
                               {post.content}
                             </h2>
-                            <button className={styles.submitChange} type="submit" onClick={() => handleExerciseEdit(deleteId,objectId, post)}>Submit</button>
+                            <button
+                              className={styles.submitChange}
+                              type="submit"
+                              onClick={() =>
+                                handleExerciseEdit(deleteId, objectId, post)
+                              }
+                            >
+                              Submit
+                            </button>
                           </div>
                         </div>
                       ))}

@@ -30,33 +30,67 @@ export const DELETE = async (request, { params }) => {
 
 export const POST = async (request, { params }) => {
   const { id, objId } = params;
-  const { post } = await request.json();
+  const { post, image, action } = await request.json();
 
   // console.log(id, objId, post);
 
   try {
     await connect();
 
-    Exercise.findOneAndUpdate(
-      { _id: id, "exercises._id": objId },
-      {
-        $set: {
-          "exercises.$._id": post._id,
-          "exercises.$.title": post.title,
-          "exercises.$.desc": post.desc,
-          "exercises.$.img": post.img,
-          "exercises.$.content": post.content,
-          "exercises.$.username": post.username,
+    if (action === "image") {
+      Exercise.findOneAndUpdate(
+        { _id: id, "exercises._id": objId },
+        {
+          $set: {
+            "exercises.$.driveImage": image,
+          },
         },
-      },
-      { upsert: true, new: true },
-      (err, result) => {
-        if (err) {
-          console.error("Error:", err);
-          return;
+        { upsert: true, new: true },
+        (err, result) => {
+          if (err) {
+            console.error("Error:", err);
+            return;
+          }
         }
-      }
-    );
+      );
+    } else if (action === "delete") {
+      Exercise.findOneAndUpdate(
+        { _id: id, "exercises._id": objId },
+        {
+          $set: {
+            "exercises.$.driveImage": null,
+          },
+        },
+        { upsert: true, new: true },
+        (err, result) => {
+          if (err) {
+            console.error("Error:", err);
+            return;
+          }
+        }
+      );
+    } else {
+      Exercise.findOneAndUpdate(
+        { _id: id, "exercises._id": objId },
+        {
+          $set: {
+            "exercises.$._id": post._id,
+            "exercises.$.title": post.title,
+            "exercises.$.desc": post.desc,
+            "exercises.$.img": post.img,
+            "exercises.$.content": post.content,
+            "exercises.$.username": post.username,
+          },
+        },
+        { upsert: true, new: true },
+        (err, result) => {
+          if (err) {
+            console.error("Error:", err);
+            return;
+          }
+        }
+      );
+    }
 
     return new NextResponse("Post has been edited!", { status: 200 });
   } catch (err) {

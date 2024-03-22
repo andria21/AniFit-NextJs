@@ -92,6 +92,8 @@ export default function Beginners() {
           handlerFunction={handleAddBeginners}
           buttonText={"Add"}
           urlLabelName={"Image URL"}
+          title={"Title"}
+          desc={"Description"}
         />
       )}
 
@@ -135,6 +137,8 @@ export default function Beginners() {
                     </button>
                     {editForm === diet._id && (
                       <Form
+                        title={"Title"}
+                        desc={"Description"}
                         handlerFunction={handleEdit}
                         buttonText={"Submit"}
                         urlLabelName={"Image URL"}

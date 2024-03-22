@@ -81,6 +81,7 @@ export default function AdminDays({ params }) {
         method: "POST",
         body: JSON.stringify({
           post,
+          action: "post",
         }),
       });
       mutate();
@@ -88,6 +89,49 @@ export default function AdminDays({ params }) {
       console.log(err);
     }
   };
+
+  function extractGoogleDriveId(url) {
+    const regex = /\/d\/([^\/]+)\/view/;
+    const match = url.match(regex);
+
+    if (match && match[1]) {
+      return match[1];
+    } else {
+      return null;
+    }
+  }
+
+  const handleAddDriveImage = async (e, id, objId) => {
+    e.preventDefault();
+    const image = e.target[0].value;
+
+    try {
+      await fetch(`/api/exercises/${id}/exercises/${objId}`, {
+        method: "POST",
+        body: JSON.stringify({
+          image: extractGoogleDriveId(image),
+          action: "image",
+        }),
+      });
+      mutate();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const deleteDriveImage = async (id, objId) => {
+    try {
+      await fetch(`/api/exercises/${id}/exercises/${objId}`, {
+        method: "POST",
+        body: JSON.stringify({
+          action: "delete",
+        }),
+      });
+      mutate();
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   if (
     session.status === "authenticated" &&
@@ -142,6 +186,7 @@ export default function AdminDays({ params }) {
                     videoTitle={workout.title}
                     videoDesc={workout.desc}
                     videoContent={workout.content}
+                    driveImage={workout.driveImage}
                     isAdmin={
                       session.status === "authenticated" &&
                       session.data.user.email === adminEmail
@@ -157,6 +202,8 @@ export default function AdminDays({ params }) {
                     playlistName={playlistName}
                     setPlaylistName={setPlaylistName}
                     handleExerciseEdit={handleExerciseEdit}
+                    handleAddDriveImage={handleAddDriveImage}
+                    deleteDriveImage={deleteDriveImage}
                   />
                 ))}
               </div>
@@ -166,3 +213,5 @@ export default function AdminDays({ params }) {
     );
   }
 }
+
+// https://drive.google.com/uc?export=view&amp;id=

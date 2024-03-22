@@ -91,6 +91,8 @@ export default function Beginners() {
           handlerFunction={handleAddBeginners}
           buttonText={"Add"}
           urlLabelName={"Video URL"}
+          title={"Title"}
+          desc={"Description"}
         />
       )}
 
@@ -142,6 +144,8 @@ export default function Beginners() {
                         handlerFunction={handleEdit}
                         buttonText={"Submit"}
                         urlLabelName={"Video URL"}
+                        title={"Title"}
+                        desc={"Description"}
                       />
                     )}
                   </div>

@@ -136,6 +136,7 @@ export default function UserExercises({ params }) {
                       videoTitle={workout.title}
                       videoDesc={workout.desc}
                       videoContent={workout.content}
+                      driveImage={workout.driveImage}
                       isAdmin={
                         session.status === "authenticated" &&
                         session.data.user.email === adminEmail

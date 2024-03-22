@@ -30,11 +30,42 @@
 .videoWrapper {
   position: relative;
   /* background-color: #000; */
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
 }
 
 .video {
   /* border-radius: 10px 10px 0 0; */
   border-radius: 15px;
+}
+
+.driveImage {
+  width: 100%;
+  object-fit: cover;
+  height: 300px;
+  border-radius: 15px;
+}
+
+.driveContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.deleteImage {
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+  color: red;
+}
+
+.deleteImage:hover {
+  color: #fff;
 }
 
 .cardContent {
