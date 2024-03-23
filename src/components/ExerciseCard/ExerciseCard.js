@@ -49,7 +49,8 @@ export default function ExerciseCard({
         {driveImage && (
           <Image
             src={`https://drive.google.com/uc?export=view&id=${driveImage}`}
-            width={900}
+            alt="Exercise Photo"
+            width={2000}
             height={800}
             className={styles.driveImage}
           />
