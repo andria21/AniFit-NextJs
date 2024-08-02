@@ -7,7 +7,9 @@ import ExerciseCard from "@/components/ExerciseCard/ExerciseCard";
 import { useSession } from "next-auth/react";
 import Footer from "@/components/footer/Footer";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import SaveSVG from "../../../../../../public/save-icon.svg";
+import Image from "next/image";
 
 export default function AdminDays({ params }) {
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -32,6 +34,13 @@ export default function AdminDays({ params }) {
   };
   const closeExerciseModal = () => {
     setIsExerciseModalOpen(null);
+  };
+
+  const [showModal, setShowModal] = useState(false);
+  const inputRef = useRef(null);
+
+  const handleSaveClick = () => {
+    setShowModal(true);
   };
 
   const handleDeleteSingleExercise = async (id, objId) => {
@@ -131,7 +140,41 @@ export default function AdminDays({ params }) {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
+
+  const handleSubmitPostSave = async (userPosts) => {
+    // e.preventDefault();
+    const playlist = inputRef.current.value;
+
+    // console.log(playlist);
+    // userPosts.map((posty) => {
+    //   posty.exercises.map((xxs) => {
+    //     console.log(xxs);
+    //   });
+    // });
+
+    try {
+      await fetch("/api/posts", {
+        method: "POST",
+        body: JSON.stringify({
+          playlist,
+          posts: userPosts.flatMap((mainUserPosts) =>
+            mainUserPosts.exercises.map((actualPosts) => ({
+              title: actualPosts.title,
+              desc: actualPosts.desc,
+              img: actualPosts.img,
+              content: actualPosts.content,
+              username: session.data.user.name,
+            }))
+          ),
+        }),
+      });
+      mutate();
+      setShowModal(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   if (
     session.status === "authenticated" &&
@@ -159,6 +202,41 @@ export default function AdminDays({ params }) {
                 >
                   Delete
                 </span>
+                <Image
+                  src={SaveSVG}
+                  width={50}
+                  height={50}
+                  alt="Save SVG"
+                  onClick={handleSaveClick}
+                  className={styles.saveSVG}
+                />
+                {showModal && (
+                  <div
+                    className={styles.saveModalOverlay}
+                    onClick={handleSubmitPostSave}
+                  >
+                    <div
+                      className={styles.saveModalContent}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <h2>Save the program</h2>
+                      <br />
+                      <input
+                        className={styles.editInput}
+                        type="text"
+                        placeholder="Enter the program name..."
+                        ref={inputRef}
+                      />
+                      <br />
+                      <button
+                        className={styles.editButton}
+                        onClick={() => handleSubmitPostSave(filteredByWeek)}
+                      >
+                        Save
+                      </button>
+                    </div>
+                  </div>
+                )}
                 <div className={styles.weekTitle}>
                   <h3>Description:</h3>
                   <p className={styles.postDescription}>{post.description}</p>
