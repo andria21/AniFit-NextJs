@@ -135,12 +135,22 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .saveSVG {
   cursor: pointer;
 }
 
+.close {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  cursor: pointer;
+}
+.closeSVG {
+  filter: invert(29%) sepia(93%) saturate(5478%) hue-rotate(351deg) brightness(97%) contrast(134%);
+}
 
 @media (min-width: 200px) and (max-width: 841px) {
   .mainDiv {

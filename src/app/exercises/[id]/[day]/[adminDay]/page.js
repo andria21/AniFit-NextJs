@@ -9,6 +9,7 @@ import Footer from "@/components/footer/Footer";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import SaveSVG from "../../../../../../public/save-icon.svg";
+import CloseSVG from "../../../../../../public/closeSVG.svg";
 import Image from "next/image";
 
 export default function AdminDays({ params }) {
@@ -143,16 +144,7 @@ export default function AdminDays({ params }) {
   };
 
   const handleSubmitPostSave = async (userPosts) => {
-    // e.preventDefault();
     const playlist = inputRef.current.value;
-
-    // console.log(playlist);
-    // userPosts.map((posty) => {
-    //   posty.exercises.map((xxs) => {
-    //     console.log(xxs);
-    //   });
-    // });
-
     try {
       await fetch("/api/posts", {
         method: "POST",
@@ -219,6 +211,19 @@ export default function AdminDays({ params }) {
                       className={styles.saveModalContent}
                       onClick={(e) => e.stopPropagation()}
                     >
+                      <div className={styles.closeContainer}></div>
+                      <span
+                        className={styles.close}
+                        onClick={() => setShowModal(false)}
+                      >
+                        <Image
+                          src={CloseSVG}
+                          width={35}
+                          height={35}
+                          alt="Close SVG"
+                          className={styles.closeSVG}
+                        />
+                      </span>
                       <h2>Save the program</h2>
                       <br />
                       <input

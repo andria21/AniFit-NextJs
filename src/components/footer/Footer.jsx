@@ -6,13 +6,13 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <div className={styles.footerContainer}>
-      <div>©2023 AniFit. All rights reserved.</div>
+      <div>©2024 AniFit. All rights reserved.</div>
       <div className={styles.social}>
         <Link href={"https://www.facebook.com/ani.margieva"}>
           <Image
             src="/1.png"
-            width={15}
-            height={15}
+            width={20}
+            height={20}
             className={styles.icon}
             alt="AniFit"
           />
@@ -24,18 +24,18 @@ const Footer = () => {
         >
           <Image
             src="/2.png"
-            width={15}
-            height={15}
+            width={20}
+            height={20}
             className={styles.icon}
             alt="AniFit"
           />
         </Link>
 
-        <Link href={""}>
+        <Link href={"#"}>
           <Image
             src="/4.png"
-            width={15}
-            height={15}
+            width={20}
+            height={20}
             className={styles.icon}
             alt="AniFit"
           />

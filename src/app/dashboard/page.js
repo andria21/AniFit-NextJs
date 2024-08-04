@@ -17,6 +17,8 @@ import Footer from "@/components/footer/Footer";
 
 import Spinner from "@/components/spinner/Spinner";
 
+import CloseSVG from "../../../public/closeSVG.svg";
+
 const Dashboard = () => {
   const session = useSession();
 
@@ -193,6 +195,7 @@ const Dashboard = () => {
       <div>
         <div className={styles.mainDiv}>
           <div className={styles.videoCardContainer}>
+          <h1>Playlists</h1>
             {isLoading ? (
               <Spinner />
             ) : (
@@ -205,14 +208,19 @@ const Dashboard = () => {
                     >
                       {post.playlist}
                     </h1>
-                    <span
-                      className={styles.playlistDelete}
-                      onClick={() => handlePlaylistDelete(post._id)}
-                    >
-                      <Image className={styles.exx} src={X} alt="plus" />
-                    </span>
                   </div>
-
+                  <span
+                    className={styles.playlistDelete}
+                    onClick={() => handlePlaylistDelete(post._id)}
+                  >
+                    <Image
+                      src={CloseSVG}
+                      width={35}
+                      height={35}
+                      alt="Close SVG"
+                      className={styles.closeSVG}
+                    />
+                  </span>
                   {isPostModalOpen === index && (
                     <div
                       className={styles.postModalOverlay}
@@ -227,7 +235,13 @@ const Dashboard = () => {
                           className={styles.exitModal}
                           onClick={closePostModal}
                         >
-                          CLOSE
+                          <Image
+                            src={CloseSVG}
+                            width={35}
+                            height={35}
+                            alt="Close SVG"
+                            className={styles.closeSVG}
+                          />
                         </span>
                         {post.posts.map((exe) => (
                           <div className={styles.post} key={exe._id}>
@@ -312,12 +326,6 @@ const Dashboard = () => {
                             </div>
                           </div>
                         ))}
-                        <span
-                          className={styles.exitModal}
-                          onClick={closePostModal}
-                        >
-                          CLOSE
-                        </span>
                       </div>
                     </div>
                   )}
@@ -352,12 +360,14 @@ const Dashboard = () => {
               />
               <button className={styles.buttona}>SEND</button>
             </form>
-            <div className={styles.uploadExercisesForm}>
+            <div>
               <Image
                 src={CartSvg}
                 className={styles.cartImage}
                 alt="Cart"
                 onClick={handleCartIconClick}
+                width={70}
+                height={70}
               />
               {isModalOpen && (
                 <div className={styles.modalOverlay} onClick={closeModal}>
@@ -398,7 +408,13 @@ const Dashboard = () => {
                         />
                         <button className={styles.buttonn}>SEND</button>
                         <span className={styles.exitModal} onClick={closeModal}>
-                          CLOSE
+                          <Image
+                            src={CloseSVG}
+                            width={35}
+                            height={35}
+                            alt="Close SVG"
+                            className={styles.closeSVG}
+                          />
                         </span>
                       </form>
                     </div>
@@ -412,7 +428,7 @@ const Dashboard = () => {
                               key={vid._id}
                               className={styles.videoContainer}
                             >
-                              <h2>{vid.title}</h2>
+                              <h2 className={styles.cartVideoTitle}>{vid.title}</h2>
                               <iframe
                                 allowFullScreen
                                 frameBorder="0"
