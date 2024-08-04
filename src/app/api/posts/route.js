@@ -23,13 +23,14 @@ export const POST = async (request) => {
 
   const newPost = new Post(body);
   const playlistName = body.playlist;
+  const fullDescriptions = body.fullDescriptions;
 
   try {
     await connect();
 
     Post.findOneAndUpdate(
       { playlist: playlistName },
-      { $push: { posts: newPost.posts } },
+      { $push: { posts: newPost.posts, fullDescriptions: fullDescriptions } },
       { upsert: true, new: true },
       (err, result) => {
         if (err) {

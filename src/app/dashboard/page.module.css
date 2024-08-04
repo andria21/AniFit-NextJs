@@ -450,6 +450,16 @@
   color: #ccc;
 }
 
+.fullDescDiv {
+  color: #ccc;
+  text-align: center;
+  padding: 0px 70px 0px 70px;
+}
+
+.fullDescP {
+  white-space: pre-wrap;
+}
+
 /* ---------------------- MEDIA MEDIA MEDIA QUERIES -----------------------------------------------*/
 
 @media (min-width: 200px) and (max-width: 940px) {

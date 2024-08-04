@@ -55,6 +55,17 @@ const Dashboard = () => {
 
   const adminEmail = process.env.ADMIN_EMAIL;
 
+  const excludedPlaylists = [
+    "ფეხები",
+    "მკერდი",
+    "ზურგი",
+    "დელტები",
+    "ბიცეპსი",
+    "ტრიცეპსი",
+    "დუნდულები",
+    "abs",
+  ];
+
   // const { array, isArrayLoading, setIsArrayLoading } =
   //   useContext(ExerciseContext);
 
@@ -213,14 +224,17 @@ const Dashboard = () => {
                     className={styles.playlistDelete}
                     onClick={() => handlePlaylistDelete(post._id)}
                   >
-                    <Image
-                      src={CloseSVG}
-                      width={35}
-                      height={35}
-                      alt="Close SVG"
-                      className={styles.closeSVG}
-                    />
+                    {!excludedPlaylists.includes(post.playlist) && (
+                      <Image
+                        src={CloseSVG}
+                        width={35}
+                        height={35}
+                        alt="Close SVG"
+                        className={styles.closeSVG}
+                      />
+                    )}
                   </span>
+
                   {isPostModalOpen === index && (
                     <div
                       className={styles.postModalOverlay}
@@ -243,6 +257,13 @@ const Dashboard = () => {
                             className={styles.closeSVG}
                           />
                         </span>
+                        <h4 className={styles.modalTitle}>Full Description</h4>
+                        {post.fullDescriptions &&
+                          post.fullDescriptions.map((fullDesc) => (
+                            <div key={post._id} className={styles.fullDescDiv}>
+                              <p className={styles.fullDescP}>{fullDesc}</p>
+                            </div>
+                          ))}
                         {post.posts.map((exe) => (
                           <div className={styles.post} key={exe._id}>
                             <div className={styles.videoWrapper}>

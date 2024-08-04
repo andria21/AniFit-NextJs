@@ -145,11 +145,15 @@ export default function AdminDays({ params }) {
 
   const handleSubmitPostSave = async (userPosts) => {
     const playlist = inputRef.current.value;
+
+    const fullDescriptions = userPosts.map(mainUserPosts => mainUserPosts.description);
+
     try {
       await fetch("/api/posts", {
         method: "POST",
         body: JSON.stringify({
           playlist,
+          fullDescriptions,
           posts: userPosts.flatMap((mainUserPosts) =>
             mainUserPosts.exercises.map((actualPosts) => ({
               title: actualPosts.title,
