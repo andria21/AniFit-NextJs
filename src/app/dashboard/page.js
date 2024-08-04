@@ -195,7 +195,7 @@ const Dashboard = () => {
       <div>
         <div className={styles.mainDiv}>
           <div className={styles.videoCardContainer}>
-          <h1>Playlists</h1>
+            <h1>Playlists</h1>
             {isLoading ? (
               <Spinner />
             ) : (
@@ -252,7 +252,7 @@ const Dashboard = () => {
                                 width="350"
                                 height="250"
                                 type="text/html"
-                                className={styles.video}
+                                className={styles.postVideo}
                                 sandbox
                                 src={`https://www.youtube.com/embed/${exe.img}?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com`}
                               ></iframe>
@@ -428,7 +428,9 @@ const Dashboard = () => {
                               key={vid._id}
                               className={styles.videoContainer}
                             >
-                              <h2 className={styles.cartVideoTitle}>{vid.title}</h2>
+                              <h2 className={styles.cartVideoTitle}>
+                                {vid.title}
+                              </h2>
                               <iframe
                                 allowFullScreen
                                 frameBorder="0"

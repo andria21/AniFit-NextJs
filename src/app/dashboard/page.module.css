@@ -79,10 +79,11 @@
 .post {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 40px 0px;
   flex-direction: column;
   width: 350px;
-  border-radius: 30px;
+  border-radius: 20px;
   margin-bottom: 1.5em;
   background: #212121;
   box-shadow: 15px 15px 30px rgb(25, 25, 25), -15px -15px 30px rgb(60, 60, 60);
@@ -149,7 +150,6 @@
 .videoWrapper {
   position: relative;
   /* border-bottom: 1px solid white; */
-  background: #212121;
   border-radius: 30px;
 }
 
@@ -157,6 +157,11 @@
   border-radius: 10px;
   padding: 16px;
   padding-right: 23px;
+}
+
+.postVideo {
+  /* padding: 16px; */
+  border-radius: 20px;
 }
 
 .postTitle {
