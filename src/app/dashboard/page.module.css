@@ -127,16 +127,20 @@
 .videoContainer {
   display: flex;
   flex-direction: column;
-
   justify-content: center;
   align-items: center;
   border: 1px solid #fff;
   border-radius: 10px;
   padding: 5px;
-  flex: 1;
   max-width: 300px;
   min-height: 300px;
+  max-height: 400px;
+  height: 100%;
+  width: 100%;
   text-align: center;
+  -webkit-box-shadow: 3px 10px 81px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 10px 81px 0px rgba(0,0,0,0.75);
+  box-shadow: 3px 10px 81px 0px rgba(0,0,0,0.75);
 }
 
 .videoContent {
@@ -236,9 +240,10 @@
   background-color: transparent;
   border: 2px solid #ffffff;
   border-radius: 3px;
-  color: #61677a;
+  color: #ccc;
   font-size: 20px;
   font-weight: bold;
+  resize: vertical;
 }
 
 .workoutInput::placeholder {
@@ -293,6 +298,9 @@
   filter: invert(73%) sepia(7%) saturate(3457%) hue-rotate(176deg) brightness(90%) contrast(89%);
   cursor: pointer;
 }
+.cartImage:hover {
+  filter: invert(14%) sepia(20%) saturate(994%) hue-rotate(131deg) brightness(96%) contrast(95%);
+}
 
 /*  MODAAAAAAAAAAAAAAAAAAAAAALLLLLLLLLLLLLLLLLLLLLLLLLLLLL ---------------------------------------------------------*/
 .modalOverlay {
@@ -314,7 +322,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  background-color: #252b48;
+  background-color: #152e2e;
   color: black;
   padding: 20px;
   border-radius: 8px;
@@ -460,6 +468,18 @@
   white-space: pre-wrap;
 }
 
+.addAllButton {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  background-color: #1A4870;
+  cursor: pointer;
+  text-align: center;
+}
+.addAllButton:hover {
+  background-color: #5B99C2;
+}
 /* ---------------------- MEDIA MEDIA MEDIA QUERIES -----------------------------------------------*/
 
 @media (min-width: 200px) and (max-width: 940px) {

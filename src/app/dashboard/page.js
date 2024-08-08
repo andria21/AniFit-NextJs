@@ -1,19 +1,16 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./page.module.css";
 import useSWR from "swr";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-import { useContext } from "react";
-import { ExerciseContext } from "@/context/ExerciseContext";
-
-import CartSvg from "../../../public/cart.svg";
 import PlusSvg from "../../../public/plus.svg";
 import X from "../../../public/x.svg";
-import Footer from "@/components/footer/Footer";
+import MenuSVG from "../../../public/menuSVG.svg";
+import RemoveSVG from "../../../public/removeSVG.svg";
 
 import Spinner from "@/components/spinner/Spinner";
 
@@ -26,6 +23,7 @@ const Dashboard = () => {
 
   const [array, setArray] = useState([]);
   const [workoutDay, setWorkoutDay] = useState();
+  const [fullDescription, setFullDescription] = useState("");
 
   const [isLoad, setIsLoad] = useState(true);
 
@@ -147,6 +145,15 @@ const Dashboard = () => {
     setIsLoad(false);
   };
 
+  const handleAddAll = (postData) => {
+    postData.map((test) => {
+      console.log(test);
+      array.push(test);
+    });
+    console.log(array);
+    setIsLoad(false);
+  };
+
   const handleExerciseFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -257,7 +264,26 @@ const Dashboard = () => {
                             className={styles.closeSVG}
                           />
                         </span>
-                        <h4 className={styles.modalTitle}>Full Description</h4>
+                        {!excludedPlaylists.includes(post.playlist) && (
+                          <>
+                            <button
+                              className={styles.addAllButton}
+                              onClick={() => {
+                                handleAddAll(post.posts.map((exes) => exes));
+                                setFullDescription(
+                                  post.fullDescriptions.map((fd) => fd)
+                                );
+                                closePostModal();
+                              }}
+                            >
+                              Add All
+                            </button>
+                            <h4 className={styles.modalTitle}>
+                              Full Description
+                            </h4>
+                          </>
+                        )}
+
                         {post.fullDescriptions &&
                           post.fullDescriptions.map((fullDesc) => (
                             <div key={post._id} className={styles.fullDescDiv}>
@@ -383,12 +409,12 @@ const Dashboard = () => {
             </form>
             <div>
               <Image
-                src={CartSvg}
+                src={MenuSVG}
                 className={styles.cartImage}
                 alt="Cart"
                 onClick={handleCartIconClick}
-                width={70}
-                height={70}
+                width={60}
+                height={60}
               />
               {isModalOpen && (
                 <div className={styles.modalOverlay} onClick={closeModal}>
@@ -397,7 +423,7 @@ const Dashboard = () => {
                     onClick={(e) => e.stopPropagation()}
                   >
                     <h1 className={styles.workoutsHeading}>
-                      Send workout program to user
+                      Send a workout program to the user
                     </h1>
                     <div className={styles.exerciseFormContainer}>
                       <form
@@ -426,6 +452,8 @@ const Dashboard = () => {
                           type="text"
                           placeholder="Description"
                           className={styles.workoutInput}
+                          value={fullDescription && fullDescription}
+                          onChange={(e) => setFullDescription(e.target.value)}
                         />
                         <button className={styles.buttonn}>SEND</button>
                         <span className={styles.exitModal} onClick={closeModal}>
@@ -455,8 +483,8 @@ const Dashboard = () => {
                               <iframe
                                 allowFullScreen
                                 frameBorder="0"
-                                width="160"
-                                height="130"
+                                width="240"
+                                height="150"
                                 type="text/html"
                                 className={styles.video}
                                 src={`https://www.youtube.com/embed/${vid.img}?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com`}
@@ -476,8 +504,8 @@ const Dashboard = () => {
                               >
                                 <Image
                                   className={styles.removeExercise}
-                                  src={X}
-                                  width={30}
+                                  src={RemoveSVG}
+                                  width={20}
                                   height={20}
                                   alt="plus"
                                 />
