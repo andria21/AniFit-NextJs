@@ -18,6 +18,9 @@
 .userHeader:hover {
   color: #000;
 }
+.container:last-child {
+  margin-bottom: 40px;
+}
 
 .contactToAniText {
   text-align: center;
@@ -287,7 +290,10 @@
   padding: 26px;
   width: 100%;
   max-width: 500px;
+}
 
+.secondMainDiv:last-child {
+  margin-bottom: 40px;
 }
 
 .titleHoverForExercise:hover {

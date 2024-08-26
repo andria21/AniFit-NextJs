@@ -21,6 +21,10 @@
   max-width: 500px;
 }
 
+.secondMainDiv:last-child {
+  margin-bottom: 40px;
+}
+
 .weekTitle {
   border: 5px solid;
   border-radius: 15px;

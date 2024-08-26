@@ -8,6 +8,7 @@ import Spinner from "@/components/spinner/Spinner";
 import { useState } from "react";
 import Form from "@/components/form-component/Form";
 import Image from "next/image";
+import Footer from "@/components/footer/Footer";
 
 export default function Beginners() {
   const adminEmail = process.env.ADMIN_EMAIL;
@@ -85,6 +86,7 @@ export default function Beginners() {
   };
 
   return (
+    <>
     <div className={styles.container}>
       <h1>Diet Plans</h1>
       {isAdmin && (
@@ -152,5 +154,7 @@ export default function Beginners() {
         )}
       </div>
     </div>
+    <Footer />
+    </>
   );
 }

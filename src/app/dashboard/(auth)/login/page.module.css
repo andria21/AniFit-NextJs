@@ -177,7 +177,7 @@
 @media (min-width: 200px) and (max-width: 841px) {
   .loginForm {
     width: 350px;
-    margin-bottom: 50px;
+    /* margin-bottom: 30px; */
     margin-top: 170px;
   }
   /* .container {
@@ -188,12 +188,12 @@
 @media (max-width: 375px) {
   .loginForm {
     width: 280px;
-    margin-top: 180px;
+    margin-top: 200px;
   }
   .container {
     /* height: 100%; */
   }
-  .footerContainer {
+  /* .footerContainer {
     position: sticky;
-  }
+  } */
 }

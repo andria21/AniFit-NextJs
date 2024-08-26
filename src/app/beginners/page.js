@@ -7,6 +7,7 @@ import useSWR from "swr";
 import Spinner from "@/components/spinner/Spinner";
 import { useState } from "react";
 import Form from "@/components/form-component/Form";
+import Footer from "@/components/footer/Footer";
 
 export default function Beginners() {
   const adminEmail = process.env.ADMIN_EMAIL;
@@ -84,77 +85,80 @@ export default function Beginners() {
   };
 
   return (
-    <div className={styles.container}>
-      <h1>Guide&apos;s for Beginners</h1>
-      {isAdmin && (
-        <Form
-          handlerFunction={handleAddBeginners}
-          buttonText={"Add"}
-          urlLabelName={"Video URL"}
-          title={"Title"}
-          desc={"Description"}
-        />
-      )}
-
-      <div className={styles.beginnersData}>
-        {isLoading ? (
-          <Spinner />
-        ) : (
-          data.map((guide) => (
-            <div key={guide._id} className={styles.guideContainer}>
-              <div className={styles.guide}>
-                {isAdmin && (
-                  <span
-                    className={styles.delete}
-                    onClick={() => handleDeleteGuide(guide._id)}
-                  >
-                    X
-                  </span>
-                )}
-                {guide.video && (
-                  <div className={styles.videoWrapper}>
-                    <iframe
-                      className={styles.video}
-                      allowFullScreen
-                      frameBorder="0"
-                      width="500"
-                      height="400"
-                      type="text/html"
-                      src={`https://www.youtube.com/embed/${guide.video}?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com`}
-                    ></iframe>
-                  </div>
-                )}
-                <h3 className={styles.title}>{guide.title}</h3>
-                <p className={styles.guideDesc}>{guide.desc}</p>
-                {isAdmin && (
-                  <div>
-                    <button
-                      className={styles.editButton}
-                      type="button"
-                      onClick={() =>
-                        editForm !== guide._id
-                          ? setEditForm(guide._id)
-                          : setEditForm(null)
-                      }
-                    >
-                      Edit
-                    </button>
-                    {editForm === guide._id && (
-                      <Form
-                        handlerFunction={handleEdit}
-                        buttonText={"Submit"}
-                        urlLabelName={"Video URL"}
-                        title={"Title"}
-                        desc={"Description"}
-                      />
-                    )}
-                  </div>
-                )}
-              </div>
-            </div>
-          ))
+    <>
+      <div className={styles.container}>
+        <h1>Guide&apos;s for Beginners</h1>
+        {isAdmin && (
+          <Form
+            handlerFunction={handleAddBeginners}
+            buttonText={"Add"}
+            urlLabelName={"Video URL"}
+            title={"Title"}
+            desc={"Description"}
+          />
         )}
+
+        <div className={styles.beginnersData}>
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            data.map((guide) => (
+              <div key={guide._id} className={styles.guideContainer}>
+                <div className={styles.guide}>
+                  {isAdmin && (
+                    <span
+                      className={styles.delete}
+                      onClick={() => handleDeleteGuide(guide._id)}
+                    >
+                      X
+                    </span>
+                  )}
+                  {guide.video && (
+                    <div className={styles.videoWrapper}>
+                      <iframe
+                        className={styles.video}
+                        allowFullScreen
+                        frameBorder="0"
+                        width="500"
+                        height="400"
+                        type="text/html"
+                        src={`https://www.youtube.com/embed/${guide.video}?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com`}
+                      ></iframe>
+                    </div>
+                  )}
+                  <h3 className={styles.title}>{guide.title}</h3>
+                  <p className={styles.guideDesc}>{guide.desc}</p>
+                  {isAdmin && (
+                    <div>
+                      <button
+                        className={styles.editButton}
+                        type="button"
+                        onClick={() =>
+                          editForm !== guide._id
+                            ? setEditForm(guide._id)
+                            : setEditForm(null)
+                        }
+                      >
+                        Edit
+                      </button>
+                      {editForm === guide._id && (
+                        <Form
+                          handlerFunction={handleEdit}
+                          buttonText={"Submit"}
+                          urlLabelName={"Video URL"}
+                          title={"Title"}
+                          desc={"Description"}
+                        />
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))
+          )}
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }

@@ -103,6 +103,10 @@
   padding: 10px;
 }
 
+.playlistContainer:last-child {
+  margin-bottom: 40px;
+}
+
 .playlistTitle {
   width: 100%;
   color: #aed2ff;
