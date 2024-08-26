@@ -9,6 +9,7 @@ import Footer from "@/components/footer/Footer";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import ArrowSvg from "../../../../../public/arrow.svg";
+import Spinner from "@/components/spinner/Spinner";
 
 export default function UserExercises({ params }) {
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -33,7 +34,7 @@ export default function UserExercises({ params }) {
     for (let i = 0; i <= 7; i++) {
       return (
         <h1
-          className={styles.titleHover}
+          className={styles.titleHoverForADays}
           onClick={() =>
             router.push(`/exercises/${params.id}/${params.day}/${destination}`)
           }
@@ -54,6 +55,14 @@ export default function UserExercises({ params }) {
       console.log(err);
     }
   };
+
+  if (session.status === "loading" || isLoading) {
+    return (
+      <div className={styles.spinnerContainer}>
+        <Spinner />
+      </div>
+    );
+  }
 
   if (
     session.status === "authenticated" &&

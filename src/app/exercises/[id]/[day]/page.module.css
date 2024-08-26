@@ -83,9 +83,16 @@
   padding: 16px 60px 16px 60px;
 }
 
-.titleHover:hover {
+.titleHoverForADays:hover {
   color: #183D3D;
   cursor: pointer;
+}
+
+.spinnerContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 

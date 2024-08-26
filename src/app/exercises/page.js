@@ -25,7 +25,7 @@ export default function Dashboard() {
     for (let i = 0; i <= 7; i++) {
       return (
         <h1
-          className={styles.titleHover}
+          className={styles.titleHoverForExercise}
           onClick={() => router.push(`/exercises/${destination}`)}
         >
           {name}: {value}
@@ -49,9 +49,9 @@ export default function Dashboard() {
     !isLoading &&
     data.some((post) => session.data?.user.name === post.username);
 
-  if (session.status === "loading") {
+  if (session.status === "loading" || isLoading) {
     return (
-      <div className={styles.mainDiv}>
+      <div className={styles.spinnerContainer}>
         <Spinner />
       </div>
     );

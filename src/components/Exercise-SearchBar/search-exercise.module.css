@@ -1,0 +1,74 @@
+.searchLabel {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #3D3D3D;
+    padding: 15px;
+    cursor: text;
+  }
+  
+  .searchLabel:hover {
+    border-color: gray;
+  }
+  
+  .searchLabel:focus-within {
+    background: #464646;
+    border-color: gray;
+  }
+  
+  .inputField {
+    outline: none;
+    width: 100%;
+    border: none;
+    background: none;
+    color: rgb(162, 162, 162);
+  }
+  
+  .inputField:focus + .slashIcon,
+  .inputField:valid + .slashIcon {
+    display: none;
+  }
+  
+  .inputField:valid ~ .searchIcon {
+    display: block;
+  }
+  
+  .inputField:valid {
+    width: calc(100% - 22px);
+    transform: translateX(20px);
+  }
+  
+  .searchIcon,
+  .slashIcon {
+    position: absolute;
+    color: #7e7e7e;
+  }
+  
+  .searchIcon {
+    display: none;
+    width: 12px;
+    height: auto;
+  }
+  
+  .slashIcon {
+    right: 7px;
+    border: 1px solid #393838;
+    background: linear-gradient(-225deg, #343434, #6d6d6d);
+    border-radius: 3px;
+    text-align: center;
+    box-shadow: inset 0 -2px 0 0 #3f3f3f, inset 0 0 1px 1px rgb(94, 93, 93), 0 1px 2px 1px rgba(28, 28, 29, 0.4);
+    cursor: pointer;
+    font-size: 12px;
+    width: 15px;
+  }
+  
+  .slashIcon:active {
+    box-shadow: inset 0 1px 0 0 #3f3f3f, inset 0 0 1px 1px rgb(94, 93, 93), 0 1px 2px 0 rgba(28, 28, 29, 0.4);
+    text-shadow: 0 1px 0 #7e7e7e;
+    color: transparent;
+  }
+  
