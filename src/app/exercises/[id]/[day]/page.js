@@ -12,6 +12,8 @@ import ArrowSvg from "../../../../../public/arrow.svg";
 import Spinner from "@/components/spinner/Spinner";
 import HeroSection from "@/components/HeroSectionContainer/HeroSection";
 
+import hero_rope from "../../../../../public/hero_rope.jpg";
+
 export default function UserExercises({ params }) {
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
   const { data, mutate, error, isLoading } = useSWR(`/api/exercises`, fetcher);
@@ -95,12 +97,7 @@ export default function UserExercises({ params }) {
 
     return (
       <>
-        <HeroSection
-          iamgeURL={
-            "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          }
-          imageHeading={"Day Selection"}
-        />
+        <HeroSection iamgeURL={hero_rope} imageHeading={"Day Selection"} />
 
         <div className={styles.dayMainDiv}>
           {!isLoading &&

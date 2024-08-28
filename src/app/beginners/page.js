@@ -10,6 +10,7 @@ import Form from "@/components/form-component/Form";
 import Footer from "@/components/footer/Footer";
 import Image from "next/image";
 import HeroSection from "@/components/HeroSectionContainer/HeroSection";
+import hero_sky from "../../../public/hero_sky.jpg";
 
 export default function Beginners() {
   const adminEmail = process.env.ADMIN_EMAIL;
@@ -89,9 +90,7 @@ export default function Beginners() {
   return (
     <>
       <HeroSection
-        iamgeURL={
-          "https://images.unsplash.com/photo-1608661649397-ff220c452e68?q=80&w=1954&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        }
+        iamgeURL={hero_sky}
         imageHeading={"Guide's for Beginners"}
       />
       <div className={styles.container}>

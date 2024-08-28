@@ -10,6 +10,7 @@ import Form from "@/components/form-component/Form";
 import Image from "next/image";
 import Footer from "@/components/footer/Footer";
 import HeroSection from "@/components/HeroSectionContainer/HeroSection";
+import hero_trees from "../../../public/hero_trees.jpg";
 
 export default function Beginners() {
   const adminEmail = process.env.ADMIN_EMAIL;
@@ -88,12 +89,7 @@ export default function Beginners() {
 
   return (
     <>
-      <HeroSection
-        iamgeURL={
-          "https://images.unsplash.com/photo-1610034030179-1e6cfe55f075?q=80&w=2179&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        }
-        imageHeading={"Diet Plans"}
-      />
+      <HeroSection iamgeURL={hero_trees} imageHeading={"Diet Plans"} />
       <div className={styles.container}>
         {isAdmin && (
           <Form
