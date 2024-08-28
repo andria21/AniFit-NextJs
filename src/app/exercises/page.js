@@ -15,6 +15,7 @@ import ArrowSvg from "../../../public/arrow.svg";
 import Image from "next/image";
 
 import Spinner from "@/components/spinner/Spinner";
+import HeroSection from "@/components/HeroSectionContainer/HeroSection";
 
 export default function Dashboard() {
   const session = useSession();
@@ -91,25 +92,34 @@ export default function Dashboard() {
     doesUserHaveAccess !== false
   ) {
     return (
-      <div className={styles.mainDiv}>
-        {!isLoading &&
-          data
-            .filter(
-              (post) =>
-                session.data.user.name === post.username &&
-                post.hasOwnProperty("week")
-            )
-            .map((post) => post.week)
-            .filter((value, index, self) => self.indexOf(value) === index)
-            .sort((a, b) => a - b)
-            .map((week) => (
-              <div key={week} className={styles.secondMainDiv}>
-                <div className={styles.weekTitle}>
-                  {daysLoop("Week", week, week)}
+      <>
+        <HeroSection
+          iamgeURL={
+            "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          }
+          imageHeading={"Week Selection"}
+        />
+
+        <div className={styles.mainDiv}>
+          {!isLoading &&
+            data
+              .filter(
+                (post) =>
+                  session.data.user.name === post.username &&
+                  post.hasOwnProperty("week")
+              )
+              .map((post) => post.week)
+              .filter((value, index, self) => self.indexOf(value) === index)
+              .sort((a, b) => a - b)
+              .map((week) => (
+                <div key={week} className={styles.secondMainDiv}>
+                  <div className={styles.weekTitle}>
+                    {daysLoop("Week", week, week)}
+                  </div>
                 </div>
-              </div>
-            ))}
-      </div>
+              ))}
+        </div>
+      </>
     );
   } else {
     return (

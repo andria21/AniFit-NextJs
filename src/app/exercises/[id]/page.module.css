@@ -3,7 +3,7 @@
   gap: 20px;
   width: 100%;
   /* max-width: 106.25em; */
-  padding: 120px 70px 0 70px;
+  padding: 0px 70px 0 70px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -65,7 +65,8 @@
   gap: 20px;
   width: 100%;
   /* max-width: 106.25em; */
-  padding: 200px 70px 0 70px;
+  /* 200px for top padding */
+  padding: 0px 70px 0 70px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -111,7 +112,7 @@
 
 @media (min-width: 200px) and (max-width: 841px) {
   .mainDiv {
-    margin-top: 180px;
+    /* margin-top: 180px; */
     font-family: "Kanit", sans-serif;
     font-weight: 700;
     font-style: normal;
@@ -130,7 +131,7 @@
   }
 
   .adminContainer {
-    margin-top: 160px;
+    /* margin-top: 160px; */
   }
   .adminSecondContainer {
     width: 320px;

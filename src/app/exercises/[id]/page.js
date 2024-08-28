@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import ArrowSvg from "../../../../public/arrow.svg";
 import Image from "next/image";
 import Spinner from "@/components/spinner/Spinner";
+import HeroSection from "@/components/HeroSectionContainer/HeroSection";
 
 export default function UserExercises({ params }) {
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -18,7 +19,6 @@ export default function UserExercises({ params }) {
   const router = useRouter();
   const session = useSession();
   const adminEmail = process.env.ADMIN_EMAIL;
-  
 
   const {
     data: userData,
@@ -99,25 +99,33 @@ export default function UserExercises({ params }) {
           return false;
         })
         .sort((a, b) => a.week - b.week);
-    
 
     return (
-      <div className={styles.adminContainer}>
-        {!isLoading &&
-          filteredData.map((post) => (
-            <div key={post._id} className={styles.adminSecondContainer}>
-              <div className={styles.weekTitle}>
-                {daysLoop("Week", post.week, post.week)}
+      <>
+        <HeroSection
+          iamgeURL={
+            "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          }
+          imageHeading={"Week Selection"}
+        />
+
+        <div className={styles.adminContainer}>
+          {!isLoading &&
+            filteredData.map((post) => (
+              <div key={post._id} className={styles.adminSecondContainer}>
+                <div className={styles.weekTitle}>
+                  {daysLoop("Week", post.week, post.week)}
+                </div>
+                <span
+                  className={styles.delete}
+                  onClick={() => handleDeleteExerciseUser(post._id)}
+                >
+                  Delete
+                </span>
               </div>
-              <span
-                className={styles.delete}
-                onClick={() => handleDeleteExerciseUser(post._id)}
-              >
-                Delete
-              </span>
-            </div>
-          ))}
-      </div>
+            ))}
+        </div>
+      </>
     );
   } else if (
     session.status === "authenticated" &&
@@ -132,26 +140,35 @@ export default function UserExercises({ params }) {
       );
 
     return (
-      <div className={styles.mainDiv}>
-        {!isLoading &&
-          data
-            .filter(
-              (post) =>
-                session.data.user.name === post.username &&
-                post.week == params.id &&
-                post.hasOwnProperty("day")
-            )
-            .map((post) => post.day)
-            .filter((value, index, self) => self.indexOf(value) === index)
-            .sort((a, b) => a - b)
-            .map((day) => (
-              <div key={day._id} className={styles.secondMainDiv}>
-                <div className={styles.weekTitle}>
-                  {daysLoop("Day", day, day)}
+      <>
+        <HeroSection
+          iamgeURL={
+            "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          }
+          imageHeading={"Day Selection"}
+        />
+
+        <div className={styles.mainDiv}>
+          {!isLoading &&
+            data
+              .filter(
+                (post) =>
+                  session.data.user.name === post.username &&
+                  post.week == params.id &&
+                  post.hasOwnProperty("day")
+              )
+              .map((post) => post.day)
+              .filter((value, index, self) => self.indexOf(value) === index)
+              .sort((a, b) => a - b)
+              .map((day) => (
+                <div key={day._id} className={styles.secondMainDiv}>
+                  <div className={styles.weekTitle}>
+                    {daysLoop("Day", day, day)}
+                  </div>
                 </div>
-              </div>
-            ))}
-      </div>
+              ))}
+        </div>
+      </>
     );
   } else {
     return (

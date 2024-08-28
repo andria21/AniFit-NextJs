@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap');
 .container {
   position: absolute;
   margin-top: 1.675em;
@@ -82,15 +83,52 @@
   padding: 10px;
   background-color: transparent;
   border: none;
+  z-index: 9999;
 }
 
 .bar {
-  width: 25px;
-  height: 3px;
-  background-color: #333;
-  margin: 5px 0;
+  width: 40px;
+  height: 45px;
+  object-fit: cover;
+  /* filter: invert(35%) sepia(59%) saturate(698%) hue-rotate(139deg) brightness(105%) contrast(91%); */
+  /* filter: invert(21%) sepia(80%) saturate(5580%) hue-rotate(168deg) brightness(98%) contrast(101%); */
+  filter: invert(80%) sepia(25%) saturate(7496%) hue-rotate(64deg) brightness(100%) contrast(140%);
+  /* filter: invert(99%) sepia(57%) saturate(6950%) hue-rotate(86deg) brightness(106%) contrast(105%); */
 }
 
+.hamburgerLinks {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 95%;
+  height: 350px;
+  background-color: rgba(7, 7, 7, 0.918);
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  transition: right 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 11px;
+  border: 0.1px solid rgba(255, 255, 255, 0.233);
+  border-radius: 20px;
+  font-size: 22px;
+  text-align: center;
+  font-family: "Alegreya", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.closeBtn {
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  filter: invert(85%) sepia(93%) saturate(0%) hue-rotate(191deg) brightness(87%) contrast(85%);
+}
 
 /*  -------------------------- mediaaaaa queriesssssss ------------------------- */
 
@@ -98,11 +136,12 @@
   /* CSS rules for smaller screens */
   .container {
     font-family: 'Cinzel', serif;
+
   }
   .flexContainer {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     gap: 10px;
   }
@@ -128,13 +167,21 @@
   }
 
   .links {
-    /* display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr; */
-    display: flex;
+    display: none;
+    /* display: flex;
     flex-direction: column;
     gap: 5px;
-    font-size: 21px;
+    font-size: 21px; */
   }
+  .hamburger {
+    display: block;
+  }
+
+  /* .link {
+    border: 0.1px solid white;
+    border-radius: 10px;
+    padding: 6px;
+  } */
 }
 
 
@@ -146,9 +193,9 @@
     padding-left: 70px;
     padding-right: 70px;
   }
-  .hamburger {
+  /* .hamburger {
     display: none;
-  }
+  } */
 
 
 

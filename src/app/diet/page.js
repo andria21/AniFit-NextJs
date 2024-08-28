@@ -9,6 +9,7 @@ import { useState } from "react";
 import Form from "@/components/form-component/Form";
 import Image from "next/image";
 import Footer from "@/components/footer/Footer";
+import HeroSection from "@/components/HeroSectionContainer/HeroSection";
 
 export default function Beginners() {
   const adminEmail = process.env.ADMIN_EMAIL;
@@ -87,74 +88,80 @@ export default function Beginners() {
 
   return (
     <>
-    <div className={styles.container}>
-      <h1>Diet Plans</h1>
-      {isAdmin && (
-        <Form
-          handlerFunction={handleAddBeginners}
-          buttonText={"Add"}
-          urlLabelName={"Image URL"}
-          title={"Title"}
-          desc={"Description"}
-        />
-      )}
-
-      <div className={styles.beginnersData}>
-        {isLoading ? (
-          <Spinner />
-        ) : (
-          data.map((diet) => (
-            <div key={diet._id} className={styles.guideContainer}>
-              <div className={styles.diet}>
-                {isAdmin && (
-                  <span
-                    className={styles.delete}
-                    onClick={() => handleDeleteGuide(diet._id)}
-                  >
-                    X
-                  </span>
-                )}
-                {diet.image && (
-                  <Image
-                    src={diet.image}
-                    height={100}
-                    width={300}
-                    className={styles.dietImage}
-                  />
-                )}
-                <h3 className={styles.title}>{diet.title}</h3>
-                <p className={styles.guideDesc}>{diet.desc}</p>
-                {isAdmin && (
-                  <div>
-                    <button
-                      className={styles.editButton}
-                      type="button"
-                      onClick={() =>
-                        editForm !== diet._id
-                          ? setEditForm(diet._id)
-                          : setEditForm(null)
-                      }
-                    >
-                      Edit
-                    </button>
-                    {editForm === diet._id && (
-                      <Form
-                        title={"Title"}
-                        desc={"Description"}
-                        handlerFunction={handleEdit}
-                        buttonText={"Submit"}
-                        urlLabelName={"Image URL"}
-                      />
-                    )}
-                  </div>
-                )}
-              </div>
-            </div>
-          ))
+      <HeroSection
+        iamgeURL={
+          "https://images.unsplash.com/photo-1610034030179-1e6cfe55f075?q=80&w=2179&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        }
+        imageHeading={"Diet Plans"}
+      />
+      <div className={styles.container}>
+        {isAdmin && (
+          <Form
+            handlerFunction={handleAddBeginners}
+            buttonText={"Add"}
+            urlLabelName={"Image URL"}
+            title={"Title"}
+            desc={"Description"}
+          />
         )}
+
+        <div className={styles.beginnersData}>
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            data.map((diet) => (
+              <div key={diet._id} className={styles.guideContainer}>
+                <div className={styles.diet}>
+                  {isAdmin && (
+                    <span
+                      className={styles.delete}
+                      onClick={() => handleDeleteGuide(diet._id)}
+                    >
+                      X
+                    </span>
+                  )}
+                  {diet.image && (
+                    <Image
+                      src={diet.image}
+                      height={100}
+                      width={300}
+                      className={styles.dietImage}
+                      alt=""
+                    />
+                  )}
+                  <h3 className={styles.title}>{diet.title}</h3>
+                  <p className={styles.guideDesc}>{diet.desc}</p>
+                  {isAdmin && (
+                    <div>
+                      <button
+                        className={styles.editButton}
+                        type="button"
+                        onClick={() =>
+                          editForm !== diet._id
+                            ? setEditForm(diet._id)
+                            : setEditForm(null)
+                        }
+                      >
+                        Edit
+                      </button>
+                      {editForm === diet._id && (
+                        <Form
+                          title={"Title"}
+                          desc={"Description"}
+                          handlerFunction={handleEdit}
+                          buttonText={"Submit"}
+                          urlLabelName={"Image URL"}
+                        />
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))
+          )}
+        </div>
       </div>
-    </div>
-    <Footer />
+      <Footer />
     </>
   );
 }

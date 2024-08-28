@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import ArrowSvg from "../../../../../public/arrow.svg";
 import Spinner from "@/components/spinner/Spinner";
+import HeroSection from "@/components/HeroSectionContainer/HeroSection";
 
 export default function UserExercises({ params }) {
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -93,22 +94,31 @@ export default function UserExercises({ params }) {
     // console.log(filteredData);
 
     return (
-      <div className={styles.dayMainDiv}>
-        {!isLoading &&
-          filteredData.map((item) => (
-            <div key={item._id} className={styles.daySecondMainDiv}>
-              <div className={styles.dayWeelTitle}>
-                {daysLoop("Day", item.day, item.day)}
+      <>
+        <HeroSection
+          iamgeURL={
+            "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          }
+          imageHeading={"Day Selection"}
+        />
+
+        <div className={styles.dayMainDiv}>
+          {!isLoading &&
+            filteredData.map((item) => (
+              <div key={item._id} className={styles.daySecondMainDiv}>
+                <div className={styles.dayWeelTitle}>
+                  {daysLoop("Day", item.day, item.day)}
+                </div>
+                <span
+                  className={styles.delete}
+                  onClick={() => handleDeleteExerciseUser(item._id)}
+                >
+                  Delete
+                </span>
               </div>
-              <span
-                className={styles.delete}
-                onClick={() => handleDeleteExerciseUser(item._id)}
-              >
-                Delete
-              </span>
-            </div>
-          ))}
-      </div>
+            ))}
+        </div>
+      </>
     );
   } else if (
     session.status === "authenticated" &&
