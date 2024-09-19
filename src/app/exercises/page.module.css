@@ -270,11 +270,11 @@
   flex-direction: row;
   align-items: center;
   padding: 16px 60px 16px 60px;
+  font-family: "Cormorant", serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
 }
-
-/* .weekTitle:hover {
-  background-color: #183D3D;
-} */
 
 .arrowSvg {
   /* filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%); */
@@ -332,7 +332,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
 @media (min-width: 200px) and (max-width: 841px) {
   .mainDiv {
     /* margin-top: 180px; */
@@ -366,6 +365,16 @@
   }
   .weekTitle {
     flex-direction: column;
+    border: 3px solid;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-radius: 11px;
+    font-size: 14px;
+    /* background-image: radial-gradient(circle, rgba(27, 26, 29, 0.5), rgba(21, 21, 27, 0.5), transparent);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
+    /* background-attachment: fixed; */
   }
   .mainDiv {
     gap: 0;
