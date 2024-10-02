@@ -78,12 +78,12 @@ export default function Dashboard() {
             )
             .map((user) => (
               <div key={user._id}>
-                <h1
+                <button
                   className={styles.userHeader}
                   onClick={() => router.push(`/exercises/${user.username}`)}
                 >
                   {user.username}
-                </h1>
+                </button>
               </div>
             ))}
       </div>

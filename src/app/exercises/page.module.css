@@ -1,23 +1,61 @@
 .container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 20px;
   width: 100%;
   padding: 200px 70px 0 70px;
   align-items: center;
   justify-content: center;
   font-family: 'Cinzel', serif;
+  flex-wrap: wrap;
 }
 
 .userHeader {
-  background-color: #183D3D;
+  /* background-color: #183D3D;
   padding: 20px;
   border-radius: 10px;
+  cursor: pointer; */
+  height: 50px;
+  margin: 5px;
+  padding: 0px 20px;
+  font-weight: bold;
+  background: #333;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   cursor: pointer;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: Consolas, Courier New, monospace;
+  border: solid #404c5d 1px;
+  font-size: 16px;
+  color: rgb(207, 207, 207);
+  -webkit-transition: 500ms;
+  transition: 500ms;
+  border-radius: 5px;
+  background: linear-gradient(145deg, #2e2d2d, #212121);
+  -webkit-box-shadow: -1px -5px 15px #41465b, 5px 5px 15px #41465b,
+    inset 5px 5px 10px #212121, inset -5px -5px 10px #212121;
+  box-shadow: -1px -5px 15px #41465b, 5px 5px 15px #41465b,
+    inset 5px 5px 10px #212121, inset -5px -5px 10px #212121;
 }
 .userHeader:hover {
-  color: #000;
+  /* color: #000; */
+  -webkit-box-shadow: 1px 1px 13px #20232e, -1px -1px 13px #545b78;
+  box-shadow: 1px 1px 13px #20232e, -1px -1px 13px #545b78;
+  color: #d6d6d6;
+  -webkit-transition: 500ms;
+  transition: 500ms;
 }
+.userHeader:active {
+  -webkit-box-shadow: 1px 1px 13px #20232e, -1px -1px 33px #545b78;
+  box-shadow: 1px 1px 13px #20232e, -1px -1px 33px #545b78;
+  color: #d6d6d6;
+  -webkit-transition: 100ms;
+  transition: 100ms;
+}
+
 .container:last-child {
   margin-bottom: 40px;
 }
@@ -340,7 +378,7 @@
     font-style: normal;
   }
   .container {
-    padding-top: 350px;
+    /* padding-top: 350px; */
     text-align: center;
   }
   .userName {
