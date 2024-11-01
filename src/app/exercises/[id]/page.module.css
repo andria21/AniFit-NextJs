@@ -10,6 +10,18 @@
   flex-direction: column;
   font-family: 'Lobster', cursive;
 }
+.genderMainDiv {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  /* max-width: 106.25em; */
+  padding: 0px 70px 0 70px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: 'Lobster', cursive;
+  margin-top: 200px;
+}
 .secondMainDiv {
   display: flex;
   flex-direction: column;
@@ -55,7 +67,8 @@
 }
 .contactToAniText {
   text-align: center;
-  color: red;
+  color: #FFDDAE;
+  font-family: 'Lobster', cursive;
 }
 
 .arrowSvg {
@@ -122,6 +135,12 @@
     font-weight: 700;
     font-style: normal;
   }
+  .genderMainDiv {
+        margin-top: 180px;
+        font-family: "Kanit", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+  }
   .secondMainDiv {
     width: 320px;
     padding-bottom: 40px;
@@ -138,6 +157,9 @@
 
   }
   .mainDiv {
+    gap: 0;
+  }
+  .genderMainDiv {
     gap: 0;
   }
 

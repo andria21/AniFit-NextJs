@@ -128,7 +128,7 @@ export default function Dashboard() {
               user.gender === "male"
             ) {
               return (
-                <div key={user._id} className={styles.mainDiv}>
+                <div key={user._id} className={styles.genderMainDiv}>
                   {!isLoading && (
                     <p className={styles.contactToAniText}>
                       Hey there! Reach out to Ani to get your hands on some
@@ -164,7 +164,7 @@ export default function Dashboard() {
               user.gender === "female"
             ) {
               return (
-                <div key={user._id} className={styles.mainDiv}>
+                <div key={user._id} className={styles.genderMainDiv}>
                   {!isLoading && (
                     <p className={styles.contactToAniText}>
                       Hey there! Reach out to Ani to get your hands on some

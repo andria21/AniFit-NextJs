@@ -173,7 +173,7 @@ export default function UserExercises({ params }) {
               user.gender === "male"
             ) {
               return (
-                <div key={user._id} className={styles.mainDiv}>
+                <div key={user._id} className={styles.genderMainDiv}>
                   {!isLoading && (
                     <p className={styles.contactToAniText}>
                       Hey there! Reach out to Ani to get your hands on some
@@ -199,7 +199,7 @@ export default function UserExercises({ params }) {
                       .map((day) => (
                         <div key={day} className={styles.secondMainDiv}>
                           <div className={styles.weekTitle}>
-                            {daysLoop("day", day, day)}
+                            {daysLoop("Day", day, day)}
                           </div>
                         </div>
                       ))}
@@ -210,7 +210,7 @@ export default function UserExercises({ params }) {
               user.gender === "female"
             ) {
               return (
-                <div key={user._id} className={styles.mainDiv}>
+                <div key={user._id} className={styles.genderMainDiv}>
                   {!isLoading && (
                     <p className={styles.contactToAniText}>
                       Hey there! Reach out to Ani to get your hands on some
@@ -236,7 +236,7 @@ export default function UserExercises({ params }) {
                       .map((day) => (
                         <div key={day} className={styles.secondMainDiv}>
                           <div className={styles.weekTitle}>
-                            {daysLoop("day", day, day)}
+                            {daysLoop("Day", day, day)}
                           </div>
                         </div>
                       ))}
