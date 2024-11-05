@@ -146,23 +146,23 @@ export default function AdminDays({ params }) {
   const handleSubmitPostSave = async (userPosts) => {
     const playlist = inputRef.current.value;
 
-    const fullDescriptions = userPosts.map(mainUserPosts => mainUserPosts.description);
+    // console.log(userPosts);
+
+    // const fullDescriptions = userPosts.map(mainUserPosts => mainUserPosts.description);
 
     try {
       await fetch("/api/posts", {
         method: "POST",
         body: JSON.stringify({
           playlist,
-          fullDescriptions,
-          posts: userPosts.flatMap((mainUserPosts) =>
-            mainUserPosts.exercises.map((actualPosts) => ({
-              title: actualPosts.title,
-              desc: actualPosts.desc,
-              img: actualPosts.img,
-              content: actualPosts.content,
-              username: session.data.user.name,
-            }))
-          ),
+          fullDescriptions: userPosts.description,
+          posts: userPosts.exercises.map((actualPosts) => ({
+            title: actualPosts.title,
+            desc: actualPosts.desc,
+            img: actualPosts.img,
+            content: actualPosts.content,
+            username: session.data.user.name,
+          })),
         }),
       });
       mutate();
@@ -171,6 +171,8 @@ export default function AdminDays({ params }) {
       console.log(err);
     }
   };
+
+  const [selectedPost, setSelectedPost] = useState(null);
 
   if (
     session.status === "authenticated" &&
@@ -203,7 +205,9 @@ export default function AdminDays({ params }) {
                   width={50}
                   height={50}
                   alt="Save SVG"
-                  onClick={handleSaveClick}
+                  onClick={() => {
+                    handleSaveClick(), setSelectedPost(post);
+                  }}
                   className={styles.saveSVG}
                 />
                 {showModal && (
@@ -239,7 +243,7 @@ export default function AdminDays({ params }) {
                       <br />
                       <button
                         className={styles.editButton}
-                        onClick={() => handleSubmitPostSave(filteredByWeek)}
+                        onClick={() => handleSubmitPostSave(selectedPost)}
                       >
                         Save
                       </button>
@@ -302,3 +306,5 @@ export default function AdminDays({ params }) {
 }
 
 // https://drive.google.com/uc?export=view&amp;id=
+
+//handleSubmitPostSave(filteredByWeek)
