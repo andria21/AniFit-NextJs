@@ -16,6 +16,8 @@ import Spinner from "@/components/spinner/Spinner";
 
 import CloseSVG from "../../../public/closeSVG.svg";
 import SearchExercise from "@/components/Exercise-SearchBar/SearchExercise";
+import Toast from "@/components/toast/Toast";
+import ToastManager from "@/components/toast/ToastManager";
 
 const Dashboard = () => {
   const session = useSession();
@@ -29,6 +31,8 @@ const Dashboard = () => {
   const [isLoad, setIsLoad] = useState(true);
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  
+  const toast = ToastManager();
 
   const togglePopup = () => {
     setIsPopupOpen(!isPopupOpen);
@@ -143,7 +147,7 @@ const Dashboard = () => {
   const handleAdd = (postToAdd) => {
     array.push(postToAdd);
     // alert("Post has been added to your program!");
-    console.log(array);
+    // console.log(array);
     setIsLoad(false);
   };
 
@@ -152,7 +156,7 @@ const Dashboard = () => {
       console.log(test);
       array.push(test);
     });
-    console.log(array);
+    // console.log(array);
     setIsLoad(false);
   };
 
@@ -205,7 +209,7 @@ const Dashboard = () => {
       console.log(err);
     }
   };
-
+  
   //<Image src={post.img} alt="" width={300} height={200} />
   if (
     session.status === "authenticated" &&
@@ -213,6 +217,7 @@ const Dashboard = () => {
   ) {
     return (
       <div>
+      {toast.element}
         <div className={styles.mainDiv}>
           <div className={styles.videoCardContainer}>
             <h1>Playlists</h1>
@@ -223,10 +228,10 @@ const Dashboard = () => {
                 <div
                   className={styles.playlistContainer}
                   key={post._id}
-                  onClick={() => handlePostModalclick(index)}
+                  
                 >
                   <div className={styles.playlistTitleContaner}>
-                    <h1 className={styles.playlistTitle}>{post.playlist}</h1>
+                    <h1 className={styles.playlistTitle} onClick={() => handlePostModalclick(index)}>{post.playlist}</h1>
                   </div>
                   <span
                     className={styles.playlistDelete}
@@ -335,7 +340,7 @@ const Dashboard = () => {
                                     </span>
                                     <span
                                       className={`${styles.delete} ${styles.plusButton}`}
-                                      onClick={() => handleAdd(exe)}
+                                      onClick={() => {handleAdd(exe); toast.addToast("Added!")}}
                                     >
                                       <Image
                                         className={styles.plus}
@@ -544,6 +549,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+        
       </div>
     );
   }
