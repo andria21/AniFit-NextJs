@@ -269,7 +269,7 @@
 
 .plus:hover {
   filter: invert(18%) sepia(79%) saturate(2476%) hue-rotate(86deg)
-  brightness(118%) contrast(119%);
+    brightness(118%) contrast(119%);
   scale: 150%;
 }
 
@@ -286,7 +286,6 @@
 
 .plusButton {
   /* animation: pulsate 1.5s infinite;  */
-  
 }
 
 @keyframes pulsate {
@@ -363,6 +362,7 @@
   justify-content: center;
   align-items: center;
   z-index: 3;
+  pointer-events: auto;
 }
 .postModalContent {
   display: flex;
@@ -378,7 +378,8 @@
   height: 1100px;
   max-height: calc(100vh - 110px);
   overflow-y: auto;
-  width: 100%;
+  overflow-x: hidden;
+  width: auto;
   font-family: "Lobster", cursive;
   position: relative;
 }
