@@ -220,14 +220,13 @@ const Dashboard = () => {
               <Spinner />
             ) : (
               data?.map((post, index) => (
-                <div className={styles.playlistContainer} key={post._id}>
+                <div
+                  className={styles.playlistContainer}
+                  key={post._id}
+                  onClick={() => handlePostModalclick(index)}
+                >
                   <div className={styles.playlistTitleContaner}>
-                    <h1
-                      className={styles.playlistTitle}
-                      onClick={() => handlePostModalclick(index)}
-                    >
-                      {post.playlist}
-                    </h1>
+                    <h1 className={styles.playlistTitle}>{post.playlist}</h1>
                   </div>
                   <span
                     className={styles.playlistDelete}
@@ -299,100 +298,104 @@ const Dashboard = () => {
                             </div>
                           ))}
 
-                        {post.posts
-                          .filter((exe) =>
-                            exe.title
-                              .toLowerCase()
-                              ?.includes(searchInput.toLowerCase())
-                          )
-                          .map((exe) => (
-                            <div className={styles.post} key={exe._id}>
-                              <div className={styles.videoWrapper}>
-                                <iframe
-                                  allowFullScreen
-                                  frameBorder="0"
-                                  width="350"
-                                  height="250"
-                                  type="text/html"
-                                  className={styles.postVideo}
-                                  sandbox
-                                  src={`https://www.youtube.com/embed/${exe.img}?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com`}
-                                ></iframe>
-                                <div className={styles.icons}>
-                                  <span
-                                    className={`${styles.delete} ${styles.plusButton}`}
-                                    onClick={() =>
-                                      handleDelete(post._id, exe._id)
+                        <div className={styles.postWrapper}>
+                          {post.posts
+                            .filter((exe) =>
+                              exe.title
+                                .toLowerCase()
+                                ?.includes(searchInput.toLowerCase())
+                            )
+                            .map((exe) => (
+                              <div className={styles.post} key={exe._id}>
+                                <div className={styles.videoWrapper}>
+                                  <iframe
+                                    allowFullScreen
+                                    frameBorder="0"
+                                    width="350"
+                                    height="250"
+                                    type="text/html"
+                                    className={styles.postVideo}
+                                    sandbox
+                                    src={`https://www.youtube.com/embed/${exe.img}?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com`}
+                                  ></iframe>
+                                  <div className={styles.icons}>
+                                    <span
+                                      className={`${styles.delete} ${styles.plusButton}`}
+                                      onClick={() =>
+                                        handleDelete(post._id, exe._id)
+                                      }
+                                    >
+                                      <Image
+                                        className={styles.ex}
+                                        src={X}
+                                        width={25}
+                                        height={25}
+                                        alt="plus"
+                                      />
+                                    </span>
+                                    <span
+                                      className={`${styles.delete} ${styles.plusButton}`}
+                                      onClick={() => handleAdd(exe)}
+                                    >
+                                      <Image
+                                        className={styles.plus}
+                                        src={PlusSvg}
+                                        width={25}
+                                        height={25}
+                                        alt="plus"
+                                      />
+                                    </span>
+                                  </div>
+                                </div>
+                                <div
+                                  className={styles.videoContent}
+                                  key={exe._id}
+                                >
+                                  <h2 className={styles.postTitle}>
+                                    {exe.title}
+                                  </h2>
+                                  <h2 className={styles.postDescription}>
+                                    {exe.desc}
+                                  </h2>
+                                  <h2 className={styles.postContent}>
+                                    {exe.content}
+                                  </h2>
+                                  <form
+                                    onSubmit={(e) =>
+                                      handleEditExerciseDescription(
+                                        e,
+                                        post._id,
+                                        exe._id
+                                      )
                                     }
+                                    className={styles.editform}
                                   >
-                                    <Image
-                                      className={styles.ex}
-                                      src={X}
-                                      width={25}
-                                      height={25}
-                                      alt="plus"
+                                    <h3 className={styles.editHeading}>
+                                      Update
+                                    </h3>
+                                    <input
+                                      type="text"
+                                      placeholder="Title..."
+                                      className={styles.editInput}
                                     />
-                                  </span>
-                                  <span
-                                    className={`${styles.delete} ${styles.plusButton}`}
-                                    onClick={() => handleAdd(exe)}
-                                  >
-                                    <Image
-                                      className={styles.plus}
-                                      src={PlusSvg}
-                                      width={25}
-                                      height={25}
-                                      alt="plus"
+                                    <input
+                                      type="text"
+                                      placeholder="Description..."
+                                      className={styles.editInput}
                                     />
-                                  </span>
+                                    <textarea
+                                      type="text"
+                                      placeholder="Content..."
+                                      className={styles.editInput}
+                                    />
+                                    <button className={styles.editButton}>
+                                      Submit
+                                    </button>
+                                  </form>
                                 </div>
                               </div>
-                              <div
-                                className={styles.videoContent}
-                                key={exe._id}
-                              >
-                                <h2 className={styles.postTitle}>
-                                  {exe.title}
-                                </h2>
-                                <h2 className={styles.postDescription}>
-                                  {exe.desc}
-                                </h2>
-                                <h2 className={styles.postContent}>
-                                  {exe.content}
-                                </h2>
-                                <form
-                                  onSubmit={(e) =>
-                                    handleEditExerciseDescription(
-                                      e,
-                                      post._id,
-                                      exe._id
-                                    )
-                                  }
-                                  className={styles.editform}
-                                >
-                                  <h3 className={styles.editHeading}>Update</h3>
-                                  <input
-                                    type="text"
-                                    placeholder="Title..."
-                                    className={styles.editInput}
-                                  />
-                                  <input
-                                    type="text"
-                                    placeholder="Description..."
-                                    className={styles.editInput}
-                                  />
-                                  <textarea
-                                    type="text"
-                                    placeholder="Content..."
-                                    className={styles.editInput}
-                                  />
-                                  <button className={styles.editButton}>
-                                    Submit
-                                  </button>
-                                </form>
-                              </div>
-                            </div>
-                          ))}
+                            ))}
+                        </div>
                       </div>
                     </div>
                   )}
